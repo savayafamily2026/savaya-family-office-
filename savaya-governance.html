@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Governance — SAVAYA Family Global Holdings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="savaya-i18n.css">
+<style>
+/* ── TOKENS ──────────────────────────────── */
+:root {
+  --ivory:#F6F1E9;--ivory-mid:#EDE6D9;--ivory-deep:#E3D9C8;
+  --stone:#B0A492;--stone-light:#CFC5B5;
+  --charcoal:#1D1C18;--ink:#252320;--ash:#4A4640;--ash-light:#706A62;
+  --teal:#1A5856;--teal-mid:#236E6B;--teal-light:#2E8B87;
+  --bronze:#8A6A38;--bronze-light:#B08A50;
+  --bg:var(--ivory);--bg-alt:var(--ivory-mid);--bg-deep:var(--ivory-deep);
+  --text-primary:var(--ink);--text-body:var(--ash);--text-soft:var(--ash-light);--text-muted:var(--stone);
+  --accent:var(--teal);--accent-warm:var(--bronze);
+  --border:rgba(176,164,146,.28);--border-strong:rgba(176,164,146,.55);--border-accent:rgba(26,88,86,.4);
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'Inter',-apple-system,system-ui,sans-serif;
+  --nav-h:72px;--max-w:1260px;--ease:cubic-bezier(0.16,1,0.3,1);
+}
+[data-theme="dark"]{
+  --bg:#141310;--bg-alt:#1C1A16;--bg-deep:#232018;
+  --text-primary:#EDE6D9;--text-body:#B5AC9E;--text-soft:#857D72;--text-muted:#5E584F;
+  --accent:#2E9490;--accent-warm:#C49840;
+  --border:rgba(160,150,135,.14);--border-strong:rgba(160,150,135,.28);--border-accent:rgba(46,148,144,.35);
+}
+
+/* ── RESET & BASE ────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text-primary);font-family:var(--sans);font-weight:400;line-height:1.7;overflow-x:hidden;transition:background .4s,color .4s}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{font:inherit;cursor:pointer;border:none;background:none}
+.wrap{max-width:var(--max-w);margin:0 auto;padding:0 2.5rem}
+@media(max-width:768px){.wrap{padding:0 1.25rem}}
+section{padding:7rem 0}
+section.alt{background:var(--bg-alt)}
+.label-tag{display:inline-flex;align-items:center;gap:.75rem;font-size:.6875rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted)}
+.label-tag::after{content:'';width:2.5rem;height:1px;background:var(--accent);flex-shrink:0}
+
+/* ── NAV ─────────────────────────────────── */
+#nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:100;display:flex;align-items:center;transition:background .4s,border-color .4s}
+#nav.scrolled{background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 2.5rem;width:100%;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+.nav-logo{display:flex;align-items:center;gap:.875rem;flex-shrink:0}
+.logo-mark{color:var(--accent);transition:color .25s}
+.logo-word{font-family:var(--serif);font-size:1.0625rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--text-primary);transition:color .25s}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-link{font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-soft);position:relative;transition:color .2s}
+.nav-link::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transition:transform .25s var(--ease)}
+.nav-link:hover{color:var(--text-primary)}
+.nav-link:hover::after,.nav-link.active::after{transform:scaleX(1)}
+.nav-link.active{color:var(--text-primary)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.theme-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--border-strong);display:flex;align-items:center;justify-content:center;color:var(--text-soft);transition:all .2s}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent)}
+.nav-enquire{font-size:.6875rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.6rem 1.375rem;border:1px solid var(--accent);color:var(--accent);border-radius:2px;transition:all .22s}
+.nav-enquire:hover{background:var(--accent);color:var(--ivory)}
+.hamburger{display:none;flex-direction:column;gap:5px}
+.hamburger span{display:block;width:22px;height:1px;background:currentColor;transition:all .3s}
+#mobile-nav{display:none;position:fixed;inset:0;z-index:99;background:var(--bg);padding:calc(var(--nav-h) + 2.5rem) 1.5rem 2rem;flex-direction:column;gap:0}
+#mobile-nav.open{display:flex}
+.mob-link{font-family:var(--serif);font-size:2rem;font-weight:300;color:var(--text-primary);padding:1rem 0;border-bottom:1px solid var(--border)}
+@media(max-width:920px){.nav-links{display:none}.nav-enquire{display:none}.hamburger{display:flex}.nav-inner{padding:0 1.25rem}}
+
+/* ── NAV OVER DARK HERO ───────────────────── */
+#nav:not(.over-content) .logo-mark{color:rgba(46,185,180,.9)}
+#nav:not(.over-content) .logo-word{color:rgba(237,230,217,.95)}
+#nav:not(.over-content) .nav-link{color:rgba(210,204,192,.75)}
+#nav:not(.over-content) .nav-link:hover,
+#nav:not(.over-content) .nav-link.active{color:rgba(255,255,255,.95)}
+#nav:not(.over-content) .nav-link::after{background:rgba(46,185,180,.8)}
+#nav:not(.over-content) .theme-btn{border-color:rgba(176,164,146,.3);color:rgba(176,164,146,.65)}
+#nav:not(.over-content) .nav-enquire{border-color:rgba(46,185,180,.65);color:rgba(46,185,180,.85)}
+#nav:not(.over-content) .hamburger{color:rgba(220,214,202,.85)}
+#nav.scrolled:not(.over-content){background:rgba(20,22,20,.8)}
+
+/* ── PAGE HERO ───────────────────────────── */
+.page-hero{position:relative;height:65vh;min-height:480px;overflow:hidden;display:flex;align-items:flex-end}
+.page-hero-photo{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.04);transition:transform 9s ease}
+.page-hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(18,16,12,.18) 0%,rgba(18,16,12,.62) 50%,rgba(18,16,12,.92) 100%)}
+.page-hero:hover .page-hero-photo{transform:scale(1)}
+.page-hero-content{position:relative;z-index:2;padding:0 2.5rem 4.5rem;max-width:var(--max-w);margin:0 auto;width:100%}
+.page-hero-back{display:inline-flex;align-items:center;gap:.625rem;font-size:.6875rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(237,230,217,.55);margin-bottom:2rem;transition:color .2s}
+.page-hero-back:hover{color:rgba(237,230,217,.9)}
+.page-hero-eyebrow{display:block;font-size:.625rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:rgba(176,164,146,.65);margin-bottom:1.125rem}
+.page-hero-title{font-family:var(--serif);font-size:clamp(2.75rem,6vw,5.5rem);font-weight:300;line-height:1;color:#F0EAE0;letter-spacing:-.01em;margin-bottom:1.25rem}
+.page-hero-title em{font-style:italic;color:rgba(207,197,181,.85)}
+.page-hero-sub{font-size:1.0625rem;font-weight:400;line-height:1.8;color:rgba(220,214,202,.85);max-width:54ch}
+@media(max-width:768px){.page-hero-content{padding:0 1.25rem 3rem}.page-hero{height:55vh}}
+
+/* ── GOVERNANCE PHILOSOPHY ───────────────── */
+#philosophy{padding:8rem 0}
+.phil-layout{display:grid;grid-template-columns:5fr 4fr;gap:7rem;align-items:start}
+.phil-headline{font-family:var(--serif);font-size:clamp(1.75rem,3.2vw,2.75rem);font-weight:300;line-height:1.25;color:var(--text-primary);margin-bottom:1.75rem}
+.phil-headline strong{font-weight:500}
+.phil-body{font-size:.9375rem;line-height:1.85;color:var(--text-body);margin-bottom:1.5rem}
+.phil-quote{font-family:var(--serif);font-size:1.175rem;font-weight:300;font-style:italic;line-height:1.6;color:var(--text-body);border-left:2px solid var(--accent);padding:1.75rem 0 1.75rem 2rem;margin-top:2.5rem}
+.phil-sidebar{display:flex;flex-direction:column;gap:1.25rem}
+.phil-fact{padding:1.75rem;background:var(--bg-deep);border:1px solid var(--border)}
+.phil-fact-val{font-family:var(--serif);font-size:2.5rem;font-weight:300;color:var(--accent);line-height:1;margin-bottom:.5rem}
+.phil-fact-label{font-size:.5875rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ash)}
+@media(max-width:900px){.phil-layout{grid-template-columns:1fr;gap:3rem}}
+
+/* ── FOUR PILLARS — EDITORIAL LIST ──────── */
+#pillars{padding:8rem 0}
+.pillars-header{margin-bottom:4.5rem}
+.pillars-headline{font-family:var(--serif);font-size:clamp(1.75rem,3.2vw,2.625rem);font-weight:300;line-height:1.3;color:var(--text-primary);margin-bottom:1.25rem}
+.pillars-sub{font-size:.9375rem;color:var(--text-body);line-height:1.8;max-width:55ch}
+
+.pillars-list{border-top:1px solid var(--border)}
+.pillar-row{
+  display:grid;
+  grid-template-columns:5.5rem 1fr 1.1fr;
+  gap:0 4rem;
+  padding:3.25rem 0;
+  border-bottom:1px solid var(--border);
+  align-items:start;
+  position:relative;
+  transition:background .25s;
+}
+.pillar-row::before{
+  content:'';
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:2px;
+  background:var(--accent);
+  transform:scaleY(0);
+  transform-origin:top;
+  transition:transform .4s var(--ease);
+}
+.pillar-row:hover{background:rgba(26,88,86,.04)}
+.pillar-row:hover::before{transform:scaleY(1)}
+
+.pillar-row-num{
+  font-family:var(--serif);
+  font-size:3.75rem;
+  font-weight:300;
+  line-height:1;
+  color:var(--border-strong);
+  padding-top:.5rem;
+  transition:color .3s;
+  user-select:none;
+}
+.pillar-row:hover .pillar-row-num{color:rgba(26,88,86,.3)}
+
+.pillar-row-main{padding-right:1rem}
+.pillar-row-icon{color:var(--accent);margin-bottom:1.125rem}
+.pillar-row-title{
+  font-family:var(--serif);
+  font-size:1.25rem;
+  font-weight:400;
+  color:var(--text-primary);
+  line-height:1.2;
+  margin-bottom:.75rem;
+}
+.pillar-row-body{
+  font-size:.875rem;
+  line-height:1.75;
+  color:var(--text-body);
+}
+
+.pillar-row-points{
+  display:flex;
+  flex-direction:column;
+  gap:.875rem;
+  border-left:1px solid var(--border);
+  padding-left:3rem;
+  padding-top:.125rem;
+}
+.pillar-point{
+  font-size:.8125rem;
+  color:var(--text-soft);
+  line-height:1.65;
+  display:flex;
+  align-items:flex-start;
+  gap:.875rem;
+}
+.pillar-point::before{
+  content:'';
+  display:inline-block;
+  width:18px;
+  height:1px;
+  background:var(--accent);
+  flex-shrink:0;
+  margin-top:.6em;
+  opacity:.75;
+}
+
+@media(max-width:1024px){
+  .pillar-row{grid-template-columns:4rem 1fr 1fr;gap:0 2.5rem}
+  .pillar-row-points{padding-left:2rem}
+}
+@media(max-width:768px){
+  .pillar-row{grid-template-columns:3rem 1fr;gap:1.5rem 1.75rem}
+  .pillar-row-num{font-size:2.75rem;padding-top:.25rem}
+  .pillar-row-main{grid-column:2}
+  .pillar-row-points{
+    grid-column:1/-1;
+    border-left:none;
+    border-top:1px solid var(--border);
+    padding-left:0;
+    padding-top:1.25rem;
+    margin-top:.5rem;
+  }
+}
+
+/* ── IPS / SUCCESSION — DARK SECTION ────── */
+#succession{
+  padding:9rem 0;
+  background:var(--charcoal);
+  position:relative;
+  overflow:hidden;
+}
+#succession::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(26,88,86,.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 10% 85%, rgba(138,106,56,.08) 0%, transparent 40%);
+  pointer-events:none;
+}
+.succ-layout{
+  display:grid;
+  grid-template-columns:1fr 1.15fr;
+  gap:7rem;
+  align-items:center;
+  position:relative;z-index:1;
+}
+.succ-eyebrow{
+  font-size:.5875rem;
+  font-weight:600;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:rgba(46,148,144,.75);
+  display:block;
+  margin-bottom:1.5rem;
+}
+.succ-headline{
+  font-family:var(--serif);
+  font-size:clamp(2rem,4vw,3.5rem);
+  font-weight:300;
+  color:var(--ivory);
+  line-height:1.1;
+  margin-bottom:1.5rem;
+}
+.succ-headline em{font-style:italic;color:var(--stone-light)}
+.succ-body{
+  font-size:.9375rem;
+  line-height:1.85;
+  color:rgba(207,197,181,.75);
+  margin-bottom:0;
+  max-width:52ch;
+}
+
+.succ-principles{
+  display:flex;
+  flex-direction:column;
+  border-top:1px solid rgba(176,164,146,.14);
+  margin-top:2.75rem;
+}
+.succ-principle{
+  padding:1.625rem 0;
+  border-bottom:1px solid rgba(176,164,146,.12);
+  display:grid;
+  grid-template-columns:14rem 1fr;
+  gap:2rem;
+  align-items:baseline;
+}
+.succ-principle-label{
+  font-size:.625rem;
+  font-weight:600;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:rgba(46,148,144,.75);
+  flex-shrink:0;
+  line-height:1.4;
+  padding-top:.05rem;
+}
+.succ-principle-body{
+  font-size:.875rem;
+  line-height:1.7;
+  color:rgba(207,197,181,.68);
+}
+
+.succ-photo{
+  position:relative;
+  overflow:hidden;
+  aspect-ratio:4/5;
+  border:1px solid rgba(176,164,146,.08);
+}
+.succ-photo img{
+  width:100%;height:100%;
+  object-fit:cover;
+  filter:grayscale(25%) sepia(12%);
+  transition:transform .8s var(--ease);
+}
+.succ-photo:hover img{transform:scale(1.04)}
+
+@media(max-width:900px){
+  .succ-layout{grid-template-columns:1fr;gap:4rem}
+  .succ-photo{aspect-ratio:16/9}
+  .succ-principle{grid-template-columns:1fr;gap:.625rem}
+}
+
+/* ── CONTACT CTA ─────────────────────────── */
+.gov-contact{padding:7rem 0;text-align:center;background:var(--bg-alt)}
+.gov-contact h2{font-family:var(--serif);font-size:clamp(1.75rem,3.5vw,3rem);font-weight:300;color:var(--text-primary);line-height:1.3;margin-bottom:1.25rem;max-width:50ch;margin-left:auto;margin-right:auto}
+.gov-contact h2 em{font-style:italic;color:var(--text-soft)}
+.gov-contact p{font-size:.9375rem;color:var(--text-body);line-height:1.85;max-width:52ch;margin:0 auto 2.5rem}
+.btn-primary{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.875rem 2rem;background:var(--accent);color:var(--ivory);border-radius:2px;transition:all .25s;display:inline-flex;align-items:center;gap:.625rem}
+.btn-primary:hover{background:var(--teal-mid)}
+.btn-primary svg{transition:transform .25s}
+.btn-primary:hover svg{transform:translateX(3px)}
+
+/* ── FOOTER ──────────────────────────────── */
+footer{background:var(--charcoal);border-top:1px solid rgba(176,164,146,.1);padding:2.5rem 0}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.footer-logo{display:flex;align-items:center;gap:.75rem;color:var(--stone)}
+.footer-logo .logo-word{font-size:.875rem;color:var(--stone)}
+.footer-copy{font-size:.75rem;font-weight:400;color:rgba(176,164,146,.55);letter-spacing:.03em}
+.footer-links{display:flex;gap:1.75rem}
+.footer-link{font-size:.6875rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(176,164,146,.5);transition:color .2s}
+.footer-link:hover{color:rgba(176,164,146,.9)}
+
+/* ── ANIMATIONS ──────────────────────────── */
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.fade-up.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="logo-mark">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+          <polygon points="17,1.5 32.5,17 17,32.5 1.5,17" stroke="currentColor" stroke-width="1.6" fill="none"/>
+          <polygon points="17,7 27,17 17,27 7,17" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/>
+          <polygon points="17,13 21,17 17,21 13,17" fill="currentColor"/>
+          <line x1="17" y1="1.5" x2="17" y2="5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="32.5" y1="17" x2="28.5" y2="17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="17" y1="32.5" x2="17" y2="28.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="1.5" y1="17" x2="5.5" y2="17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="logo-word">Savaya</span>
+    </a>
+    <div class="nav-links">
+      <a href="savaya-focus.html" class="nav-link" data-i18n="nav.focus">Focus Areas</a>
+      <a href="savaya-jurisdiction.html" class="nav-link" data-i18n="nav.juris">Jurisdiction</a>
+      <a href="savaya-governance.html" class="nav-link active" data-i18n="nav.gov">Governance</a>
+      <a href="savaya-contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-switch" aria-label="Language">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ar">AR</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <circle cx="7" cy="7" r="3" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="7" y1="0" x2="7" y2="1.5" stroke="currentColor" stroke-width="1.1"/>
+          <line x1="7" y1="12.5" x2="7" y2="14" stroke="currentColor" stroke-width="1.1"/>
+          <line x1="0" y1="7" x2="1.5" y2="7" stroke="currentColor" stroke-width="1.1"/>
+          <line x1="12.5" y1="7" x2="14" y2="7" stroke="currentColor" stroke-width="1.1"/>
+          <line x1="2" y1="2" x2="3.1" y2="3.1" stroke="currentColor" stroke-width="1.1"/>
+          <line x1="10.9" y1="10.9" x2="12" y2="12" stroke="currentColor" stroke-width="1.1"/>
+          <line x1="12" y1="2" x2="10.9" y2="3.1" stroke="currentColor" stroke-width="1.1"/>
+          <line x1="3.1" y1="10.9" x2="2" y2="12" stroke="currentColor" stroke-width="1.1"/>
+        </svg>
+      </button>
+      <a href="savaya-contact.html" class="nav-enquire" data-i18n="nav.enquire">Enquire</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div id="mobile-nav">
+  <a href="savaya-focus.html" class="mob-link" data-i18n="nav.focus">Focus Areas</a>
+  <a href="savaya-jurisdiction.html" class="mob-link" data-i18n="nav.juris">Jurisdiction</a>
+  <a href="savaya-governance.html" class="mob-link" data-i18n="nav.gov">Governance</a>
+  <a href="savaya-contact.html" class="mob-link" data-i18n="nav.contact">Contact</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-photo" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=80')"></div>
+  <div class="page-hero-content">
+    <a href="/" class="page-hero-back">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M10 6H2M5 9L2 6l3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span data-i18n="nav.back">Back to Home</span>
+    </a>
+    <h1 class="page-hero-title" data-i18n-html="gov.hero.title">Govern<em>ance</em></h1>
+    <p class="page-hero-sub" data-i18n="gov.hero.sub">Rigorous governance is not a constraint on the family's ambition — it is the architecture that makes perpetual ambition possible.</p>
+  </div>
+</div>
+
+<!-- GOVERNANCE PHILOSOPHY -->
+<section id="philosophy">
+  <div class="wrap">
+    <div class="phil-layout">
+      <div class="fade-up">
+        <span class="label-tag" style="margin-bottom:1.5rem;display:inline-flex" data-i18n="govphil.label">Governance Philosophy</span>
+        <h2 class="phil-headline" data-i18n-html="govphil.heading">Structure preserves what <strong>judgment</strong> alone cannot.</h2>
+        <p class="phil-body" data-i18n="govphil.body1">SAVAYA's governance framework exists to institutionalise good decision-making — not to replace the principal's judgment, but to ensure that judgment operates within a structure designed to outlast any single generation.</p>
+        <p class="phil-body" data-i18n="govphil.body2">Four interlocking pillars — an Investment Policy Statement, a deliberating Investment Committee, a formal Risk Management programme, and a Succession framework — form the structural foundation. Each one reinforces the others.</p>
+        <blockquote class="phil-quote" data-i18n="govphil.quote">"Governance is the difference between wealth that lasts a generation and wealth that lasts a century."</blockquote>
+      </div>
+      <div class="phil-sidebar fade-up">
+        <div class="phil-fact">
+          <div class="phil-fact-val">IPS</div>
+          <div class="phil-fact-label" data-i18n="govphil.f1.lbl">Central Governing Document</div>
+        </div>
+        <div class="phil-fact">
+          <div class="phil-fact-val" data-i18n="govphil.f2.val">Annual</div>
+          <div class="phil-fact-label" data-i18n="govphil.f2.lbl">Policy Review Cycle</div>
+        </div>
+        <div class="phil-fact">
+          <div class="phil-fact-val">4</div>
+          <div class="phil-fact-label" data-i18n="govphil.f3.lbl">Core Governance Pillars</div>
+        </div>
+        <div class="phil-fact">
+          <div class="phil-fact-val">100%</div>
+          <div class="phil-fact-label" data-i18n="govphil.f4.lbl">Discretionary Authority Retained</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUR PILLARS — EDITORIAL LIST -->
+<section id="pillars" class="alt">
+  <div class="wrap">
+    <div class="pillars-header fade-up">
+      <span class="label-tag" style="margin-bottom:1.25rem;display:inline-flex" data-i18n="fourpil.label">Four Pillars</span>
+      <h2 class="pillars-headline" data-i18n="fourpil.heading">The architecture of perpetual stewardship.</h2>
+      <p class="pillars-sub" data-i18n="fourpil.sub">Four interlocking governance pillars, each designed to reinforce the others.</p>
+    </div>
+
+    <div class="pillars-list">
+
+      <!-- Pillar 01 -->
+      <div class="pillar-row fade-up">
+        <div class="pillar-row-num" aria-hidden="true">01</div>
+        <div class="pillar-row-main">
+          <div class="pillar-row-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="4" y="5" width="20" height="18" rx="1.5" stroke="currentColor" stroke-width="1.3"/><line x1="4" y1="10" x2="24" y2="10" stroke="currentColor" stroke-width="1.1"/><line x1="8" y1="15" x2="14" y2="15" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><line x1="8" y1="18.5" x2="18" y2="18.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="pillar-row-title" data-i18n="p1card.title">Investment Policy Statement</h3>
+          <p class="pillar-row-body" data-i18n="p1card.body">The IPS is SAVAYA's central governance document — binding all capital decisions to a principled framework, reviewed annually, and resistant to market noise or short-term pressure.</p>
+        </div>
+        <div class="pillar-row-points">
+          <div class="pillar-point" data-i18n="p1i1">Formalises long-term capital objectives and risk tolerance</div>
+          <div class="pillar-point" data-i18n="p1i2">Defines asset class policy ranges with upper and lower bounds</div>
+          <div class="pillar-point" data-i18n="p1i3">Binds all advisors and family members to one framework</div>
+        </div>
+      </div>
+
+      <!-- Pillar 02 -->
+      <div class="pillar-row fade-up">
+        <div class="pillar-row-num" aria-hidden="true">02</div>
+        <div class="pillar-row-main">
+          <div class="pillar-row-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="10" r="5" stroke="currentColor" stroke-width="1.3"/><path d="M4 24c0-4 4-7 10-7s10 3 10 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="14" cy="10" r="2.5" fill="currentColor" opacity="0.2"/></svg>
+          </div>
+          <h3 class="pillar-row-title" data-i18n="p2card.title">Investment Committee</h3>
+          <p class="pillar-row-body" data-i18n="p2card.body">Structured deliberation for all material allocation decisions — ensuring conviction, documentation, and IPS alignment before capital moves.</p>
+        </div>
+        <div class="pillar-row-points">
+          <div class="pillar-point" data-i18n="p2i1">Quarterly portfolio review with formal minutes and resolutions</div>
+          <div class="pillar-point" data-i18n="p2i2">Approval authority for investments above policy thresholds</div>
+          <div class="pillar-point" data-i18n="p2i3">Independent advisory participation on major decisions</div>
+        </div>
+      </div>
+
+      <!-- Pillar 03 -->
+      <div class="pillar-row fade-up">
+        <div class="pillar-row-num" aria-hidden="true">03</div>
+        <div class="pillar-row-main">
+          <div class="pillar-row-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 3L4 8.5v7c0 5 4 8.5 10 10 6-1.5 10-5 10-10v-7L14 3z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M9.5 14l3 3 6-6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="pillar-row-title" data-i18n="p3card.title">Risk Management</h3>
+          <p class="pillar-row-body" data-i18n="p3card.body">Concentration, currency, counterparty, and operational risks are monitored continuously — with pre-agreed protocols and quarterly stress testing against macro scenarios.</p>
+        </div>
+        <div class="pillar-row-points">
+          <div class="pillar-point" data-i18n="p3i1">Concentration limits at investment, sector, and geography</div>
+          <div class="pillar-point" data-i18n="p3i2">Quarterly stress testing against macro and geopolitical scenarios</div>
+          <div class="pillar-point" data-i18n="p3i3">Pre-agreed currency hedging and counterparty due diligence</div>
+        </div>
+      </div>
+
+      <!-- Pillar 04 -->
+      <div class="pillar-row fade-up">
+        <div class="pillar-row-num" aria-hidden="true">04</div>
+        <div class="pillar-row-main">
+          <div class="pillar-row-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="1.3"/><path d="M14 8v7l4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="14" r="1.5" fill="currentColor"/></svg>
+          </div>
+          <h3 class="pillar-row-title" data-i18n="p4card.title">Succession & Continuity</h3>
+          <p class="pillar-row-body" data-i18n="p4card.body">Succession planning is not deferred — it is embedded from the outset. Clear authority protocols, trust structures, and next-generation induction ensure continuity of purpose, not just capital.</p>
+        </div>
+        <div class="pillar-row-points">
+          <div class="pillar-point" data-i18n="p4i1">Documented authority succession with contingency protocols</div>
+          <div class="pillar-point" data-i18n="p4i2">Trust structures aligned with multi-jurisdictional estate planning</div>
+          <div class="pillar-point" data-i18n="p4i3">Next-generation governance induction and education</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CAPITAL THAT OUTLASTS — REFRAMED AROUND IPS -->
+<section id="succession">
+  <div class="wrap">
+    <div class="succ-layout">
+      <div class="fade-up">
+        <span class="succ-eyebrow" data-i18n="succ.eyebrow">Investment Policy Statement</span>
+        <h2 class="succ-headline" data-i18n-html="succ.heading">Capital that outlasts its <em>stewards.</em></h2>
+        <p class="succ-body" data-i18n="succ.body">The Investment Policy Statement is governance in writing. It encodes the family's objectives, risk discipline, and decision-making authority in a single binding document — one that outlasts any market cycle, any steward, and any moment of pressure.</p>
+        <div class="succ-principles">
+          <div class="succ-principle fade-up">
+            <span class="succ-principle-label" data-i18n="succ.pr1.label">Perpetual Horizon</span>
+            <p class="succ-principle-body" data-i18n="succ.pr1.body">No terminal date. Individual positions held for a decade or more. Real return target of 5–7% per annum across full market cycles.</p>
+          </div>
+          <div class="succ-principle fade-up">
+            <span class="succ-principle-label" data-i18n="succ.pr2.label">Embedded Risk Discipline</span>
+            <p class="succ-principle-body" data-i18n="succ.pr2.body">Maximum 25% peak-to-trough drawdown. Minimum 20% in assets realisable within 90 days at all times. Pre-agreed rebalancing and hedging protocols.</p>
+          </div>
+          <div class="succ-principle fade-up">
+            <span class="succ-principle-label" data-i18n="succ.pr3.label">Living Governance</span>
+            <p class="succ-principle-body" data-i18n="succ.pr3.body">Reviewed annually. Binding on all advisors and family members. Amended following any material change in family circumstances, regulatory environment, or market structure.</p>
+          </div>
+        </div>
+      </div>
+      <div class="succ-photo fade-up">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80" alt="Architecture representing governance and institutional structure" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="gov-contact">
+  <div class="wrap">
+    <h2 data-i18n-html="gov.cta.heading">Governance that earns trust <em>before</em> capital is committed.</h2>
+    <p data-i18n="gov.cta.body">If you are a professional advisor, co-investor, or counterparty seeking to understand SAVAYA's governance framework and operational structure, we welcome a confidential conversation.</p>
+    <a href="savaya-contact.html" class="btn-primary">
+      <span data-i18n="gov.cta.btn">Contact the Family Office</span>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <svg width="22" height="22" viewBox="0 0 34 34" fill="none" style="color:#706A62">
+          <polygon points="17,1.5 32.5,17 17,32.5 1.5,17" stroke="currentColor" stroke-width="1.6" fill="none"/>
+          <polygon points="17,7 27,17 17,27 7,17" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/>
+          <polygon points="17,13 21,17 17,21 13,17" fill="currentColor"/>
+          <line x1="17" y1="1.5" x2="17" y2="5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="32.5" y1="17" x2="28.5" y2="17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="17" y1="32.5" x2="17" y2="28.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="1.5" y1="17" x2="5.5" y2="17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span class="logo-word">Savaya</span>
+      </div>
+      <p class="footer-copy" data-i18n="footer.copy">© 2025 SAVAYA Family Global Holdings SFO RSC Limited. Private &amp; Confidential.</p>
+      <div class="footer-links">
+
+        <a href="savaya-focus.html" class="footer-link" data-i18n="nav.focus">Focus Areas</a>
+        <a href="savaya-jurisdiction.html" class="footer-link" data-i18n="nav.juris">Jurisdiction</a>
+        <a href="savaya-contact.html" class="footer-link" data-i18n="nav.contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="savaya-i18n.js"></script>
+<script>
+/* ── THEME ───────────────────────────────── */
+const root = document.documentElement;
+const themeBtn = document.getElementById('themeBtn');
+const saved = localStorage.getItem('savaya-theme');
+if (saved) root.setAttribute('data-theme', saved);
+themeBtn.addEventListener('click', () => {
+  const t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', t);
+  localStorage.setItem('savaya-theme', t);
+});
+
+/* ── NAV ─────────────────────────────────── */
+const nav = document.getElementById('nav');
+const heroEl = document.querySelector('.page-hero');
+function updateNav() {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+  if (heroEl) {
+    nav.classList.toggle('over-content', heroEl.getBoundingClientRect().bottom <= 80);
+  }
+}
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
+
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobile-nav').classList.toggle('open');
+});
+
+/* ── SCROLL ANIMATIONS ────────────────────── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
