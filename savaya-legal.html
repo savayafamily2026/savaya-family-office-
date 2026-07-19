@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Legal, Regulatory &amp; Website Use Notice · SAVAYA</title>
+<title>Legal, Regulatory &amp; Website Use Notice · Savaya Capital</title>
 <link href="https://api.fontshare.com/v2/css?f[]=zodiak@300,400,500&f[]=switzer@400,500,600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500&display=swap" rel="stylesheet" />
 <style>
   :root{
     --obsidian:#0B0D0C;--graphite:#121514;--paper:#0B0D0C;--paper-2:#161A19;
@@ -105,30 +106,40 @@
     .lg-toc{display:none}
     .wrap{padding:0 22px}
   }
+  /* language toggle + Arabic RTL */
+  .lang-toggle{background:none;border:1px solid var(--line-d);color:var(--stone-d);font-family:"Switzer",sans-serif;font-size:12px;letter-spacing:0.06em;padding:8px 13px;border-radius:999px;cursor:pointer;transition:color .3s ease,border-color .3s ease;white-space:nowrap}
+  .lang-toggle:hover{color:var(--bone);border-color:var(--accent)}
+  .lang-toggle .lg-sep{color:var(--accent-d);margin:0 3px}
+  .rtl,.rtl p,.rtl .sub,.rtl button,.rtl a,.rtl span,.rtl div,.rtl li,.rtl address{font-family:"Noto Kufi Arabic","Switzer",-apple-system,sans-serif}
+  .rtl h1,.rtl h2,.rtl h3,.rtl h4,.rtl .lede,.rtl .fa-lede,.rtl .fa-title,.rtl .cont-body h3{font-family:"Noto Kufi Arabic","Zodiak",Georgia,serif;letter-spacing:0}
+  .rtl .hero h1{letter-spacing:0;line-height:1.35}
+  .rtl .eyebrow,.rtl .sec-head .ttl,.rtl .cont-role,.rtl .bk,.rtl .fa-cat,.rtl .win,.rtl .lbl{letter-spacing:0.1em}
+  .rtl .lang-toggle,.rtl .cstat .n,.rtl .fa-num,.rtl .roman,.rtl .pn,.rtl .pk,.rtl .fnum,.rtl .idx,.rtl address a{direction:ltr}
 </style>
 </head>
 <body>
 
 <div class="nav-shell">
   <nav>
-    <a href="index.html" class="logo">SAVAYA</a>
+    <a href="index.html" class="logo">SAVAYA CAPITAL</a>
     <div class="tabs">
       <span class="tab-pill" id="tabPill"></span>
-      <a href="savaya-focus.html">Focus</a>
-      <a href="savaya-reach.html">Reach</a>
-      <a href="savaya-philosophy.html">Philosophy</a>
+      <a href="savaya-focus.html">About Us</a>
+      <a href="savaya-philosophy.html">Our Portfolio</a>
+      <a href="savaya-legal.html" class="active">Legal</a>
     </div>
-    <a href="savaya-contact.html" class="nav-cta">Enquire <span class="a">→</span></a>
+    <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">EN <span class="lg-sep">·</span> ع</button>
+    <a href="savaya-contact.html" class="nav-cta">Contact us <span class="a">→</span></a>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
 </div>
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html">Home</a>
-  <a href="savaya-focus.html">Focus</a>
-  <a href="savaya-reach.html">Reach</a>
-  <a href="savaya-philosophy.html">Philosophy</a>
-  <a href="savaya-contact.html">Enquire</a>
+  <a href="savaya-focus.html">About Us</a>
+  <a href="savaya-philosophy.html">Our Portfolio</a>
+  <a href="savaya-legal.html">Legal</a>
+  <a href="savaya-contact.html">Contact us</a>
 </div>
 
 <header class="lg-hero">
@@ -233,7 +244,7 @@
       <section class="lg-sec" id="s7"><h2><span class="num">07</span> No offer, solicitation or financial promotion</h2>
         <p class="lead">Nothing on this website constitutes or should be interpreted as:</p>
         <ul>
-          <li>an offer to issue, sell or transfer any security, investment, financial instrument, fund interest, asset or service;</li><li>a solicitation of an offer to purchase, subscribe for or acquire any of the foregoing;</li><li>an invitation to participate in an investment, financing or transaction;</li><li>an offering memorandum, prospectus, private-placement memorandum or other offering document;</li><li>the marketing or promotion of an investment fund or regulated financial product;</li><li>an offer to manage or advise upon third-party assets;</li><li>a solicitation of capital, deposits, investors or client mandates;</li><li>a public invitation to invest;</li><li>an offer capable of contractual acceptance; or</li><li>a commitment by the Company or any related person to enter into any transaction.</li>
+          <li>an offer to issue, sell or transfer any security, investment, financial instrument, fund interest, asset or service;</li><li>a solicitation of an offer to purchase, subscribe for or acquire any of the foregoing;</li><li>an invitation to participate in an investment, financing or transaction;</li><li>an offering memorandum, prospectus, private-placement memorandum or other offering document;</li><li>the marketing or promotion of an investment fund or regulated financial product;</li><li>an offer to manage or advise upon third-party assets;</li><li>a solicitation of capital, deposits, investors or client accounts;</li><li>a public invitation to invest;</li><li>an offer capable of contractual acceptance; or</li><li>a commitment by the Company or any related person to enter into any transaction.</li>
         </ul>
         <p>Any investment, acquisition, disposition, financing, partnership or other transaction may proceed only through definitive written documentation executed by duly authorised parties. Any proposed matter remains subject to, as applicable, legal and regulatory review; internal approval; investment-committee or governance approval; tax review; commercial negotiation; due diligence; identity verification; sanctions screening; anti-money-laundering checks; source-of-funds and source-of-wealth checks; satisfaction of applicable conditions; and execution of definitive agreements.</p>
       </section>
@@ -407,17 +418,16 @@
 <footer>
   <div class="wrap">
     <div class="foot-top">
-      <a href="index.html" class="logo" style="font-size:22px">SAVAYA</a>
+      <a href="index.html" class="logo" style="font-size:22px">SAVAYA CAPITAL</a>
       <div class="foot-links">
-        <a href="savaya-focus.html">Focus</a>
-        <a href="savaya-reach.html">Reach</a>
-        <a href="savaya-philosophy.html">Philosophy</a>
-        <a href="savaya-contact.html">Enquire</a>
+        <a href="savaya-focus.html">About Us</a>
+        <a href="savaya-philosophy.html">Our Portfolio</a>
+        <a href="savaya-contact.html">Contact us</a>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 SAVAYA Family Global Holdings SFO RSC Limited &nbsp;·&nbsp; Legal &amp; Regulatory Notice</span>
-      <span>Private &amp; Confidential</span>
+      <span>© 2026 SAVAYA Family Global Holdings SFO RSC Limited</span>
+      <span>Legal &amp; Regulatory Notice</span>
     </div>
   </div>
 </footer>
@@ -443,6 +453,77 @@
     es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('on'));const a=byId[e.target.id];if(a){a.classList.add('on');a.scrollIntoView({block:'nearest'});}}});
   },{rootMargin:'-45% 0px -50% 0px'});
   secs.forEach(s=>spy.observe(s));
+
+  // ── EN / AR language toggle (RTL) ──
+  (function(){
+    const AR={
+      '.lg-hero .eyebrow':'قانونيّ وتنظيميّ',
+      '.lg-hero h1':'إشعار قانونيّ وتنظيميّ وشروط استخدام الموقع'
+    };
+    const HI={
+      '.lg-hero .eyebrow':'कानूनी और नियामक',
+      '.lg-hero h1':'कानूनी, नियामक और वेबसाइट उपयोग सूचना'
+    };
+    const FR={
+      '.lg-hero .eyebrow':'Mentions légales et réglementaires',
+      '.lg-hero h1':'Mentions légales, réglementaires et conditions d\'utilisation du site'
+    };
+    const ZH={
+      '.lg-hero .eyebrow':'法律與監管',
+      '.lg-hero h1':'法律、監管及網站使用須知'
+    };
+    const TR={ar:AR,hi:HI,fr:FR,zh:ZH};
+    langSwitch(TR);
+  })();
+
+  // ── Shared 5-language switcher (EN · AR · HI · FR · ZH) ──
+  function langSwitch(TR){
+    const btn=document.getElementById('langToggle');
+    if(!btn)return;
+    const LANGS=[
+      {code:'en',label:'English',short:'EN'},
+      {code:'ar',label:'العربية',short:'ع'},
+      {code:'hi',label:'हिन्दी',short:'HI'},
+      {code:'fr',label:'Français',short:'FR'},
+      {code:'zh',label:'廣東話',short:'粵'}
+    ];
+    const sels=new Set();for(const c in TR){for(const s in TR[c])sels.add(s);}
+    const store={};sels.forEach(s=>{const e=document.querySelector(s);if(e)store[s]=e.innerHTML;});
+    const FONTS={hi:'https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500&display=swap',
+                 zh:'https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@300;400;500&display=swap'};
+    const fl={};
+    function ensureFont(c){if(FONTS[c]&&!fl[c]){fl[c]=1;const l=document.createElement('link');l.rel='stylesheet';l.href=FONTS[c];document.head.appendChild(l);}}
+    if(!document.getElementById('langMenuCSS')){
+      const st=document.createElement('style');st.id='langMenuCSS';
+      st.textContent='.lang-menu{position:fixed;z-index:2000;min-width:158px;background:rgba(18,21,20,0.94);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(237,234,227,0.14);border-radius:14px;padding:6px;box-shadow:0 22px 46px -18px rgba(0,0,0,.7);opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .25s ease,transform .25s ease}.lang-menu.open{opacity:1;transform:none;pointer-events:auto}.lang-menu button{display:flex;width:100%;align-items:center;justify-content:space-between;gap:14px;background:none;border:none;color:#9BA29C;font-family:"Switzer",-apple-system,sans-serif;font-size:13px;letter-spacing:.02em;padding:9px 12px;border-radius:9px;cursor:pointer;transition:background .2s ease,color .2s ease;text-align:left}.lang-menu button:hover{background:rgba(237,234,227,0.06);color:#EDEAE3}.lang-menu button.on{color:#EDEAE3}.lang-menu .lg-tick{color:#7E8F82;opacity:0;font-size:12px}.lang-menu button.on .lg-tick{opacity:1}.lang-hi,.lang-hi p,.lang-hi .sub,.lang-hi button,.lang-hi a,.lang-hi span,.lang-hi div,.lang-hi li,.lang-hi address,.lang-hi h1,.lang-hi h2,.lang-hi h3,.lang-hi h4,.lang-hi .lede{font-family:"Noto Sans Devanagari","Switzer",-apple-system,sans-serif}.lang-zh,.lang-zh p,.lang-zh .sub,.lang-zh button,.lang-zh a,.lang-zh span,.lang-zh div,.lang-zh li,.lang-zh address,.lang-zh h1,.lang-zh h2,.lang-zh h3,.lang-zh h4,.lang-zh .lede{font-family:"Noto Sans HK","Switzer",-apple-system,sans-serif}';
+      document.head.appendChild(st);
+    }
+    const menu=document.createElement('div');menu.className='lang-menu';
+    LANGS.forEach(L=>{const b=document.createElement('button');b.type='button';b.dataset.code=L.code;b.innerHTML='<span>'+L.label+'</span><span class="lg-tick">✓</span>';b.addEventListener('click',ev=>{ev.stopPropagation();apply(L.code);closeM();});menu.appendChild(b);});
+    document.body.appendChild(menu);
+    let lang='en',opened=false;
+    function place(){const r=btn.getBoundingClientRect();menu.style.top=(r.bottom+10)+'px';let left=r.right-menu.offsetWidth;if(left<10)left=10;menu.style.left=left+'px';}
+    function openM(){place();menu.classList.add('open');opened=true;}
+    function closeM(){menu.classList.remove('open');opened=false;}
+    btn.addEventListener('click',e=>{e.stopPropagation();opened?closeM():openM();});
+    document.addEventListener('click',e=>{if(opened&&!menu.contains(e.target)&&e.target!==btn)closeM();});
+    addEventListener('resize',()=>{if(opened)place();});
+    addEventListener('scroll',()=>{if(opened)place();},{passive:true});
+    function apply(l){
+      lang=l;const ar=(l==='ar');ensureFont(l);
+      document.documentElement.lang=l;
+      document.documentElement.dir=ar?'rtl':'ltr';
+      document.body.classList.toggle('rtl',ar);
+      document.body.classList.toggle('lang-hi',l==='hi');
+      document.body.classList.toggle('lang-zh',l==='zh');
+      const dict=TR[l]||{};
+      for(const s in store){const e=document.querySelector(s);if(!e)continue;e.innerHTML=(l==='en')?store[s]:(dict[s]!==undefined?dict[s]:store[s]);}
+      const cur=LANGS.find(x=>x.code===l)||LANGS[0];
+      btn.innerHTML=cur.short+' <span class="lg-sep">·</span> <span aria-hidden="true">▾</span>';
+      menu.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.code===l));
+    }
+    apply('en');
+  }
 </script>
 </body>
 </html>

@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SAVAYA — Perpetual Capital</title>
+<link href="https://api.fontshare.com/v2/css?f[]=zodiak@300,400,500&f[]=switzer@400,500,600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --obsidian:#0B0D0C;
+    --graphite:#121514;
+    --paper:#0B0D0C;      /* dark content ground */
+    --paper-2:#161A19;    /* elevated card surface */
+    --ink:#EDEAE3;        /* light text on dark */
+    --stone:#9BA29C;      /* muted text on dark */
+    --stone-d:#9BA29C;    /* muted text on dark */
+    --bone:#EDEAE3;       /* light text on dark */
+    --accent:#7E8F82;     /* muted eucalyptus */
+    --accent-d:#5E6A61;
+    --line-d:rgba(237,234,227,0.12);
+    --line-l:rgba(237,234,227,0.10);
+    --r:22px;             /* large radius */
+    --r-sm:14px;
+    --maxw:1220px;
+    --shadow:0 1px 2px rgba(0,0,0,0.4),0 30px 60px -30px rgba(0,0,0,0.72);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:
+      /* brushed vertical striations (grayscale metal) */
+      repeating-linear-gradient(90deg,
+        rgba(0,0,0,0.26) 0px,
+        rgba(255,255,255,0.00) 6px,
+        rgba(255,255,255,0.045) 12px,
+        rgba(255,255,255,0.10) 14px,
+        rgba(255,255,255,0.045) 16px,
+        rgba(255,255,255,0.00) 22px,
+        rgba(0,0,0,0.26) 28px),
+      /* faint arc machining marks from the light source */
+      repeating-radial-gradient(circle at 88% 4%, transparent 0 46px, rgba(255,255,255,0.013) 46px 47px),
+      /* diagonal raking light streak */
+      linear-gradient(122deg, transparent 40%, rgba(230,230,230,0.06) 60%, rgba(255,255,255,0.03) 68%, transparent 82%),
+      /* studio-light hotspot, upper right */
+      radial-gradient(82% 66% at 88% 0%, rgba(236,236,236,0.17), transparent 58%),
+      /* deep shadow falloff toward the opposite corner */
+      radial-gradient(135% 120% at 82% 4%, transparent 32%, rgba(0,0,0,0.74) 100%),
+      #0B0B0C;
+    background-attachment:fixed;color:var(--ink);
+    font-family:"Switzer",-apple-system,sans-serif;line-height:1.5;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;
+  }
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.055;mix-blend-mode:soft-light;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  ::selection{background:var(--accent);color:#fff}
+  h1,h2,h3{font-family:"Zodiak",Georgia,serif;font-weight:400;letter-spacing:-0.015em;line-height:1.03}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 34px}
+  .eyebrow{font-size:11px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent)}
+
+  /* ---------- FLOATING PILL NAV ---------- */
+  .nav-shell{position:fixed;top:20px;left:0;right:0;z-index:1000;display:flex;justify-content:center;padding:0 20px;
+    transition:top .4s cubic-bezier(.16,1,.3,1)}
+  nav{
+    display:flex;align-items:center;gap:26px;
+    background:rgba(18,21,20,0.55);backdrop-filter:blur(18px) saturate(1.2);
+    border:1px solid var(--line-d);border-radius:999px;
+    padding:10px 12px 10px 24px;box-shadow:0 10px 30px -14px rgba(0,0,0,.6);
+    max-width:calc(var(--maxw) + 40px);width:100%;
+  }
+  .logo{font-family:"Zodiak",serif;font-size:18px;letter-spacing:0.22em;color:var(--bone);font-weight:500;white-space:nowrap}
+  .tabs{display:flex;gap:2px;background:rgba(237,234,227,0.05);border-radius:999px;padding:4px;margin:0 auto}
+  .tabs a{
+    position:relative;color:var(--stone-d);text-decoration:none;font-size:13px;letter-spacing:0.02em;
+    padding:8px 18px;border-radius:999px;transition:color .3s ease;z-index:1;white-space:nowrap;
+  }
+  .tabs a:hover{color:var(--bone)}
+  .tabs a.active{color:var(--bone)}
+  .tab-pill{position:absolute;top:4px;height:calc(100% - 8px);background:rgba(237,234,227,0.12);
+    border-radius:999px;transition:all .45s cubic-bezier(.16,1,.3,1);z-index:0;pointer-events:none}
+  .nav-cta{
+    display:inline-flex;align-items:center;gap:8px;background:var(--bone);color:#0B0D0C;
+    text-decoration:none;font-size:12.5px;font-weight:500;letter-spacing:0.03em;
+    padding:10px 20px;border-radius:999px;transition:background .3s ease,transform .3s ease;white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--accent);color:#fff}
+  .nav-cta .a{transition:transform .3s ease}
+  .nav-cta:hover .a{transform:translateX(3px)}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .burger span{width:22px;height:1.5px;background:var(--bone);transition:.3s}
+
+  /* ---------- CANVAS / ROUNDED CONTAINER ---------- */
+  .canvas{padding:12px}
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;border-radius:var(--r);overflow:hidden;
+    min-height:calc(100vh - 24px);display:flex;align-items:center;
+    color:var(--bone);isolation:isolate;
+  }
+  .hero-bg{position:absolute;inset:0;z-index:-2;background:#0B0D0C url('https://images.unsplash.com/photo-1771450092348-5f33e2cc2963?auto=format&fit=crop&w=2000&q=75') center/cover no-repeat}
+  /* abstract fluted architecture */
+  .hero-bg::before{content:none}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg, rgba(11,13,12,0.9) 0%, rgba(11,13,12,0.6) 38%, rgba(11,13,12,0.28) 72%, rgba(11,13,12,0.1) 100%),linear-gradient(180deg, rgba(11,13,12,0.25) 0%, rgba(11,13,12,0.4) 55%, rgba(11,13,12,0.92) 100%),radial-gradient(120% 90% at 82% 14%, rgba(126,143,130,0.12), transparent 55%)}
+  .hero-grain{position:absolute;inset:0;z-index:-1;opacity:.05;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .hero-inner{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 34px 64px;
+    display:grid;grid-template-columns:1fr;gap:40px;align-items:end}
+  .hero-inner > div{text-align:center}
+  .hero-eyebrow{display:flex;justify-content:center;align-items:center;gap:14px;margin-bottom:26px}
+  .hero-eyebrow .r{width:40px;height:1px;background:var(--accent)}
+  .hero-eyebrow span{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(237,234,227,0.82)}
+  .hero h1{font-size:clamp(2.6rem,6.4vw,5.4rem);letter-spacing:-0.025em}
+  .hero h1 .line{display:block;overflow:hidden;padding-bottom:0.12em;margin-bottom:-0.12em}
+  .hero h1 .line i{display:block;font-style:normal;transform:translateY(110%);animation:rev 1s cubic-bezier(.16,1,.3,1) forwards}
+  .hero h1 .line:nth-child(2) i{animation-delay:.12s}
+  .hero h1 em{font-family:"Zodiak";font-style:italic;font-weight:300;color:var(--stone-d)}
+  @keyframes rev{to{transform:translateY(0)}}
+  .hero p.sub{max-width:560px;margin:26px auto 0;color:rgba(237,234,227,0.9);font-size:clamp(14px,1.3vw,16px);line-height:1.65;
+    opacity:0;animation:fade 1s ease .5s forwards}
+  @keyframes fade{to{opacity:1}}
+  .hero-actions{display:flex;justify-content:center;gap:12px;margin-top:30px;opacity:0;animation:fade 1s ease .62s forwards}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-size:13px;letter-spacing:0.02em;padding:13px 24px;
+    border-radius:999px;text-decoration:none;transition:all .35s ease;white-space:nowrap}
+  .btn .a{transition:transform .35s ease}.btn:hover .a{transform:translateX(4px)}
+  .btn-primary{background:var(--bone);color:#0B0D0C;font-weight:500}
+  .btn-primary:hover{background:var(--accent);color:#fff}
+  .btn-ghost{border:1px solid var(--line-d);color:var(--bone)}
+  .btn-ghost:hover{border-color:var(--accent);background:rgba(126,143,130,.12)}
+  /* floating frosted stat card */
+  .stat-card{
+    justify-self:end;align-self:end;
+    background:rgba(18,21,20,0.42);backdrop-filter:blur(16px);
+    border:1px solid var(--line-d);border-radius:var(--r-sm);padding:24px 26px;min-width:220px;
+    box-shadow:0 20px 40px -20px rgba(0,0,0,.7);opacity:0;animation:fade 1s ease .8s forwards}
+  .stat-card .n{font-family:"Zodiak";font-size:2.6rem;line-height:1;color:var(--bone)}
+  .stat-card .l{margin-top:12px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone-d);line-height:1.5}
+  .scroll-cue{position:absolute;bottom:30px;right:34px;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;
+    color:var(--stone-d);display:flex;align-items:center;gap:10px}
+  .hero-badge{position:absolute;bottom:72px;right:40px;z-index:2;display:inline-flex;align-items:center;gap:10px;background:rgba(18,21,20,0.5);backdrop-filter:blur(14px);border:1px solid var(--line-d);border-radius:999px;padding:9px 16px 9px 14px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--bone);box-shadow:0 12px 30px -16px rgba(0,0,0,.7);opacity:0;animation:fade 1s ease 1s forwards}
+  .hero-badge .hb-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(126,143,130,0.2)}
+
+  /* ---------- LIGHT SECTIONS ---------- */
+  section{padding:68px 0;position:relative}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:14px}
+  .sec-head .idx{font-size:11px;letter-spacing:0.2em;color:var(--accent);font-weight:500}
+  .sec-head .ttl{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--stone)}
+  .lede{font-size:clamp(1.6rem,3.2vw,2.5rem);line-height:1.12;max-width:680px;margin-bottom:28px}
+  .lede em{font-family:"Zodiak";font-style:italic;color:var(--accent)}
+
+  .card{background:linear-gradient(180deg,rgba(219,224,221,0.13),rgba(219,224,221,0.05));backdrop-filter:blur(18px) saturate(1.15);-webkit-backdrop-filter:blur(18px) saturate(1.15);border:1px solid rgba(237,234,227,0.16);border-radius:var(--r);box-shadow:var(--shadow)}
+  .two{display:grid;grid-template-columns:1fr 1.15fr;gap:22px}
+  .card.pad{padding:38px}
+  .card h3{font-size:1.35rem;margin-bottom:14px}
+  .card p{color:var(--stone);font-size:14.5px;line-height:1.7;max-width:420px}
+  .card .tag{display:inline-block;margin-bottom:26px}
+  /* map card */
+  .map-card{position:relative;overflow:visible;min-height:420px;display:flex;flex-direction:column;justify-content:space-between;gap:22px;
+    padding:6px 4px 0;background:none;border:none;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;color:var(--bone);text-decoration:none;
+    transition:transform .55s cubic-bezier(.16,1,.3,1)}
+  .map-card:hover{transform:none}
+  .map-dots{position:absolute;inset:0;opacity:.55;background-image:radial-gradient(rgba(126,143,130,0.55) 1px,transparent 1.5px);
+    background-size:18px 18px;-webkit-mask-image:radial-gradient(72% 70% at 56% 52%,#000,transparent 78%);
+            mask-image:radial-gradient(72% 70% at 56% 52%,#000,transparent 78%)}
+  .map-head{position:relative;z-index:2}
+  .map-head h3{font-size:1.5rem;color:var(--bone);margin-top:12px;max-width:none}
+  .reach-mini{position:relative;z-index:1;width:100%;height:auto;display:block;margin:auto 0}
+  .reach-mini .arc{fill:none;stroke:rgba(126,143,130,0.5);stroke-width:1;stroke-dasharray:4 7;animation:dashFlow 26s linear infinite;transition:stroke .5s ease}
+  .map-card:hover .reach-mini .arc{stroke:rgba(126,143,130,0.85)}
+  @keyframes dashFlow{to{stroke-dashoffset:-240}}
+  .reach-mini .node{fill:var(--accent)}
+  .reach-mini .nodering{fill:none;stroke:rgba(126,143,130,0.4);stroke-width:1}
+  .reach-mini .hq{fill:var(--bone)}
+  .reach-mini .hqpulse{fill:none;stroke:rgba(237,234,227,0.6);stroke-width:1;transform-box:fill-box;transform-origin:center;animation:hqPulse 2.8s ease-out infinite}
+  .reach-mini .hqpulse.p2{animation-delay:1.4s}
+  @keyframes hqPulse{0%{transform:scale(.5);opacity:.6}100%{transform:scale(3);opacity:0}}
+  .reach-mini .mini-arc{animation:dashFlow 26s linear infinite}
+  .map-card:hover .reach-mini .mini-arc{stroke:rgba(126,143,130,0.9)}
+  .reach-mini .mini-hqpulse{transform-box:fill-box;transform-origin:center;animation:hqPulse 2.8s ease-out infinite}
+  .reach-mini .mini-hqpulse.p2{animation-delay:1.4s}
+  .reach-mini .rlabel{fill:var(--stone-d);font-family:"Switzer",sans-serif;font-size:9px;letter-spacing:0.12em;text-transform:uppercase}
+  .map-foot{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:16px;border-top:1px solid rgba(237,234,227,0.1)}
+  .map-foot .legend{display:flex;align-items:center;gap:9px;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone-d)}
+  .map-foot .legend i{width:7px;height:7px;border-radius:50%;background:var(--bone);box-shadow:0 0 0 3px rgba(237,234,227,0.12)}
+  .map-foot .more{display:inline-flex;align-items:center;gap:7px;font-size:11px;letter-spacing:0.05em;color:var(--bone);white-space:nowrap;transition:color .3s ease}
+  .map-foot .more span{transition:transform .35s ease}
+  .map-card:hover .map-foot .more{color:var(--accent)}
+  .map-card:hover .map-foot .more span{transform:translateX(4px)}
+
+  /* metrics strip */
+  .metrics{border-top:1px solid var(--line-l);border-bottom:1px solid var(--line-l);
+    display:grid;grid-template-columns:repeat(4,1fr)}
+  .metric{padding:34px 24px;border-left:1px solid var(--line-l)}
+  .metric:first-child{border-left:none}
+  .metric .m{font-family:"Zodiak";font-size:clamp(2rem,4vw,3rem);line-height:1}
+  .metric .k{margin-top:14px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--stone)}
+
+  /* principles / value checklist */
+  .rows{max-width:1100px;margin-top:44px;overflow:hidden;
+    background:linear-gradient(180deg,rgba(219,224,221,0.13),rgba(219,224,221,0.05));
+    backdrop-filter:blur(18px) saturate(1.15);-webkit-backdrop-filter:blur(18px) saturate(1.15);
+    border:1px solid rgba(237,234,227,0.16);border-radius:var(--r);box-shadow:var(--shadow)}
+  .row{position:relative;display:grid;grid-template-columns:76px 1.05fr 1.5fr;gap:34px;align-items:center;
+    padding:30px 42px;border-bottom:1px solid var(--line-l);transition:background .4s ease,padding-left .4s ease}
+  .row:last-child{border-bottom:none}
+  .row::before{content:"";position:absolute;left:0;top:20%;height:60%;width:2px;background:var(--accent);transform:scaleY(0);transform-origin:center;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+  .row:hover::before{transform:scaleY(1)}
+  .row:hover{background:rgba(237,234,227,0.045);padding-left:50px}
+  .row .ic{font-family:"Zodiak";font-size:2.3rem;line-height:1;color:var(--accent)}
+  .row .rt{font-family:"Zodiak";font-size:1.35rem;line-height:1.2;color:var(--bone)}
+  .row .rd{color:rgba(237,234,227,0.74);font-size:14.5px;line-height:1.65;max-width:none;text-align:left}
+
+  /* allocation card */
+  .alloc-card{padding:40px}
+  .alloc-grid{display:grid;grid-template-columns:.9fr 1.2fr;gap:56px;align-items:start}
+  .alloc-intro h3{font-size:clamp(1.5rem,2.6vw,2rem);margin-bottom:18px}
+  .alloc-intro p{color:var(--stone);font-size:14.5px;line-height:1.7}
+  .alloc-note{margin-top:26px;padding-top:20px;border-top:1px solid var(--line-l);font-size:12px;color:var(--stone);line-height:1.6}
+  .bar{padding:16px 0;border-bottom:1px solid var(--line-l)}
+  .bar .top{display:flex;justify-content:space-between;align-items:baseline}
+  .bar .name{font-size:14.5px}
+  .bar .rng{font-family:"Zodiak";font-size:14.5px;color:var(--stone)}
+  .bar .track{height:3px;background:var(--line-l);border-radius:2px;margin-top:12px;overflow:hidden}
+  .bar .fill{height:100%;width:0;background:var(--accent);border-radius:2px}
+
+  /* dark CTA band */
+  .band-wrap{padding:12px}
+  .band{background:linear-gradient(180deg,#171B1A,#0B0D0C 72%);border:1px solid var(--line-d);border-radius:var(--r);color:var(--bone);text-align:center;
+    padding:124px 34px;position:relative;overflow:hidden}
+  .band::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(95% 130% at 50% -12%,rgba(126,143,130,.28),transparent 62%)}
+  .band::after{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(237,234,227,0.28),transparent)}
+  .band .eyebrow{position:relative;margin-bottom:26px}
+  .band h2{position:relative;font-size:clamp(2.1rem,5.2vw,4rem);max-width:780px;margin:0 auto 30px}
+  .band h2 em{font-style:italic;font-weight:300;color:var(--accent)}
+  .band p{position:relative;color:var(--stone-d);max-width:520px;margin:0 auto 40px;font-size:14.5px;line-height:1.7}
+  .band-facts{position:relative;display:flex;justify-content:center;flex-wrap:wrap;align-items:center;gap:16px;margin:44px auto 0;padding-top:26px;border-top:1px solid var(--line-d);max-width:640px}
+  .band-facts span{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--stone-d)}
+  .band-facts .dot{color:var(--accent-d)}
+
+  /* footer */
+  footer{background:var(--paper-2);color:var(--bone);padding:56px 0 40px;margin:0 12px 12px;border-radius:var(--r);border:1px solid var(--line-l)}
+  .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;margin-bottom:48px}
+  .foot-links{display:flex;gap:30px}
+  .foot-links a{color:var(--stone-d);text-decoration:none;font-size:13px;transition:color .3s}
+  .foot-links a:hover{color:var(--bone)}
+  .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;padding-top:26px;
+    border-top:1px solid var(--line-d);font-size:12px;color:var(--stone-d)}
+
+  /* selected investments */
+  .invest-inner{display:grid;grid-template-columns:0.82fr 1.75fr;gap:44px;align-items:stretch;overflow:hidden;
+    background:linear-gradient(180deg,rgba(219,224,221,0.13),rgba(219,224,221,0.05));backdrop-filter:blur(18px) saturate(1.15);-webkit-backdrop-filter:blur(18px) saturate(1.15);border:1px solid rgba(237,234,227,0.16);border-radius:var(--r);box-shadow:var(--shadow)}
+  .invest-head{padding:34px 0 34px 40px;display:flex;flex-direction:column;justify-content:center}
+  .invest-label{font-size:11px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  .invest-line{color:var(--stone);font-size:14px;line-height:1.6;max-width:290px;margin-bottom:18px}
+  .invest-more{font-size:12px;letter-spacing:0.03em;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:gap .3s ease,color .3s ease}
+  .invest-more span{transition:transform .3s ease}
+  .invest-more:hover{color:var(--accent)}
+  .invest-more:hover span{transform:translateX(3px)}
+  .invest-logos{display:grid;grid-template-columns:repeat(4,1fr)}
+  .invest-logo{position:relative;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;text-decoration:none;
+    font-family:"Switzer",sans-serif;font-weight:500;font-size:clamp(1rem,1.55vw,1.4rem);letter-spacing:-0.01em;
+    color:var(--stone);opacity:.7;padding:36px 8px;border-left:1px solid var(--line-l);transition:color .35s ease,opacity .35s ease,background .35s ease}
+  .invest-logo:nth-child(4n+1){border-left:none}
+  .invest-logo:nth-child(n+5){border-top:1px solid var(--line-l)}
+  .invest-logo::after{content:"";position:absolute;bottom:22px;left:50%;width:0;height:1px;background:var(--accent);transition:width .4s cubic-bezier(.16,1,.3,1),left .4s cubic-bezier(.16,1,.3,1)}
+  .invest-logos:hover .invest-logo{opacity:.35}
+  .invest-logo:hover{color:var(--ink);opacity:1;background:rgba(237,234,227,0.04)}
+  .invest-logo:hover::after{width:24px;left:calc(50% - 12px)}
+
+  .rise{opacity:0;transform:translateY(26px)}
+  .rise.in{opacity:1;transform:none}
+
+  /* ---------- MOBILE ---------- */
+  .mobile-menu{position:fixed;inset:0;z-index:999;background:rgba(11,13,12,0.96);backdrop-filter:blur(20px);
+    display:flex;flex-direction:column;justify-content:center;gap:8px;padding:40px;transform:translateY(-100%);
+    transition:transform .5s cubic-bezier(.16,1,.3,1);pointer-events:none}
+  .mobile-menu.open{transform:translateY(0);pointer-events:auto}
+  .mobile-menu a{color:var(--bone);text-decoration:none;font-family:"Zodiak";font-size:2rem;padding:12px 0;
+    border-bottom:1px solid var(--line-d)}
+  .mobile-menu a:last-child{border:none;margin-top:20px;font-family:"Switzer";font-size:1rem;background:var(--bone);
+    color:#0B0D0C;border-radius:999px;padding:16px;text-align:center}
+
+  @media(max-width:880px){
+    .tabs,.nav-cta{display:none}
+    .burger{display:flex}
+    nav{padding:12px 12px 12px 22px}
+    .hero-inner{grid-template-columns:1fr;gap:28px;padding-bottom:44px}
+    .hero-badge{top:auto;bottom:60px;right:16px;font-size:9.5px;letter-spacing:0.12em;padding:7px 12px}
+    .hero h1{font-size:clamp(2.4rem,10vw,3.6rem)}
+    .stat-card{justify-self:stretch;min-width:0;width:100%}
+    .scroll-cue{display:none}
+    .two,.alloc-grid{grid-template-columns:1fr;gap:16px}
+    .metrics{grid-template-columns:1fr 1fr}
+    .metric{border-left:none;border-top:1px solid var(--line-l)}
+    .metric:first-child,.metric:nth-child(2){border-top:none}
+    .invest-inner{grid-template-columns:1fr;gap:0}
+    .invest-head{padding:30px 0 22px}
+    .invest-line{max-width:none}
+    .invest-logos{grid-template-columns:1fr 1fr;border-top:1px solid var(--line-l)}
+    .invest-logo{padding:26px 8px}
+    .invest-logo:nth-child(odd){border-left:none}
+    .invest-logo:nth-child(n+3){border-top:1px solid var(--line-l)}
+    .row{grid-template-columns:auto 1fr;gap:8px 20px;padding:26px 24px}
+    .row .ic{grid-row:1;grid-column:1}
+    .row .rt{grid-row:1;grid-column:2;align-self:center}
+    .row .rd{grid-column:1/-1}
+    .row:hover{padding-left:24px}
+    .card.pad,.map-card,.alloc-card{padding:26px}
+    section{padding:52px 0}
+    .band{padding:78px 24px}
+    .wrap{padding:0 20px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition-duration:.001s!important}
+    .hero h1 .line i{transform:none}.rise{opacity:1;transform:none}
+    .hero p.sub,.hero-actions,.stat-card{opacity:1}
+  }
+  /* language toggle */
+  .lang-toggle{background:none;border:1px solid var(--line-d);color:var(--stone-d);font-family:"Switzer",sans-serif;font-size:12px;letter-spacing:0.06em;padding:8px 13px;border-radius:999px;cursor:pointer;transition:color .3s ease,border-color .3s ease;white-space:nowrap}
+  .lang-toggle:hover{color:var(--bone);border-color:var(--accent)}
+  .lang-toggle .lg-sep{color:var(--accent-d);margin:0 3px}
+  /* compact approach box */
+  .two{align-items:start}
+  .approach-box{padding:34px 36px}
+  .approach-more{display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-size:12.5px;letter-spacing:0.03em;color:var(--accent);text-decoration:none;transition:gap .3s ease,color .3s ease}
+  .approach-more span{transition:transform .3s ease}
+  .approach-more:hover{color:var(--bone)}
+  .approach-more:hover span{transform:translateX(3px)}
+  /* investment logos — grayscale to colour on hover (for image logos) */
+  .il-name{font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone-d);transition:color .35s ease}
+  .invest-logo:hover .il-name{color:var(--bone)}
+  .invest-logo img{max-height:26px;width:auto;filter:brightness(0) invert(1) opacity(.62);transition:filter .45s ease,opacity .45s ease}
+  .invest-logo:hover img{filter:brightness(0) invert(1);opacity:1}
+  /* reach map refinement — subtler, more minimal */
+  .reach-mini .arc{stroke-width:0.75}
+  .reach-mini .nodering{stroke-width:0.75}
+  .reach-mini .rlabel{letter-spacing:0.12em}
+  /* ── Arabic / RTL ── */
+  .rtl,.rtl input,.rtl button,.rtl .sub,.rtl p,.rtl .rt,.rtl .rd,.rtl .name{font-family:"Noto Kufi Arabic","Switzer",-apple-system,sans-serif}
+  .rtl h1,.rtl h2,.rtl h3,.rtl .lede{font-family:"Noto Kufi Arabic","Zodiak",Georgia,serif;letter-spacing:0}
+  .rtl .hero h1{letter-spacing:0;line-height:1.3}
+  .rtl .eyebrow,.rtl .sec-head .ttl{letter-spacing:0.12em}
+  .rtl .invest-logos,.rtl .band-facts,.rtl .rng,.rtl .stat-card .n,.rtl .lang-toggle{direction:ltr}
+  .invest-sub{color:rgba(237,234,227,0.5);font-size:12.5px;line-height:1.6;max-width:300px;margin-bottom:20px}
+  /* home Global Reach map — metallic frosted-glass panel */
+  #approach .map-card{background:linear-gradient(180deg,rgba(219,224,221,0.13),rgba(219,224,221,0.05));-webkit-backdrop-filter:blur(18px) saturate(1.15);backdrop-filter:blur(18px) saturate(1.15);border:1px solid rgba(237,234,227,0.16);border-radius:var(--r);box-shadow:var(--shadow);padding:24px 28px 22px}
+</style>
+</head>
+<body>
+<!-- SAVAYA home -->
+<div class="nav-shell" id="navShell">
+  <nav>
+    <div class="logo">SAVAYA CAPITAL</div>
+    <div class="tabs" id="tabs">
+      <span class="tab-pill" id="tabPill"></span>
+      <a href="savaya-focus.html">About Us</a>
+      <a href="savaya-philosophy.html">Our Portfolio</a>
+      <a href="savaya-legal.html">Legal</a>
+    </div>
+    <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">EN <span class="lg-sep">·</span> ع</button>
+    <a href="savaya-contact.html" class="nav-cta">Contact us <span class="a">→</span></a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="savaya-focus.html">About Us</a>
+  <a href="savaya-philosophy.html">Our Portfolio</a>
+  <a href="savaya-legal.html">Legal</a>
+  <a href="savaya-contact.html">Contact us</a>
+</div>
+
+<div class="canvas">
+  <!-- HERO -->
+  <header class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-badge"><span class="hb-dot"></span><span class="hb-k">Single Family Office</span></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow"><span class="r"></span><span>Global Investment Firm</span></div>
+        <h1>
+          <span class="line"><i>Long-term capital partners.</i></span>
+          <span class="line"><i><em>Powering the innovation of tomorrow.</em></i></span>
+        </h1>
+        <p class="sub">Long-term horizon capital investing across a variety of themes centred around technological progress and global economic growth. Deployed with discipline to preserve, grow, and transmit wealth across generations.</p>
+        <div class="hero-actions">
+          <a href="savaya-focus.html" class="btn btn-primary">Explore our focus <span class="a">→</span></a>
+          <a href="savaya-contact.html" class="btn btn-ghost">Contact us</a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-cue"><span>Scroll to explore</span><span>↓</span></div>
+  </header>
+</div>
+
+<!-- APPROACH -->
+<section id="approach">
+  <div class="wrap">
+    <div class="sec-head rise"><span class="idx">01</span><span class="ttl">Approach</span></div>
+    <h2 class="lede rise">We invest with insight, hold with <em>conviction</em>, and operate with global reach.</h2>
+    <a class="card map-card rise" href="savaya-focus.html">
+      <div class="map-head">
+        <span class="eyebrow">Global Reach</span>
+        <h3>Investing across 50+ countries</h3>
+      </div>
+      <svg id="mini-map" class="reach-mini" viewBox="0 0 900 440" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+      <div class="map-foot">
+        <span class="legend"><i></i>HQ · Abu Dhabi</span>
+        <span class="more">Explore the full map <span>→</span></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- SELECTED INVESTMENTS -->
+<section class="invest" style="padding-top:0">
+  <div class="wrap">
+    <div class="invest-inner rise">
+      <div class="invest-head">
+        <span class="invest-label">Selected Investments</span>
+        <p class="invest-line">Companies we are grateful to have partnered with.</p>
+        <p class="invest-sub">We are humbled by the opportunity to work with Great Business and support them.</p>
+        <a class="invest-more" href="savaya-philosophy.html">View portfolio <span>→</span></a>
+      </div>
+      <div class="invest-logos">
+        <a class="invest-logo" href="https://openai.com/" target="_blank" rel="noopener noreferrer"><span class="il-name">OpenAI</span><img src="open%20ai%20logo%20main.png" alt="OpenAI"></a>
+        <a class="invest-logo" href="https://www.anthropic.com/" target="_blank" rel="noopener noreferrer"><span class="il-name">Anthropic</span><img src="antropic%20main.png" alt="Anthropic"></a>
+        <a class="invest-logo" href="#" data-confirm="url"><span class="il-name">Nebula Group</span><img src="nebula%20group%20logo%20.png" alt="Nebula Group"></a>
+        <a class="invest-logo" href="https://sfcompute.com/" target="_blank" rel="noopener noreferrer"><span class="il-name">SF Compute</span><img src="sf%20compute%20logo%20main.png" alt="SF Compute"></a>
+        <a class="invest-logo" href="https://scale.com/" target="_blank" rel="noopener noreferrer"><span class="il-name">Scale AI</span><img src="scaleai%20main.png" alt="Scale AI"></a>
+        <a class="invest-logo" href="https://www.ornnai.com/" target="_blank" rel="noopener noreferrer"><span class="il-name">Ornn</span><img src="ornn%20compute%20logo.png" alt="Ornn"></a>
+        <a class="invest-logo" href="https://www.coreweave.com/" target="_blank" rel="noopener noreferrer"><span class="il-name">CoreWeave</span><img src="coreweave%20logo%20main.png" alt="CoreWeave"></a>
+        <a class="invest-logo" href="https://trajectoryinc.com/" target="_blank" rel="noopener noreferrer"><span class="il-name">Trajectory</span><img src="trajectory%20logo.png" alt="Trajectory"></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section id="principles">
+  <div class="wrap">
+    <div class="sec-head rise"><span class="idx">02</span><span class="ttl">Principles</span></div>
+    <h2 class="lede rise">Four pillars that govern every decision.</h2>
+    <div class="rows">
+      <div class="row rise"><span class="ic">I</span><span class="rt">Patience is the advantage</span><span class="rd">Because the capital belongs to a single family, we are true partners for the ultra-long term.</span></div>
+      <div class="row rise"><span class="ic">II</span><span class="rt">Conviction is our ethos</span><span class="rd">We partner with a very small set of businesses, for the long term.</span></div>
+      <div class="row rise"><span class="ic">III</span><span class="rt">Stewards for the next generation</span><span class="rd">Capital that belongs to the next generation.</span></div>
+      <div class="row rise"><span class="ic">IV</span><span class="rt">Governed by trust and genuine relations</span><span class="rd">We hold trust, integrity, and relationships as our highest priority.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ALLOCATION -->
+<section id="allocation">
+  <div class="wrap">
+    <div class="sec-head rise"><span class="idx">03</span><span class="ttl">Strategic Allocation</span></div>
+    <div class="card alloc-card rise">
+      <div class="bars">
+        <div class="bar rise" data-fill="28"><div class="top"><span class="name">Private Equity, Growth &amp; Venture</span><span class="rng">28%</span></div><div class="track"><div class="fill"></div></div></div>
+        <div class="bar rise" data-fill="40"><div class="top"><span class="name">Global Real Estate &amp; Infrastructure</span><span class="rng">40%</span></div><div class="track"><div class="fill"></div></div></div>
+        <div class="bar rise" data-fill="20"><div class="top"><span class="name">Public Equity &amp; Derivative Securities</span><span class="rng">20%</span></div><div class="track"><div class="fill"></div></div></div>
+        <div class="bar rise" data-fill="8"><div class="top"><span class="name">Fixed Income &amp; Cash</span><span class="rng">8%</span></div><div class="track"><div class="fill"></div></div></div>
+        <div class="bar rise" data-fill="4"><div class="top"><span class="name">Alternatives &amp; Hedge Funds</span><span class="rng">4%</span></div><div class="track"><div class="fill"></div></div></div>
+      </div>
+      <p class="alloc-note">Ranges are indicative and reviewed annually by the Investment Committee. All allocations remain at the discretion of the family principal.</p>
+    </div>
+  </div>
+</section>
+
+<div class="band-wrap" id="enquire">
+  <div class="band">
+    <div class="eyebrow">Enquiries</div>
+    <h2>Every opportunity begins with a <em>conversation.</em></h2>
+    <p>SAVAYA does not accept unsolicited proposals or public applications. All enquiries are directed through the family office and held in absolute confidence.</p>
+    <a href="savaya-contact.html" class="btn btn-primary" style="position:relative">Contact the family office <span class="a">→</span></a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="logo" style="font-size:22px">SAVAYA CAPITAL</div>
+      <div class="foot-links">
+        <a href="savaya-focus.html">About Us</a>
+        <a href="savaya-philosophy.html">Our Portfolio</a>
+        <a href="savaya-contact.html">Contact us</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 SAVAYA Family Global Holdings SFO RSC Limited</span>
+      <a href="savaya-legal.html" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(237,234,227,0.22);padding-bottom:1px">Legal &amp; Regulatory Notice</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+  // ── MOTION SYSTEM (GSAP + ScrollTrigger) ──
+  const REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const MOTION = typeof gsap!=='undefined' && typeof ScrollTrigger!=='undefined' && !REDUCE;
+  const fillBars = ()=>document.querySelectorAll('.bar').forEach(b=>{const f=b.querySelector('.fill');if(f)f.style.width=(b.dataset.fill||0)+'%';});
+
+  if(!MOTION){
+    document.querySelectorAll('.rise').forEach(el=>{el.style.opacity=1;el.style.transform='none';});
+    fillBars();
+    const mh0=document.querySelector('.map-head'); if(mh0){mh0.style.opacity=1;mh0.style.transform='none';}
+  } else {
+    gsap.registerPlugin(ScrollTrigger);
+    const E='power2.out';
+
+    // editorial fade-ins (headings & simple cards)
+    gsap.utils.toArray('.rise').forEach(el=>{
+      if(el.classList.contains('row')||el.classList.contains('invest-inner'))return;
+      gsap.fromTo(el,{opacity:0,y:26},{opacity:1,y:0,duration:0.85,ease:E,scrollTrigger:{trigger:el,start:'top 85%',toggleActions:'play none none reverse'}});
+    });
+
+    // 3. Select Investments — staggered fade-up + scale
+    gsap.set('.invest-inner',{opacity:1,y:0});
+    gsap.fromTo('.invest-logo',{opacity:0,y:28,scale:0.95},{opacity:1,y:0,scale:1,duration:0.7,ease:E,stagger:0.07,
+      scrollTrigger:{trigger:'.invest-inner',start:'top 80%',toggleActions:'play none none reverse'}});
+
+    // 4. Four Pillars — each its own beat, numeral scaling in
+    gsap.utils.toArray('#principles .row').forEach(row=>{
+      const ic=row.querySelector('.ic');
+      const tl=gsap.timeline({scrollTrigger:{trigger:row,start:'top 85%',toggleActions:'play none none reverse'}});
+      tl.fromTo(row,{opacity:0,y:46},{opacity:1,y:0,duration:0.8,ease:E})
+        .fromTo(ic,{opacity:0,scale:0.5},{opacity:1,scale:1,duration:0.65,ease:'back.out(1.7)'},'-=0.5');
+    });
+
+    // 5. Strategic Allocation — bars fill in sequence + numbers count up, scrubbed to scroll (no pin)
+    (function(){
+      const sec=document.getElementById('allocation'); if(!sec)return;
+      const bars=[...sec.querySelectorAll('.bar')];
+      bars.forEach(b=>{const f=b.querySelector('.fill');if(f)gsap.set(f,{width:'100%',transformOrigin:'left center'});});
+      const tl=gsap.timeline({scrollTrigger:{trigger:sec,start:'top 72%',end:'bottom 82%',scrub:1}});
+      bars.forEach((b,i)=>{
+        const f=b.querySelector('.fill'), rng=b.querySelector('.rng');
+        const target=+b.dataset.fill||0, o={v:0};
+        if(f) tl.fromTo(f,{scaleX:0},{scaleX:target/100,ease:'none',duration:1}, i*0.85);
+        tl.fromTo(o,{v:0},{v:target,ease:'none',duration:1,onUpdate:()=>{if(rng)rng.textContent=Math.round(o.v)+'%';}}, i*0.85);
+      });
+    })();
+
+    // 6. Contact / closing — calm fade-up
+    gsap.fromTo('#enquire .band',{opacity:0,y:38},{opacity:1,y:0,duration:0.9,ease:E,
+      scrollTrigger:{trigger:'#enquire',start:'top 85%',toggleActions:'play none none reverse'}});
+
+    ScrollTrigger.refresh();
+  }
+
+  // hero parallax (subtle)
+  const hero=document.getElementById('hero');
+  addEventListener('scroll',()=>{const y=scrollY;if(y<900){hero.querySelector('.hero-bg').style.transform='translateY('+(y*0.12)+'px)';}},{passive:true});
+
+  // nav pill follows hover (no active tab on home)
+  const tabs=[...document.querySelectorAll('.tabs a')];
+  const pill=document.getElementById('tabPill');
+  function movePill(el){if(!el)return;pill.style.width=el.offsetWidth+'px';pill.style.left=el.offsetLeft+'px';pill.style.opacity=1;}
+  tabs.forEach(t=>t.addEventListener('mouseenter',()=>movePill(t)));
+  document.getElementById('tabs').addEventListener('mouseleave',()=>{pill.style.opacity=0;});
+
+  // mobile menu
+  const burger=document.getElementById('burger'),mm=document.getElementById('mobileMenu');
+  burger.addEventListener('click',()=>mm.classList.toggle('open'));
+  mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
+
+  // ── EN / AR language toggle (RTL) ──
+  (function(){
+    const AR={
+      '.hero-eyebrow span:last-child':'شركة استثمار عالمية',
+      '.hero-badge .hb-k':'مكتب عائلي خاص',
+      '.hero h1':'<span class="line"><i>شركاء رأس المال طويل الأمد.</i></span><span class="line"><i><em>نُمكّن ابتكار الغد.</em></i></span>',
+      '.hero p.sub':'رأس مالٌ ذو أفقٍ طويل يستثمر عبر مجموعةٍ من المحاور تتمحور حول التقدّم التقني والنمو الاقتصادي العالمي. يُوظَّف بانضباطٍ للحفاظ على الثروة وتنميتها وتوريثها عبر الأجيال.',
+      '.hero-actions .btn-primary':'استكشف مجالات تركيزنا <span class="a">→</span>',
+      '.hero-actions .btn-ghost':'تواصل معنا',
+      '.stat-card .l':'دون تاريخٍ نهائي',
+      '.scroll-cue span:first-child':'مرّر للاستكشاف',
+      '#approach .ttl':'النهج',
+      '#approach .lede':'كل تخصيصٍ يبدأ <em>برؤية</em> — ويخضع لسياسةٍ مكتوبة قبل تحرّك رأس المال.',
+      '.approach-box .tag':'موقفنا',
+      '.approach-box h3':'الصبر بحكم البنية، لا بحكم التفضيل',
+      '.approach-box p':'تُلغي الولاية الدائمة ضغط الدورات الفصلية — نحتفظ بالمدد الطويلة حيث تُكافأ على نحوٍ صحيح.',
+      '.approach-more':'اعرف المزيد <span>→</span>',
+      '.map-head .eyebrow':'الحضور العالمي',
+      '.map-head h3':'الاستثمار في أكثر من 50 دولة',
+      '.map-foot .legend':'<i></i>المقر · أبوظبي',
+      '.map-foot .more':'استكشف الخريطة الكاملة <span>→</span>',
+      '.invest-label':'استثماراتٌ مختارة',
+      '.invest-line':'شركاتٌ نعتزّ بشراكتنا معها.',
+      '.invest-sub':'يشرّفنا أن نعمل مع شركاتٍ عظيمة وأن ندعمها.',
+      '.invest-more':'عرض المحفظة <span>→</span>',
+      '#principles .ttl':'المبادئ',
+      '#principles .lede':'أربع قناعاتٍ تحكم كل قرار.',
+      '#principles .rows .row:nth-child(1) .rt':'الصبر هو الميزة',
+      '#principles .rows .row:nth-child(1) .rd':'بما أنّ رأس المال يخصّ عائلةً واحدة، فنحن شركاء حقيقيون على المدى فائق الطول.',
+      '#principles .rows .row:nth-child(2) .rt':'القناعة هي نهجنا',
+      '#principles .rows .row:nth-child(2) .rd':'نشارك مجموعةً صغيرة جداً من الشركات، على المدى الطويل.',
+      '#principles .rows .row:nth-child(3) .rt':'رعايةٌ للجيل القادم',
+      '#principles .rows .row:nth-child(3) .rd':'رأس مالٍ يخصّ الجيل القادم.',
+      '#principles .rows .row:nth-child(4) .rt':'محكومٌ بالثقة والعلاقات الأصيلة',
+      '#principles .rows .row:nth-child(4) .rd':'نضع الثقة والنزاهة والعلاقات في مقدّمة أولوياتنا.',
+      '#allocation .ttl':'التخصيص الاستراتيجي',
+      '.alloc-intro h3':'موقفٌ طويل الأمد، يُراجَع وفق بيان سياسة الاستثمار.',
+      '.alloc-intro > p':'تعبّر النطاقات المستهدفة الاسترشادية عن الموقف الاستراتيجي للعائلة. ويُسمح بالانحراف التكتيكي ضمن حدودٍ محددة.',
+      '.alloc-note':'النطاقات استرشادية وتُراجَع سنوياً من قِبل لجنة الاستثمار. وتبقى جميع التخصيصات وفق تقدير رب العائلة.',
+      '.band .eyebrow':'الاستفسارات',
+      '.band h2':'تبدأ المحادثة <em>بتكتّم.</em>',
+      '.band p':'لا تقبل سافايا المقترحات غير المطلوبة أو الطلبات العامة. وتُوجَّه جميع الاستفسارات عبر المكتب العائلي وتُعامَل بسرّيةٍ تامة.',
+      '.band .btn-primary':'تواصل مع المكتب العائلي <span class="a">→</span>'
+    };
+    const HI={
+      '.hero-eyebrow span:last-child':'वैश्विक निवेश फर्म',
+      '.hero-badge .hb-k':'एकल पारिवारिक कार्यालय',
+      '.hero h1':'<span class="line"><i>दीर्घकालिक पूंजी भागीदार।</i></span><span class="line"><i><em>कल के नवाचार को सशक्त बनाना।</em></i></span>',
+      '.hero p.sub':'प्रौद्योगिकीय प्रगति और वैश्विक आर्थिक विकास पर केंद्रित विविध विषयों में दीर्घकालिक क्षितिज वाली पूंजी का निवेश। पीढ़ियों तक संपत्ति को सुरक्षित रखने, बढ़ाने और हस्तांतरित करने के लिए अनुशासन के साथ नियोजित।',
+      '.hero-actions .btn-primary':'हमारे केंद्र क्षेत्रों को देखें <span class="a">→</span>',
+      '.hero-actions .btn-ghost':'संपर्क करें',
+      '.scroll-cue span:first-child':'देखने के लिए स्क्रॉल करें',
+      '#approach .ttl':'दृष्टिकोण',
+      '#approach .lede':'हम अंतर्दृष्टि के साथ निवेश करते हैं, <em>दृढ़ विश्वास</em> के साथ धारण करते हैं, और वैश्विक पहुँच के साथ संचालन करते हैं।',
+      '.map-head .eyebrow':'वैश्विक पहुँच',
+      '.map-head h3':'50+ देशों में निवेश',
+      '.map-foot .legend':'<i></i>मुख्यालय · अबू धाबी',
+      '.map-foot .more':'पूरा नक्शा देखें <span>→</span>',
+      '.invest-label':'चयनित निवेश',
+      '.invest-line':'वे कंपनियाँ जिनके साथ साझेदारी करके हम आभारी हैं।',
+      '.invest-sub':'हमें महान व्यवसायों के साथ काम करने और उन्हें समर्थन देने का अवसर पाकर विनम्रता का अनुभव होता है।',
+      '.invest-more':'पोर्टफोलियो देखें <span>→</span>',
+      '#principles .ttl':'सिद्धांत',
+      '#principles .lede':'चार स्तंभ जो हर निर्णय को नियंत्रित करते हैं।',
+      '#principles .rows .row:nth-child(1) .rt':'धैर्य ही लाभ है',
+      '#principles .rows .row:nth-child(1) .rd':'चूँकि पूंजी एक ही परिवार की है, हम अति-दीर्घकाल के लिए सच्चे भागीदार हैं।',
+      '#principles .rows .row:nth-child(2) .rt':'दृढ़ विश्वास हमारा आचार है',
+      '#principles .rows .row:nth-child(2) .rd':'हम दीर्घकाल के लिए व्यवसायों के एक बहुत छोटे समूह के साथ भागीदारी करते हैं।',
+      '#principles .rows .row:nth-child(3) .rt':'अगली पीढ़ी के संरक्षक',
+      '#principles .rows .row:nth-child(3) .rd':'पूंजी जो अगली पीढ़ी की है।',
+      '#principles .rows .row:nth-child(4) .rt':'विश्वास और सच्चे संबंधों से शासित',
+      '#principles .rows .row:nth-child(4) .rd':'हम विश्वास, सत्यनिष्ठा और संबंधों को अपनी सर्वोच्च प्राथमिकता मानते हैं।',
+      '#allocation .ttl':'रणनीतिक आवंटन',
+      '.alloc-note':'श्रेणियाँ संकेतात्मक हैं और निवेश समिति द्वारा वार्षिक रूप से समीक्षित की जाती हैं। सभी आवंटन परिवार के प्रमुख के विवेक पर रहते हैं।',
+      '.band .eyebrow':'पूछताछ',
+      '.band h2':'हर अवसर एक <em>बातचीत</em> से आरंभ होता है।',
+      '.band p':'सावाया अवांछित प्रस्ताव या सार्वजनिक आवेदन स्वीकार नहीं करती। सभी पूछताछ पारिवारिक कार्यालय के माध्यम से निर्देशित की जाती हैं और पूर्ण गोपनीयता में रखी जाती हैं।',
+      '.band .btn-primary':'पारिवारिक कार्यालय से संपर्क करें <span class="a">→</span>'
+    };
+    const FR={
+      '.hero-eyebrow span:last-child':'Société d\'investissement mondiale',
+      '.hero-badge .hb-k':'Family office unifamilial',
+      '.hero h1':'<span class="line"><i>Partenaires en capital de long terme.</i></span><span class="line"><i><em>Au service de l\'innovation de demain.</em></i></span>',
+      '.hero p.sub':'Un capital à horizon long investi dans une variété de thèmes centrés sur le progrès technologique et la croissance économique mondiale. Déployé avec discipline pour préserver, faire croître et transmettre le patrimoine à travers les générations.',
+      '.hero-actions .btn-primary':'Découvrir nos domaines <span class="a">→</span>',
+      '.hero-actions .btn-ghost':'Nous contacter',
+      '.scroll-cue span:first-child':'Faites défiler pour explorer',
+      '#approach .ttl':'Approche',
+      '#approach .lede':'Nous investissons avec discernement, détenons avec <em>conviction</em> et opérons à l\'échelle mondiale.',
+      '.map-head .eyebrow':'Présence mondiale',
+      '.map-head h3':'Investir dans plus de 50 pays',
+      '.map-foot .legend':'<i></i>Siège · Abou Dhabi',
+      '.map-foot .more':'Explorer la carte complète <span>→</span>',
+      '.invest-label':'Investissements sélectionnés',
+      '.invest-line':'Des entreprises avec lesquelles nous sommes reconnaissants de nous être associés.',
+      '.invest-sub':'Nous sommes honorés de pouvoir travailler avec de grandes entreprises et de les accompagner.',
+      '.invest-more':'Voir le portefeuille <span>→</span>',
+      '#principles .ttl':'Principes',
+      '#principles .lede':'Quatre piliers qui régissent chaque décision.',
+      '#principles .rows .row:nth-child(1) .rt':'La patience est l\'avantage',
+      '#principles .rows .row:nth-child(1) .rd':'Parce que le capital appartient à une seule famille, nous sommes de véritables partenaires pour le très long terme.',
+      '#principles .rows .row:nth-child(2) .rt':'La conviction est notre éthique',
+      '#principles .rows .row:nth-child(2) .rd':'Nous nous associons à un très petit nombre d\'entreprises, sur le long terme.',
+      '#principles .rows .row:nth-child(3) .rt':'Gardiens pour la prochaine génération',
+      '#principles .rows .row:nth-child(3) .rd':'Un capital qui appartient à la prochaine génération.',
+      '#principles .rows .row:nth-child(4) .rt':'Guidés par la confiance et des relations authentiques',
+      '#principles .rows .row:nth-child(4) .rd':'Nous plaçons la confiance, l\'intégrité et les relations au premier rang de nos priorités.',
+      '#allocation .ttl':'Allocation stratégique',
+      '.alloc-note':'Les fourchettes sont indicatives et revues chaque année par le Comité d\'investissement. Toutes les allocations demeurent à la discrétion du principal de la famille.',
+      '.band .eyebrow':'Demandes',
+      '.band h2':'Chaque opportunité commence par une <em>conversation.</em>',
+      '.band p':'SAVAYA n\'accepte pas de propositions non sollicitées ni de candidatures publiques. Toutes les demandes sont adressées au family office et traitées en toute confidentialité.',
+      '.band .btn-primary':'Contacter le family office <span class="a">→</span>'
+    };
+    const ZH={
+      '.hero-eyebrow span:last-child':'全球投資公司',
+      '.hero-badge .hb-k':'單一家族辦公室',
+      '.hero h1':'<span class="line"><i>長期資本夥伴。</i></span><span class="line"><i><em>賦能明日創新。</em></i></span>',
+      '.hero p.sub':'以長遠眼光配置資本，投資於圍繞科技進步與全球經濟增長的多元主題。以紀律部署，跨世代保存、增值並傳承財富。',
+      '.hero-actions .btn-primary':'探索我們的重點領域 <span class="a">→</span>',
+      '.hero-actions .btn-ghost':'聯絡我們',
+      '.scroll-cue span:first-child':'向下滾動以探索',
+      '#approach .ttl':'理念',
+      '#approach .lede':'我們以洞察力投資，以<em>信念</em>持有，並以全球網絡運營。',
+      '.map-head .eyebrow':'全球網絡',
+      '.map-head h3':'投資遍及 50 多個國家',
+      '.map-foot .legend':'<i></i>總部 · 阿布扎比',
+      '.map-foot .more':'探索完整地圖 <span>→</span>',
+      '.invest-label':'精選投資',
+      '.invest-line':'我們感恩能與之合作的企業。',
+      '.invest-sub':'能與卓越的企業合作並予以支持，我們深感榮幸。',
+      '.invest-more':'查看投資組合 <span>→</span>',
+      '#principles .ttl':'原則',
+      '#principles .lede':'主宰每一項決策的四大支柱。',
+      '#principles .rows .row:nth-child(1) .rt':'耐心即優勢',
+      '#principles .rows .row:nth-child(1) .rd':'由於資本屬於單一家族，我們是超長期的真正夥伴。',
+      '#principles .rows .row:nth-child(2) .rt':'信念是我們的理念',
+      '#principles .rows .row:nth-child(2) .rd':'我們與極少數企業建立長期合作夥伴關係。',
+      '#principles .rows .row:nth-child(3) .rt':'為下一代守護',
+      '#principles .rows .row:nth-child(3) .rd':'屬於下一代的資本。',
+      '#principles .rows .row:nth-child(4) .rt':'以信任與真誠關係為本',
+      '#principles .rows .row:nth-child(4) .rd':'我們將信任、誠信與關係視為最高優先。',
+      '#allocation .ttl':'策略性資產配置',
+      '.alloc-note':'各區間為指示性數值，並由投資委員會每年檢討。所有配置均由家族主事人全權決定。',
+      '.band .eyebrow':'查詢',
+      '.band h2':'每一個機遇皆始於一場<em>對話。</em>',
+      '.band p':'SAVAYA 不接受未經邀約的提案或公開申請。所有查詢均透過家族辦公室處理，並絕對保密。',
+      '.band .btn-primary':'聯絡家族辦公室 <span class="a">→</span>'
+    };
+    const TR={ar:AR,hi:HI,fr:FR,zh:ZH};
+    langSwitch(TR);
+  })();
+
+  // ── Shared 5-language switcher (EN · AR · HI · FR · ZH) ──
+  function langSwitch(TR){
+    const btn=document.getElementById('langToggle');
+    if(!btn)return;
+    const LANGS=[
+      {code:'en',label:'English',short:'EN'},
+      {code:'ar',label:'العربية',short:'ع'},
+      {code:'hi',label:'हिन्दी',short:'HI'},
+      {code:'fr',label:'Français',short:'FR'},
+      {code:'zh',label:'廣東話',short:'粵'}
+    ];
+    const sels=new Set();for(const c in TR){for(const s in TR[c])sels.add(s);}
+    const store={};sels.forEach(s=>{const e=document.querySelector(s);if(e)store[s]=e.innerHTML;});
+    const FONTS={hi:'https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500&display=swap',
+                 zh:'https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@300;400;500&display=swap'};
+    const fl={};
+    function ensureFont(c){if(FONTS[c]&&!fl[c]){fl[c]=1;const l=document.createElement('link');l.rel='stylesheet';l.href=FONTS[c];document.head.appendChild(l);}}
+    if(!document.getElementById('langMenuCSS')){
+      const st=document.createElement('style');st.id='langMenuCSS';
+      st.textContent='.lang-menu{position:fixed;z-index:2000;min-width:158px;background:rgba(18,21,20,0.94);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(237,234,227,0.14);border-radius:14px;padding:6px;box-shadow:0 22px 46px -18px rgba(0,0,0,.7);opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .25s ease,transform .25s ease}.lang-menu.open{opacity:1;transform:none;pointer-events:auto}.lang-menu button{display:flex;width:100%;align-items:center;justify-content:space-between;gap:14px;background:none;border:none;color:#9BA29C;font-family:"Switzer",-apple-system,sans-serif;font-size:13px;letter-spacing:.02em;padding:9px 12px;border-radius:9px;cursor:pointer;transition:background .2s ease,color .2s ease;text-align:left}.lang-menu button:hover{background:rgba(237,234,227,0.06);color:#EDEAE3}.lang-menu button.on{color:#EDEAE3}.lang-menu .lg-tick{color:#7E8F82;opacity:0;font-size:12px}.lang-menu button.on .lg-tick{opacity:1}.lang-hi,.lang-hi p,.lang-hi .sub,.lang-hi button,.lang-hi a,.lang-hi span,.lang-hi div,.lang-hi li,.lang-hi address,.lang-hi h1,.lang-hi h2,.lang-hi h3,.lang-hi h4,.lang-hi .lede{font-family:"Noto Sans Devanagari","Switzer",-apple-system,sans-serif}.lang-zh,.lang-zh p,.lang-zh .sub,.lang-zh button,.lang-zh a,.lang-zh span,.lang-zh div,.lang-zh li,.lang-zh address,.lang-zh h1,.lang-zh h2,.lang-zh h3,.lang-zh h4,.lang-zh .lede{font-family:"Noto Sans HK","Switzer",-apple-system,sans-serif}';
+      document.head.appendChild(st);
+    }
+    const menu=document.createElement('div');menu.className='lang-menu';
+    LANGS.forEach(L=>{const b=document.createElement('button');b.type='button';b.dataset.code=L.code;b.innerHTML='<span>'+L.label+'</span><span class="lg-tick">✓</span>';b.addEventListener('click',ev=>{ev.stopPropagation();apply(L.code);closeM();});menu.appendChild(b);});
+    document.body.appendChild(menu);
+    let lang='en',opened=false;
+    function place(){const r=btn.getBoundingClientRect();menu.style.top=(r.bottom+10)+'px';let left=r.right-menu.offsetWidth;if(left<10)left=10;menu.style.left=left+'px';}
+    function openM(){place();menu.classList.add('open');opened=true;}
+    function closeM(){menu.classList.remove('open');opened=false;}
+    btn.addEventListener('click',e=>{e.stopPropagation();opened?closeM():openM();});
+    document.addEventListener('click',e=>{if(opened&&!menu.contains(e.target)&&e.target!==btn)closeM();});
+    addEventListener('resize',()=>{if(opened)place();});
+    addEventListener('scroll',()=>{if(opened)place();},{passive:true});
+    function apply(l){
+      lang=l;const ar=(l==='ar');ensureFont(l);
+      document.documentElement.lang=l;
+      document.documentElement.dir=ar?'rtl':'ltr';
+      document.body.classList.toggle('rtl',ar);
+      document.body.classList.toggle('lang-hi',l==='hi');
+      document.body.classList.toggle('lang-zh',l==='zh');
+      const dict=TR[l]||{};
+      for(const s in store){const e=document.querySelector(s);if(!e)continue;e.innerHTML=(l==='en')?store[s]:(dict[s]!==undefined?dict[s]:store[s]);}
+      const cur=LANGS.find(x=>x.code===l)||LANGS[0];
+      btn.innerHTML=cur.short+' <span class="lg-sep">·</span> <span aria-hidden="true">▾</span>';
+      menu.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.code===l));
+    }
+    apply('en');
+  }
+
+  // ── HOMEPAGE WORLD MAP ──
+  (function(){
+    const el=document.getElementById('mini-map');
+    if(!el||typeof d3==='undefined'||typeof topojson==='undefined')return;
+    const W=900,H=440;
+    const svg=d3.select(el);
+    const projection=d3.geoNaturalEarth1().rotate([-18,0,0]);
+    projection.fitExtent([[10,8],[W-10,H-8]],{type:'Sphere'});
+    const path=d3.geoPath(projection);
+    svg.append('path').datum(d3.geoGraticule().step([30,30])()).attr('d',path)
+       .attr('fill','none').attr('stroke','rgba(237,234,227,0.05)').attr('stroke-width',0.5);
+    const HQ=[54.37,24.47];
+    const dests=[[-106,56],[-98,39],[-51,-10],[9,50],[78,22],[103.8,1.35],[127.5,36.5],[138,37],[134,-25],[174,-41]];
+    fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+      .then(r=>r.json()).then(world=>{
+        const land=topojson.feature(world,world.objects.countries);
+        const HQID=784;
+        const HL=new Set([124,840,76,356,702,392,410,36,554,40,56,100,191,196,203,208,233,246,250,276,300,348,372,380,428,440,442,470,528,616,620,642,703,705,724,752]);
+        svg.append('g').selectAll('path').data(land.features).join('path')
+           .attr('d',path)
+           .attr('fill',d=>{const id=+d.id;return id===HQID?'rgba(237,234,227,0.34)':HL.has(id)?'rgba(126,143,130,0.34)':'#171B19';})
+           .attr('stroke',d=>{const id=+d.id;return id===HQID?'rgba(237,234,227,0.8)':HL.has(id)?'rgba(126,143,130,0.7)':'rgba(237,234,227,0.07)';})
+           .attr('stroke-width',d=>{const id=+d.id;return (id===HQID||HL.has(id))?0.6:0.35;});
+        const ag=svg.append('g');
+        dests.forEach((c,i)=>{
+          const a=ag.append('path').datum({type:'LineString',coordinates:[HQ,c]}).attr('d',path)
+            .attr('fill','none').attr('stroke','rgba(126,143,130,0.5)').attr('stroke-width',1.1);
+          try{const len=a.node().getTotalLength();
+            a.attr('stroke-dasharray',len).attr('stroke-dashoffset',len)
+             .transition().delay(400+i*130).duration(1400).ease(d3.easeQuadOut).attr('stroke-dashoffset',0)
+             .on('end',function(){d3.select(this).attr('stroke-dasharray','4 8').attr('stroke-dashoffset',null).attr('class','mini-arc');});
+          }catch(e){a.attr('stroke-dasharray','4 8').attr('class','mini-arc');}
+        });
+        const mg=svg.append('g');
+        dests.forEach(c=>{
+          const q=projection(c); if(!q)return;
+          mg.append('circle').attr('cx',q[0]).attr('cy',q[1]).attr('r',6).attr('fill','none').attr('stroke','rgba(126,143,130,0.35)').attr('stroke-width',1);
+          mg.append('circle').attr('cx',q[0]).attr('cy',q[1]).attr('r',3).attr('fill','#7E8F82');
+        });
+        const hp=projection(HQ);
+        if(hp){
+          const hg=svg.append('g');
+          [0,1].forEach(i=>hg.append('circle').attr('cx',hp[0]).attr('cy',hp[1]).attr('r',6.5)
+            .attr('fill','none').attr('stroke','rgba(237,234,227,0.6)').attr('stroke-width',1)
+            .attr('class','mini-hqpulse'+(i?' p2':'')));
+          hg.append('circle').attr('cx',hp[0]).attr('cy',hp[1]).attr('r',4).attr('fill','#EDEAE3');
+        }
+      }).catch(()=>{});
+  })();
+</script>
+</body>
+</html>

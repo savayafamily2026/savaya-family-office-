@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Enquire — SAVAYA Family Office</title>
+<title>Contact Us — SAVAYA Family Office</title>
 <link href="https://api.fontshare.com/v2/css?f[]=zodiak@300,400,500&f[]=switzer@400,500,600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500&display=swap" rel="stylesheet" />
 <style>
   :root{
     --obsidian:#0B0D0C;
@@ -60,7 +61,7 @@
   .hero-eyebrow .r{width:34px;height:1px;background:var(--accent-d)}
   .hero-eyebrow span{font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--stone-d)}
   .hero h1{font-size:clamp(2.6rem,6.5vw,5.2rem);letter-spacing:-0.025em}
-  .hero h1 .line{display:block;overflow:hidden}
+  .hero h1 .line{display:block;overflow:hidden;padding-bottom:0.18em;margin-bottom:-0.18em}
   .hero h1 .line i{display:block;font-style:normal;transform:translateY(110%);animation:rev 1s cubic-bezier(.16,1,.3,1) forwards}
   .hero h1 .line:nth-child(2) i{animation-delay:.12s}
   .hero h1 em{font-family:"Zodiak";font-style:italic;font-weight:300;color:var(--stone-d)}
@@ -75,7 +76,7 @@
 
   /* INFO CARDS */
   .info-sec{padding:20px 0 96px}
-  .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
   .info{background:rgba(18,21,20,0.5);backdrop-filter:blur(10px);border:1px solid var(--line-soft);border-radius:var(--r);padding:40px 38px;display:flex;flex-direction:column;box-shadow:var(--shadow);transition:border-color .4s ease,transform .5s cubic-bezier(.16,1,.3,1)}
   .info:hover{border-color:var(--line-d);transform:translateY(-4px)}
   .info .ic{width:34px;height:34px;color:var(--accent);margin-bottom:26px}
@@ -123,42 +124,52 @@
     .hero h1 .line i{transform:none}.rise{opacity:1;transform:none}
     .hero p.sub,.hero-actions{opacity:1}
   }
+  /* language toggle + Arabic RTL */
+  .lang-toggle{background:none;border:1px solid var(--line-d);color:var(--stone-d);font-family:"Switzer",sans-serif;font-size:12px;letter-spacing:0.06em;padding:8px 13px;border-radius:999px;cursor:pointer;transition:color .3s ease,border-color .3s ease;white-space:nowrap}
+  .lang-toggle:hover{color:var(--bone);border-color:var(--accent)}
+  .lang-toggle .lg-sep{color:var(--accent-d);margin:0 3px}
+  .rtl,.rtl p,.rtl .sub,.rtl button,.rtl a,.rtl span,.rtl div,.rtl li,.rtl address{font-family:"Noto Kufi Arabic","Switzer",-apple-system,sans-serif}
+  .rtl h1,.rtl h2,.rtl h3,.rtl h4,.rtl .lede,.rtl .fa-lede,.rtl .fa-title,.rtl .cont-body h3{font-family:"Noto Kufi Arabic","Zodiak",Georgia,serif;letter-spacing:0}
+  .rtl .hero h1{letter-spacing:0;line-height:1.35}
+  .rtl .eyebrow,.rtl .sec-head .ttl,.rtl .cont-role,.rtl .bk,.rtl .fa-cat,.rtl .win,.rtl .lbl{letter-spacing:0.1em}
+  .rtl .lang-toggle,.rtl .cstat .n,.rtl .fa-num,.rtl .roman,.rtl .pn,.rtl .pk,.rtl .fnum,.rtl .idx,.rtl address a{direction:ltr}
 </style>
 </head>
 <body>
 
 <div class="nav-shell">
   <nav>
-    <a href="index.html" class="logo">SAVAYA</a>
+    <a href="index.html" class="logo">SAVAYA CAPITAL</a>
     <div class="tabs">
       <span class="tab-pill" id="tabPill"></span>
-      <a href="savaya-focus.html">Focus</a>
-      <a href="savaya-reach.html">Reach</a>
-      <a href="savaya-philosophy.html">Philosophy</a>
+      <a href="savaya-focus.html">About Us</a>
+      <a href="savaya-philosophy.html">Our Portfolio</a>
+      <a href="savaya-legal.html">Legal</a>
     </div>
-    <a href="mailto:info@savayafamily.com" class="nav-cta">Enquire</a>
+    <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">EN <span class="lg-sep">·</span> ع</button>
+    <a href="mailto:inquiries@savayafamily.com" class="nav-cta">Contact us</a>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
 </div>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="savaya-focus.html">Focus</a>
-  <a href="savaya-reach.html">Reach</a>
-  <a href="savaya-philosophy.html">Philosophy</a>
-  <a href="mailto:info@savayafamily.com">Enquire</a>
+  <a href="savaya-focus.html">About Us</a>
+  <a href="savaya-philosophy.html">Our Portfolio</a>
+  <a href="savaya-legal.html">Legal</a>
+  <a href="mailto:inquiries@savayafamily.com">Contact us</a>
 </div>
 
 <!-- HERO -->
 <header class="hero">
   <div class="wrap">
-    <div class="hero-eyebrow"><span class="r"></span><span>Enquire</span><span class="r"></span></div>
+    <div class="hero-eyebrow"><span class="r"></span><span>Contact Us</span><span class="r"></span></div>
     <h1>
-      <span class="line"><i>A conversation begins</i></span>
-      <span class="line"><i><em>with discretion.</em></i></span>
+      <span class="line"><i>Every opportunity begins</i></span>
+      <span class="line"><i><em>with a conversation.</em></i></span>
     </h1>
     <p class="sub">SAVAYA does not accept unsolicited proposals or public applications. Every enquiry is directed through the family office and held in absolute confidence.</p>
     <div class="hero-actions">
-      <a href="mailto:info@savayafamily.com" class="btn btn-primary">Write to the family office <span class="a">→</span></a>
+      <a href="mailto:inquiries@savayafamily.com" class="btn btn-primary">Write to the family office <span class="a">→</span></a>
     </div>
   </div>
 </header>
@@ -170,7 +181,7 @@
       <div class="info rise">
         <svg class="ic" viewBox="0 0 34 34" fill="none"><rect x="4" y="8" width="26" height="18" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 9l12 9 12-9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div class="lbl">Correspondence</div>
-        <div class="val"><a href="mailto:info@savayafamily.com">info@savayafamily.com</a></div>
+        <div class="val"><a href="mailto:inquiries@savayafamily.com">inquiries@savayafamily.com</a></div>
         <p class="note">Written enquiries only. A member of the family office will respond directly and in confidence.</p>
       </div>
 
@@ -179,17 +190,10 @@
         <div class="lbl">Family Office</div>
         <address>
           <span>Office 2906, Unit D105</span>
-          <span>Floor 28, Sky Tower</span>
+          <span>Sky Tower</span>
           <span>Shams Abu Dhabi, Al Reem Island</span>
           <span class="sub">Abu Dhabi · United Arab Emirates</span>
         </address>
-      </div>
-
-      <div class="info rise">
-        <svg class="ic" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="13" stroke="currentColor" stroke-width="1.4"/><path d="M22 12l-3.2 6.8L12 22l3.2-6.8L22 12z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-        <div class="lbl">How to begin</div>
-        <div class="val">No deck required.</div>
-        <p class="note">A brief overview of who you are and the nature of your interest is enough to open a conversation. Formality can follow.</p>
       </div>
     </div>
   </div>
@@ -209,17 +213,16 @@
 <footer>
   <div class="wrap">
     <div class="foot-top">
-      <a href="index.html" class="logo" style="font-size:22px">SAVAYA</a>
+      <a href="index.html" class="logo" style="font-size:22px">SAVAYA CAPITAL</a>
       <div class="foot-links">
-        <a href="savaya-focus.html">Focus</a>
-        <a href="savaya-reach.html">Reach</a>
-        <a href="savaya-philosophy.html">Philosophy</a>
-        <a href="mailto:info@savayafamily.com">Enquire</a>
+        <a href="savaya-focus.html">About Us</a>
+        <a href="savaya-philosophy.html">Our Portfolio</a>
+        <a href="mailto:inquiries@savayafamily.com">Contact us</a>
       </div>
     </div>
     <div class="foot-bottom">
       <span>© 2026 SAVAYA Family Global Holdings SFO RSC Limited</span>
-      <span>Private &amp; Confidential</span>
+      <a href="savaya-legal.html" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(237,234,227,0.22);padding-bottom:1px">Legal &amp; Regulatory Notice</a>
     </div>
   </div>
 </footer>
@@ -237,6 +240,105 @@
   const burger=document.getElementById('burger'),mm=document.getElementById('mobileMenu');
   burger.addEventListener('click',()=>mm.classList.toggle('open'));
   mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
+
+  // ── EN / AR language toggle (RTL) ──
+  (function(){
+    const AR={
+      '.hero-eyebrow span:not(.r)':'تواصل معنا',
+      '.hero h1':'<span class="line"><i>كلّ فرصةٍ تبدأ</i></span><span class="line"><i><em>بمحادثة.</em></i></span>',
+      '.hero p.sub':'لا تقبل سافايا المقترحات غير المطلوبة أو الطلبات العامة. وتُوجَّه كلّ استفسارٍ عبر المكتب العائلي ويُعامَل بسرّيةٍ تامة.',
+      '.info:nth-child(1) .lbl':'المراسلات',
+      '.info:nth-child(1) .note':'استفسارات مكتوبة فقط. سيردّ أحد أعضاء المكتب العائلي مباشرةً وبسرّية.',
+      '.info:nth-child(2) .lbl':'المكتب العائلي',
+      '.info:nth-child(2) address .sub':'أبوظبي · الإمارات العربية المتحدة',
+      '.quote p':'أدوم العلاقات تبدأ بهدوء — بمحادثةٍ واحدةٍ متأنّية.',
+      '.quote .attr':'سافايا · القابضة العائلية العالمية'
+    };
+    const HI={
+      '.hero-eyebrow span:not(.r)':'संपर्क करें',
+      '.hero h1':'<span class="line"><i>हर अवसर आरंभ होता है</i></span><span class="line"><i><em>एक बातचीत से।</em></i></span>',
+      '.hero p.sub':'सावाया अवांछित प्रस्ताव या सार्वजनिक आवेदन स्वीकार नहीं करती। हर पूछताछ पारिवारिक कार्यालय के माध्यम से निर्देशित की जाती है और पूर्ण गोपनीयता में रखी जाती है।',
+      '.info:nth-child(1) .lbl':'पत्राचार',
+      '.info:nth-child(1) .note':'केवल लिखित पूछताछ। पारिवारिक कार्यालय का एक सदस्य सीधे और गोपनीय रूप से उत्तर देगा।',
+      '.info:nth-child(2) .lbl':'पारिवारिक कार्यालय',
+      '.info:nth-child(2) address .sub':'अबू धाबी · संयुक्त अरब अमीरात',
+      '.quote p':'सबसे स्थायी संबंध चुपचाप आरंभ होते हैं — एक ही, विचारशील बातचीत से।',
+      '.quote .attr':'सावाया · फैमिली ग्लोबल होल्डिंग्स'
+    };
+    const FR={
+      '.hero-eyebrow span:not(.r)':'Nous contacter',
+      '.hero h1':'<span class="line"><i>Chaque opportunité commence</i></span><span class="line"><i><em>par une conversation.</em></i></span>',
+      '.hero p.sub':'SAVAYA n\'accepte pas de propositions non sollicitées ni de candidatures publiques. Chaque demande est adressée au family office et traitée en toute confidentialité.',
+      '.info:nth-child(1) .lbl':'Correspondance',
+      '.info:nth-child(1) .note':'Demandes écrites uniquement. Un membre du family office répondra directement et en toute confidentialité.',
+      '.info:nth-child(2) .lbl':'Family Office',
+      '.info:nth-child(2) address .sub':'Abou Dhabi · Émirats arabes unis',
+      '.quote p':'Les relations les plus durables commencent dans la discrétion — par une seule conversation réfléchie.',
+      '.quote .attr':'SAVAYA · Family Global Holdings'
+    };
+    const ZH={
+      '.hero-eyebrow span:not(.r)':'聯絡我們',
+      '.hero h1':'<span class="line"><i>每一個機遇皆始於</i></span><span class="line"><i><em>一場對話。</em></i></span>',
+      '.hero p.sub':'SAVAYA 不接受未經邀約的提案或公開申請。每一項查詢均透過家族辦公室處理，並絕對保密。',
+      '.info:nth-child(1) .lbl':'書信往來',
+      '.info:nth-child(1) .note':'僅接受書面查詢。家族辦公室的成員將親自且保密地回覆。',
+      '.info:nth-child(2) .lbl':'家族辦公室',
+      '.info:nth-child(2) address .sub':'阿布扎比 · 阿拉伯聯合酋長國',
+      '.quote p':'最恆久的關係始於靜默——一場經深思熟慮的對話。',
+      '.quote .attr':'SAVAYA · Family Global Holdings'
+    };
+    const TR={ar:AR,hi:HI,fr:FR,zh:ZH};
+    langSwitch(TR);
+  })();
+
+  // ── Shared 5-language switcher (EN · AR · HI · FR · ZH) ──
+  function langSwitch(TR){
+    const btn=document.getElementById('langToggle');
+    if(!btn)return;
+    const LANGS=[
+      {code:'en',label:'English',short:'EN'},
+      {code:'ar',label:'العربية',short:'ع'},
+      {code:'hi',label:'हिन्दी',short:'HI'},
+      {code:'fr',label:'Français',short:'FR'},
+      {code:'zh',label:'廣東話',short:'粵'}
+    ];
+    const sels=new Set();for(const c in TR){for(const s in TR[c])sels.add(s);}
+    const store={};sels.forEach(s=>{const e=document.querySelector(s);if(e)store[s]=e.innerHTML;});
+    const FONTS={hi:'https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500&display=swap',
+                 zh:'https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@300;400;500&display=swap'};
+    const fl={};
+    function ensureFont(c){if(FONTS[c]&&!fl[c]){fl[c]=1;const l=document.createElement('link');l.rel='stylesheet';l.href=FONTS[c];document.head.appendChild(l);}}
+    if(!document.getElementById('langMenuCSS')){
+      const st=document.createElement('style');st.id='langMenuCSS';
+      st.textContent='.lang-menu{position:fixed;z-index:2000;min-width:158px;background:rgba(18,21,20,0.94);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(237,234,227,0.14);border-radius:14px;padding:6px;box-shadow:0 22px 46px -18px rgba(0,0,0,.7);opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .25s ease,transform .25s ease}.lang-menu.open{opacity:1;transform:none;pointer-events:auto}.lang-menu button{display:flex;width:100%;align-items:center;justify-content:space-between;gap:14px;background:none;border:none;color:#9BA29C;font-family:"Switzer",-apple-system,sans-serif;font-size:13px;letter-spacing:.02em;padding:9px 12px;border-radius:9px;cursor:pointer;transition:background .2s ease,color .2s ease;text-align:left}.lang-menu button:hover{background:rgba(237,234,227,0.06);color:#EDEAE3}.lang-menu button.on{color:#EDEAE3}.lang-menu .lg-tick{color:#7E8F82;opacity:0;font-size:12px}.lang-menu button.on .lg-tick{opacity:1}.lang-hi,.lang-hi p,.lang-hi .sub,.lang-hi button,.lang-hi a,.lang-hi span,.lang-hi div,.lang-hi li,.lang-hi address,.lang-hi h1,.lang-hi h2,.lang-hi h3,.lang-hi h4,.lang-hi .lede{font-family:"Noto Sans Devanagari","Switzer",-apple-system,sans-serif}.lang-zh,.lang-zh p,.lang-zh .sub,.lang-zh button,.lang-zh a,.lang-zh span,.lang-zh div,.lang-zh li,.lang-zh address,.lang-zh h1,.lang-zh h2,.lang-zh h3,.lang-zh h4,.lang-zh .lede{font-family:"Noto Sans HK","Switzer",-apple-system,sans-serif}';
+      document.head.appendChild(st);
+    }
+    const menu=document.createElement('div');menu.className='lang-menu';
+    LANGS.forEach(L=>{const b=document.createElement('button');b.type='button';b.dataset.code=L.code;b.innerHTML='<span>'+L.label+'</span><span class="lg-tick">✓</span>';b.addEventListener('click',ev=>{ev.stopPropagation();apply(L.code);closeM();});menu.appendChild(b);});
+    document.body.appendChild(menu);
+    let lang='en',opened=false;
+    function place(){const r=btn.getBoundingClientRect();menu.style.top=(r.bottom+10)+'px';let left=r.right-menu.offsetWidth;if(left<10)left=10;menu.style.left=left+'px';}
+    function openM(){place();menu.classList.add('open');opened=true;}
+    function closeM(){menu.classList.remove('open');opened=false;}
+    btn.addEventListener('click',e=>{e.stopPropagation();opened?closeM():openM();});
+    document.addEventListener('click',e=>{if(opened&&!menu.contains(e.target)&&e.target!==btn)closeM();});
+    addEventListener('resize',()=>{if(opened)place();});
+    addEventListener('scroll',()=>{if(opened)place();},{passive:true});
+    function apply(l){
+      lang=l;const ar=(l==='ar');ensureFont(l);
+      document.documentElement.lang=l;
+      document.documentElement.dir=ar?'rtl':'ltr';
+      document.body.classList.toggle('rtl',ar);
+      document.body.classList.toggle('lang-hi',l==='hi');
+      document.body.classList.toggle('lang-zh',l==='zh');
+      const dict=TR[l]||{};
+      for(const s in store){const e=document.querySelector(s);if(!e)continue;e.innerHTML=(l==='en')?store[s]:(dict[s]!==undefined?dict[s]:store[s]);}
+      const cur=LANGS.find(x=>x.code===l)||LANGS[0];
+      btn.innerHTML=cur.short+' <span class="lg-sep">·</span> <span aria-hidden="true">▾</span>';
+      menu.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.code===l));
+    }
+    apply('en');
+  }
 </script>
 </body>
 </html>
