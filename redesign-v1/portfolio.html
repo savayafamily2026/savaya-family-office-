@@ -584,6 +584,84 @@ html:not([lang="en"]) .alloc-note{max-width:64ch}
 html:not([lang="en"]) .reach-full .reach-sub{font-size:16px;max-width:62ch}
 html:not([lang="en"]) .sel-intro{font-size:16px;max-width:70ch}
 html:not([lang="en"]) .inv-head h3{max-width:22ch}
+
+/* ── mobile menu (drawer behind the burger) ── */
+.mobile-menu{
+  position:fixed;inset:0;z-index:150;background:var(--ink);
+  display:flex;flex-direction:column;justify-content:center;gap:6px;
+  padding:96px var(--pad-x) 40px;
+  transform:translateY(-101%);transition:transform .6s cubic-bezier(.16,1,.3,1);
+  pointer-events:none;overflow-y:auto;
+}
+.mobile-menu.open{transform:translateY(0);pointer-events:auto}
+.mobile-menu a{
+  font-family:var(--display);font-weight:500;color:var(--on-ink);
+  font-size:clamp(1.6rem,8vw,2.4rem);letter-spacing:-.01em;line-height:1.1;
+  padding:14px 0;border-bottom:1px solid var(--line-dark);
+}
+.mobile-menu a:last-of-type{border-bottom:0}
+.mm-close{
+  position:absolute;top:18px;right:var(--pad-x);
+  background:none;border:0;color:var(--on-ink);cursor:pointer;padding:10px;
+}
+.mm-close svg{width:24px;height:24px}
+.menu-lock{overflow:hidden}
+
+/* ── phone layout corrections (<=560px unless noted) ── */
+@media(max-width:760px){
+  /* home: 5 allocation bars were still 3-up and far too cramped */
+  .alloc{grid-template-columns:repeat(2,1fr);row-gap:38px}
+  .abar-wrap{height:180px}
+  .abar{max-width:none}
+  .acol{padding-right:14px}
+  .acat{margin-right:14px;font-size:12.5px}
+  .apc{font-size:clamp(1.7rem,8vw,2.3rem)}
+  /* home: 8 logo tiles */
+  .inv-grid{grid-template-columns:repeat(2,1fr)}
+  .inv-item{min-height:150px;padding:26px 16px}
+  /* portfolio cards */
+  .inv-grid-cards{grid-template-columns:1fr}
+  .iv-card{min-height:0;padding:30px 24px}
+  /* careers rows */
+  .job{grid-template-columns:1fr;gap:16px;padding:28px 0}
+  /* contact */
+  .contact-grid{grid-template-columns:1fr;gap:36px;margin-top:44px;padding-top:40px}
+  .contact-email{font-size:clamp(1.05rem,5.4vw,1.4rem);word-break:break-word}
+  .contact-addr{font-size:1.05rem}
+  /* about: process ring + list */
+  .proc{gap:32px}
+  .proc-item{grid-template-columns:38px 1fr;gap:14px;padding:20px 0}
+  .pi-body h4{font-size:1.05rem}
+  .pi-body p{font-size:14px}
+  /* about: sector rows */
+  .fa-row{gap:16px;padding:34px 0}
+  .fa-heading{font-size:clamp(1.2rem,5.6vw,1.5rem)}
+  .fa-body{font-size:14.5px}
+  .fa-tag{font-size:10.5px;padding:7px 12px}
+  /* map + legend */
+  .map-foot{flex-direction:column;align-items:flex-start;gap:10px}
+  .map-note{display:none}
+  .reach-full .map-wrap{max-width:100%}
+  /* marquee */
+  .mq-item{font-size:clamp(1rem,5.4vw,1.4rem);padding:0 20px}
+  /* footer */
+  .foot-legal{flex-direction:column;gap:8px}
+  .foot-disclaimer{font-size:10.5px;line-height:1.6}
+  /* sfo pill sat over the headline on small screens */
+  .sfo-pill{position:static;display:inline-flex;margin-bottom:26px;transform:none}
+  /* seam / backdrop images shorten */
+  .proc-bg{height:clamp(560px,150vw,900px)}
+}
+@media(max-width:560px){
+  :root{--pad-x:18px}
+  .alloc{grid-template-columns:1fr;row-gap:30px}
+  .abar-wrap{height:150px}
+  .inv-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-figure{width:min(62%,190px)}
+  h2.d{font-size:clamp(1.5rem,7.6vw,2rem)}
+  .sec-head{margin-bottom:44px}
+  .sec-head h2{max-width:none}
+}
 </style>
 </head>
 <body>
@@ -613,6 +691,19 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
     </button>
   </div>
 </nav>
+
+<!-- ══ MOBILE MENU ══ -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mm-close" id="mmClose" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.4"/></svg>
+  </button>
+  <a href="about.html">About Us</a>
+  <a href="portfolio.html">Our Portfolio</a>
+  <a href="careers.html">Careers</a>
+  <a href="savaya-legal.html">Legal</a>
+  <a href="savaya-contact.html">Contact Us</a>
+</div>
+
 
 <!-- ══ HERO ══ -->
 <header class="hero">
@@ -1052,6 +1143,25 @@ menu.addEventListener('click',e=>e.stopPropagation());
 apply('en');
 })();
 
+</script>
+
+<script>
+/* ── mobile menu ── */
+(function(){
+  const b=document.querySelector('.burger'),m=document.getElementById('mobileMenu'),
+        c=document.getElementById('mmClose');
+  if(!b||!m)return;
+  const open=()=>{m.classList.add('open');document.body.classList.add('menu-lock');
+                  b.setAttribute('aria-expanded','true')};
+  const shut=()=>{m.classList.remove('open');document.body.classList.remove('menu-lock');
+                  b.setAttribute('aria-expanded','false')};
+  b.setAttribute('aria-controls','mobileMenu');b.setAttribute('aria-expanded','false');
+  b.addEventListener('click',e=>{e.stopPropagation();open()});
+  if(c)c.addEventListener('click',shut);
+  m.querySelectorAll('a').forEach(a=>a.addEventListener('click',shut));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')shut()});
+  addEventListener('resize',()=>{if(innerWidth>760)shut()});
+})();
 </script>
 </body>
 </html>
