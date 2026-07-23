@@ -119,20 +119,34 @@ h3.d{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.1}
 
 /* ── nav ── */
 .nav{
-  position:fixed;inset:0 0 auto 0;z-index:100;
-  padding:22px var(--pad-x);
-  display:flex;align-items:center;justify-content:space-between;gap:28px;
+  position:fixed;top:16px;left:0;right:0;z-index:100;
+  width:calc(100% - 40px);max-width:calc(var(--maxw) + 60px);margin:0 auto;
+  padding:11px 12px 11px 28px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
   color:var(--on-ink);
-  transition:background .45s ease,padding .45s ease,color .45s ease,border-color .45s ease;
-  border-bottom:1px solid transparent;
+  background:rgba(14,14,13,.5);
+  -webkit-backdrop-filter:blur(18px) saturate(120%);backdrop-filter:blur(18px) saturate(120%);
+  border:1px solid rgba(247,246,244,.14);border-radius:9999px;
+  transition:background .45s ease,border-color .45s ease;
 }
-.nav.solid{background:var(--ink);padding:15px var(--pad-x);border-bottom-color:var(--line-dark)}
-.nav .mark{font-family:var(--display);font-size:19px;letter-spacing:.02em;font-weight:500}
-.nav ul{display:flex;gap:34px;list-style:none;font-family:var(--display);font-weight:500;font-size:16px;letter-spacing:.03em}
-.nav-right .link{font-family:var(--display);font-weight:500;font-size:16px;letter-spacing:.03em}
-.nav ul a{opacity:.78;transition:opacity .25s}
-.nav ul a:hover{opacity:1}
-.nav-right{display:flex;align-items:center;gap:20px}
+.nav.solid{background:rgba(10,10,10,.8);border-color:rgba(247,246,244,.1)}
+.nav .mark{font-family:var(--display);font-size:18px;letter-spacing:.1em;font-weight:500;white-space:nowrap}
+.nav ul{
+  display:flex;gap:4px;list-style:none;
+  font-family:var(--display);font-weight:500;font-size:15px;letter-spacing:.04em;
+  background:rgba(0,0,0,.22);border:1px solid rgba(247,246,244,.07);
+  border-radius:9999px;padding:5px 6px;
+}
+.nav ul a{opacity:.82;padding:8px 18px;border-radius:9999px;
+  transition:opacity .25s,background .25s}
+.nav ul a:hover{opacity:1;background:rgba(247,246,244,.09)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-right .link{
+  font-family:var(--display);font-weight:500;font-size:14.5px;letter-spacing:.03em;
+  background:var(--paper);color:var(--ink);
+  padding:10px 20px!important;border-radius:9999px;border:0!important;
+}
+.nav-right .link:hover{gap:13px}
 
 .lang{position:relative}
 .lang-btn{
@@ -159,18 +173,22 @@ h3.d{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.1}
 
 /* ── hero ── */
 .hero{
-  background:var(--ink);color:var(--on-ink);
+  color:var(--on-ink);
   min-height:100svh;display:flex;flex-direction:column;justify-content:center;
-  padding:150px var(--pad-x) 44px;position:relative;
+  padding:150px var(--pad-x) 44px;position:relative;overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(8,8,8,.30) 0%,rgba(8,8,8,.46) 44%,rgba(8,8,8,.72) 74%,rgba(8,8,8,.94) 100%),
+    url('images/hero%20background%20plane.jpg') center/cover no-repeat,
+    var(--ink);
 }
 .hero::before{
-  content:'';position:absolute;inset:0;pointer-events:none;opacity:.5;
+  content:'';position:absolute;inset:0;pointer-events:none;opacity:.28;
   background:
     repeating-linear-gradient(97deg,transparent 0 118px,rgba(247,246,244,.05) 118px 119px);
 }
 .hero .inner{position:relative;z-index:2}
-.hero-split{display:grid;grid-template-columns:1fr auto;gap:72px;align-items:center}
-.hero-copy{min-width:0}
+.hero-split{display:block}
+.hero-copy{min-width:0;max-width:none}
 .hero-figure{
   margin:0;flex:none;width:clamp(240px,25vw,370px);
   opacity:0;transform:translateY(16px);
@@ -274,15 +292,20 @@ h3.d{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.1}
 .inv-head h3 em{font-family:var(--italic);font-style:italic;font-weight:400;letter-spacing:-.005em}
 .inv-sub{margin-top:18px;color:var(--on-paper-muted);font-size:15.5px;line-height:1.6;white-space:nowrap}
 .inv-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  border-top:1px solid #d3cdbd;border-left:1px solid #d3cdbd;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
 }
 .inv-grid.rise{opacity:1;transform:none}
 .inv-item{
-  border-right:1px solid #d3cdbd;border-bottom:1px solid #d3cdbd;
-  padding:52px 28px 44px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px;
-  min-height:250px;opacity:0;transition:background .4s ease;
+  background:
+    linear-gradient(158deg,rgba(38,38,35,.58),rgba(12,12,11,.80) 58%,rgba(6,6,5,.88)),
+    rgba(10,10,9,.5);
+  -webkit-backdrop-filter:blur(20px) saturate(128%);backdrop-filter:blur(20px) saturate(128%);
+  border:1px solid rgba(247,246,244,.12);border-radius:16px;
+  box-shadow:inset 0 1px 0 rgba(247,246,244,.09),0 20px 42px -30px rgba(0,0,0,.6);
+  padding:46px 24px 40px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
+  min-height:236px;opacity:0;color:var(--on-ink);
+  transition:transform .5s cubic-bezier(.16,1,.3,1),border-color .35s ease;
 }
 .rise.in .inv-item{animation:invpop .75s cubic-bezier(.16,1,.3,1) both}
 @keyframes invpop{from{opacity:0;transform:translateY(28px) scale(.985)}to{opacity:1;transform:none}}
@@ -294,16 +317,16 @@ h3.d{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.1}
 .rise.in .inv-item:nth-child(6){animation-delay:.34s}
 .rise.in .inv-item:nth-child(7){animation-delay:.40s}
 .rise.in .inv-item:nth-child(8){animation-delay:.46s}
-.inv-item:hover{background:rgba(10,10,10,0.04)}
-.inv-item img{height:44px;width:auto;max-width:72%;object-fit:contain;opacity:.9;
-  filter:brightness(0);
+.inv-item:hover{transform:translateY(-4px);border-color:rgba(247,246,244,.24)}
+.inv-item img{height:42px;width:auto;max-width:72%;object-fit:contain;opacity:.92;
+  filter:brightness(0) invert(1);
   transition:opacity .4s ease,transform .55s cubic-bezier(.16,1,.3,1)}
 .inv-item:hover img{opacity:1;transform:scale(1.09)}
 .inv-name{
-  font-family:var(--sans);font-size:14px;letter-spacing:1.6px;text-transform:uppercase;
-  color:#3a3a35;text-align:center;transition:color .4s ease;
+  font-family:var(--sans);font-size:13px;letter-spacing:1.6px;text-transform:uppercase;
+  color:#c9c3b6;text-align:center;transition:color .4s ease;
 }
-.inv-item:hover .inv-name{color:var(--on-paper)}
+.inv-item:hover .inv-name{color:#ece5d6}
 .inv-foot{margin-top:52px;display:flex;justify-content:flex-end}
 
 /* ── principles ── */
@@ -451,6 +474,8 @@ html[lang="zh"] body,html[lang="zh"] .d{font-family:'Noto Serif TC',var(--displa
 @media(max-width:760px){
   :root{--pad-y:72px;--pad-x:22px}
   .nav ul{display:none}
+  .nav-right .link{display:none}
+  .nav{padding:9px 10px 9px 22px}
   .burger{display:block}
   .hero{padding-top:120px}
   .sfo-pill{top:74px;transform:none;font-size:10px;letter-spacing:.9px;padding:7px 13px}
@@ -586,6 +611,55 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
   .sec-head{margin-bottom:44px}
   .sec-head h2{max-width:none}
 }
+
+/* ── approach heading: centered over the map, one line ── */
+#approach .sec-head{text-align:left;margin-bottom:44px}
+#approach .sec-head .eyebrow{justify-content:flex-start}
+#approach .sec-head h2{
+  max-width:none;white-space:nowrap;margin:0;
+  font-size:clamp(1.3rem,2.6vw,2rem);line-height:1.14;
+}
+@media(max-width:1280px){
+  #approach .sec-head h2{white-space:normal;max-width:22ch;
+    font-size:clamp(1.7rem,4.6vw,2.6rem)}
+}
+
+/* ── global-reach map panel (dark glass, overlaid title) ── */
+.map-panel{
+  position:relative;border-radius:0;overflow:hidden;
+  padding:26px 30px 22px;color:var(--on-ink);border-radius:0;
+  background:
+    linear-gradient(158deg,rgba(32,32,29,.55),rgba(10,10,9,.86) 60%,rgba(6,6,5,.92)),
+    rgba(9,9,8,.55);
+  -webkit-backdrop-filter:blur(22px) saturate(128%);backdrop-filter:blur(22px) saturate(128%);
+  border:1px solid rgba(247,246,244,.12);
+  box-shadow:inset 0 1px 0 rgba(247,246,244,.09),inset 0 0 0 1px rgba(0,0,0,.2),0 30px 64px -34px rgba(0,0,0,.6);
+}
+.map-panel #world-map-svg{width:100%;height:auto;display:block;position:relative;z-index:1}
+.map-head-ov{position:absolute;top:28px;left:34px;z-index:3;pointer-events:none;
+  text-shadow:0 1px 14px rgba(0,0,0,.55)}
+.map-head-ov .eyebrow{color:var(--on-ink-muted);margin-bottom:12px}
+.map-head-ov h3{font-family:var(--display);font-weight:500;letter-spacing:-.015em;
+  font-size:clamp(1.3rem,2.1vw,2rem);line-height:1.1;color:var(--on-ink);max-width:16ch}
+.map-foot-ov{position:absolute;left:34px;right:34px;bottom:26px;z-index:3;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.map-foot-ov .map-legend{display:flex;gap:24px;flex-wrap:wrap}
+.map-foot-ov .legend-item{display:flex;align-items:center;gap:9px;font-size:11px;
+  letter-spacing:1.1px;text-transform:uppercase;color:#b9b3a6}
+.map-foot-ov .legend-dot{width:8px;height:8px;border-radius:50%;flex:none}
+.map-foot-ov .legend-dot.hq{background:#ece5d6}
+.map-foot-ov .legend-dot.focus{background:#72726a}
+.map-foot-ov .map-note{font-size:11px;letter-spacing:.06em;color:var(--on-ink-muted);opacity:.8}
+.map-foot-ov .link{color:var(--on-ink)}
+@media(max-width:760px){
+  .map-panel{padding:18px 16px 14px;border-radius:0}
+  .map-head-ov{top:18px;left:20px}
+  .map-head-ov h3{font-size:1.15rem}
+  .map-foot-ov{left:20px;right:20px;bottom:16px;gap:10px}
+  .map-foot-ov .map-legend{gap:14px}
+  .map-foot-ov .legend-item{font-size:9.5px}
+  .map-foot-ov .map-note{display:none}
+}
 </style>
 </head>
 <body class="intro-lock">
@@ -610,7 +684,7 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
       </button>
       <div class="lang-menu" id="langMenu" role="menu"></div>
     </div>
-    <a href="savaya-contact.html" class="link" style="border:0;padding:0">Contact Us
+    <a href="savaya-contact.html" class="link">Contact Us
       <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg>
     </a>
     <button class="burger" aria-label="Menu">
@@ -642,10 +716,6 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
         <p class="body-lg hero-sub">Long-term horizon capital investing across a variety of themes centred around technological progress and global economic growth. Deployed with discipline to preserve, grow, and transmit wealth across generations.</p>
       </div>
     </div>
-    <figure class="hero-figure">
-      <img src="images/Home%20Colonnade%20.jpeg" alt="" loading="lazy" decoding="async"
-           onerror="this.closest('.hero-figure').style.display='none'">
-    </figure>
   </div>
   <div class="hero-cue"><span>Scroll to explore</span></div>
 </header>
@@ -653,32 +723,24 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
 <!-- ══ 01 APPROACH ══ -->
 <section class="band-paper" id="approach">
   <div class="inner">
-    <div class="approach-top rise">
-      <div class="approach-copy">
-        <div class="sec-head">
-          <div class="eyebrow"><span class="n">01</span><i></i><span>Approach</span></div>
-          <h2 class="d">We invest with insight, hold with <em>conviction</em>, and operate with global reach.</h2>
-        </div>
-        <!-- Global Reach -->
-        <div class="reach">
-          <div class="reach-meta">
-            <div class="eyebrow"><span>Global Reach</span></div>
-            <h3 class="d">Investing across 5 continents</h3>
-            <a href="about.html#reach-sec" class="link">Explore the full map
-              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg>
-            </a>
-          </div>
-        </div>
+    <div class="sec-head rise">
+      <div class="eyebrow"><span class="n">01</span><i></i><span>Approach</span></div>
+      <h2 class="d">We invest with insight, hold with <em>conviction</em>, and operate with global reach.</h2>
+    </div>
+    <div class="map-panel rise">
+      <div class="map-head-ov">
+        <div class="eyebrow"><span>Global Reach</span></div>
+        <h3 class="d">Investing across 50+ countries</h3>
       </div>
-      <div class="map-wrap">
-        <svg id="world-map-svg" viewBox="0 0 1200 590" preserveAspectRatio="xMidYMid meet" aria-label="World map showing Savaya Capital's global reach"></svg>
-        <div class="map-foot">
-          <div class="map-legend">
-            <div class="legend-item"><span class="legend-dot hq"></span>HQ · UAE</div>
-            <div class="legend-item"><span class="legend-dot focus"></span>Active Investment Regions</div>
-          </div>
-          <span class="map-note">Click a region to explore</span>
+      <svg id="world-map-svg" viewBox="0 0 1200 590" preserveAspectRatio="xMidYMid meet" aria-label="World map showing Savaya Capital's global reach"></svg>
+      <div class="map-foot-ov">
+        <div class="map-legend">
+          <div class="legend-item"><span class="legend-dot hq"></span>HQ · UAE</div>
+          <div class="legend-item"><span class="legend-dot focus"></span>Active Investment Regions</div>
         </div>
+        <a href="about.html#reach-sec" class="link">Explore the full map
+          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg>
+        </a>
       </div>
     </div>
   </div>
@@ -707,8 +769,8 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
           <img src="logos/ornn compute logo.png" alt="Ornn"><span class="inv-name">Ornn</span></a>
         <a class="inv-item" href="https://polymarket.com/" target="_blank" rel="noopener">
           <img src="logos/polymarket logo.png" alt="Polymarket"><span class="inv-name">Polymarket</span></a>
-        <a class="inv-item" href="https://trajectoryinc.com/" target="_blank" rel="noopener">
-          <img src="logos/trajectory logo.png" alt="Trajectory"><span class="inv-name">Trajectory</span></a>
+        <a class="inv-item" href="https://trajectory.ai/" target="_blank" rel="noopener">
+          <img src="logos/trajectory logo.png?v=2" alt="Trajectory"><span class="inv-name">Trajectory</span></a>
       </div>
       <div class="inv-foot rise">
         <a href="portfolio.html" class="link">View portfolio
@@ -865,9 +927,9 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
   const graticule=d3.geoGraticule().step([30,30]);
   /* lined grid + sphere outline */
   svg.append('path').datum(graticule()).attr('d',geoPath).attr('fill','none')
-    .attr('stroke','#e2e2df').attr('stroke-width',0.6);
+    .attr('stroke','rgba(247,246,244,0.09)').attr('stroke-width',0.6);
   svg.append('path').datum({type:'Sphere'}).attr('d',geoPath).attr('fill','none')
-    .attr('stroke','#dcdcd7').attr('stroke-width',0.9);
+    .attr('stroke','rgba(247,246,244,0.14)').attr('stroke-width',0.9);
 
   const EU_IDS=[40,56,100,191,196,203,208,233,246,250,276,300,348,372,380,428,440,442,470,528,616,620,642,703,705,724,752];
   const focusMeta={
@@ -897,10 +959,10 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
   ];
   const hqCoords=[54.37,24.47];
   /* monochrome palette on paper */
-  const LAND='#dcdcd7', LAND_STROKE='#cbcbc5';
-  const FOCUS_FILL='#3c3c3c', FOCUS_STROKE='#1a1a1a';
-  const ACTIVE_FILL='#0a0a0a', ACTIVE_STROKE='#0a0a0a';
-  const HQ_FILL='#0a0a0a', HQ_STROKE='#0a0a0a';
+  const LAND='#26261f', LAND_STROKE='rgba(247,246,244,0.14)';
+  const FOCUS_FILL='#5c5c54', FOCUS_STROKE='rgba(247,246,244,0.34)';
+  const ACTIVE_FILL='#ece5d6', ACTIVE_STROKE='#ece5d6';
+  const HQ_FILL='#ece5d6', HQ_STROKE='#ece5d6';
 
   let activeEl=null;
   function clearActive(){
@@ -924,7 +986,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
         .attr('stroke-width',d=>focusMeta[+d.id]?0.8:0.3)
         .style('cursor',d=>focusMeta[+d.id]?'pointer':'default')
         .on('mouseenter',function(event,d){const m=focusMeta[+d.id];if(!m)return;
-          if(m.type!=='hq'&&this!==activeEl){d3.select(this).attr('fill','#1f1f1f').attr('stroke','#0a0a0a');}
+          if(m.type!=='hq'&&this!==activeEl){d3.select(this).attr('fill','#72726a').attr('stroke','rgba(247,246,244,0.4)');}
           showTT(event,m);})
         .on('mousemove',moveTT)
         .on('mouseleave',function(event,d){const m=focusMeta[+d.id];if(!m)return;
@@ -940,7 +1002,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
       const arcsGroup=svg.append('g');
       arcDestinations.forEach((dest,i)=>{
         const arcEl=arcsGroup.append('path').datum({type:'LineString',coordinates:[hqCoords,dest.coords]})
-          .attr('d',geoPath).attr('fill','none').attr('stroke','rgba(10,10,10,0.32)').attr('stroke-width',1);
+          .attr('d',geoPath).attr('fill','none').attr('stroke','rgba(247,246,244,0.24)').attr('stroke-width',1);
         try{
           const len=arcEl.node().getTotalLength();
           arcEl.attr('stroke-dasharray',len).attr('stroke-dashoffset',len)
@@ -954,9 +1016,9 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
       arcDestinations.forEach(dest=>{
         const pt=projection(dest.coords);if(!pt)return;
         markersGroup.append('circle').attr('cx',pt[0]).attr('cy',pt[1]).attr('r',7)
-          .attr('fill','none').attr('stroke','rgba(10,10,10,0.28)').attr('stroke-width',1);
+          .attr('fill','none').attr('stroke','rgba(247,246,244,0.2)').attr('stroke-width',1);
         markersGroup.append('circle').attr('cx',pt[0]).attr('cy',pt[1]).attr('r',3.6)
-          .attr('fill','#0a0a0a').attr('stroke','#f7f6f4').attr('stroke-width',1).style('cursor','pointer')
+          .attr('fill','#ece5d6').attr('stroke','#0a0a0a').attr('stroke-width',1).style('cursor','pointer')
           .on('mouseenter',ev=>showTT(ev,dest)).on('mousemove',moveTT).on('mouseleave',hideTT);
       });
 
@@ -965,10 +1027,10 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
       if(hqPt){
         const hqG=markersGroup.append('g');
         [0,1,2].forEach(i=>{hqG.append('circle').attr('cx',hqPt[0]).attr('cy',hqPt[1]).attr('r',7)
-          .attr('fill','none').attr('stroke','rgba(10,10,10,0.5)').attr('stroke-width',1)
+          .attr('fill','none').attr('stroke','rgba(236,229,214,0.55)').attr('stroke-width',1)
           .classed('pulse-ring',true).classed('r'+(i+1),true);});
         hqG.append('circle').attr('cx',hqPt[0]).attr('cy',hqPt[1]).attr('r',4.5)
-          .attr('fill','#0a0a0a').attr('stroke','#f7f6f4').attr('stroke-width',1.4).style('cursor','pointer')
+          .attr('fill','#ece5d6').attr('stroke','#0a0a0a').attr('stroke-width',1.4).style('cursor','pointer')
           .on('mouseenter',ev=>showTT(ev,focusMeta[784])).on('mousemove',moveTT).on('mouseleave',hideTT)
           .on('click',ev=>{ev.stopPropagation();clearActive();showTT(ev,focusMeta[784]);});
       }

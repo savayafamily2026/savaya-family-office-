@@ -108,20 +108,34 @@ h3.d{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.1}
 
 /* ── nav ── */
 .nav{
-  position:fixed;inset:0 0 auto 0;z-index:100;
-  padding:22px var(--pad-x);
-  display:flex;align-items:center;justify-content:space-between;gap:28px;
+  position:fixed;top:16px;left:0;right:0;z-index:100;
+  width:calc(100% - 40px);max-width:calc(var(--maxw) + 60px);margin:0 auto;
+  padding:11px 12px 11px 28px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
   color:var(--on-ink);
-  transition:background .45s ease,padding .45s ease,color .45s ease,border-color .45s ease;
-  border-bottom:1px solid transparent;
+  background:rgba(14,14,13,.5);
+  -webkit-backdrop-filter:blur(18px) saturate(120%);backdrop-filter:blur(18px) saturate(120%);
+  border:1px solid rgba(247,246,244,.14);border-radius:9999px;
+  transition:background .45s ease,border-color .45s ease;
 }
-.nav.solid{background:var(--ink);padding:15px var(--pad-x);border-bottom-color:var(--line-dark)}
-.nav .mark{font-family:var(--display);font-size:19px;letter-spacing:.02em;font-weight:500}
-.nav ul{display:flex;gap:34px;list-style:none;font-family:var(--display);font-weight:500;font-size:16px;letter-spacing:.03em}
-.nav-right .link{font-family:var(--display);font-weight:500;font-size:16px;letter-spacing:.03em}
-.nav ul a{opacity:.78;transition:opacity .25s}
-.nav ul a:hover{opacity:1}
-.nav-right{display:flex;align-items:center;gap:20px}
+.nav.solid{background:rgba(10,10,10,.8);border-color:rgba(247,246,244,.1)}
+.nav .mark{font-family:var(--display);font-size:18px;letter-spacing:.1em;font-weight:500;white-space:nowrap}
+.nav ul{
+  display:flex;gap:4px;list-style:none;
+  font-family:var(--display);font-weight:500;font-size:15px;letter-spacing:.04em;
+  background:rgba(0,0,0,.22);border:1px solid rgba(247,246,244,.07);
+  border-radius:9999px;padding:5px 6px;
+}
+.nav ul a{opacity:.82;padding:8px 18px;border-radius:9999px;
+  transition:opacity .25s,background .25s}
+.nav ul a:hover{opacity:1;background:rgba(247,246,244,.09)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-right .link{
+  font-family:var(--display);font-weight:500;font-size:14.5px;letter-spacing:.03em;
+  background:var(--paper);color:var(--ink);
+  padding:10px 20px!important;border-radius:9999px;border:0!important;
+}
+.nav-right .link:hover{gap:13px}
 
 .lang{position:relative}
 .lang-btn{
@@ -406,6 +420,8 @@ html[lang="zh"] body,html[lang="zh"] .d{font-family:'Noto Serif TC',var(--displa
 @media(max-width:760px){
   :root{--pad-y:72px;--pad-x:22px}
   .nav ul{display:none}
+  .nav-right .link{display:none}
+  .nav{padding:9px 10px 9px 22px}
   .burger{display:block}
   .hero{padding-top:120px}
   .sfo-pill{top:74px;transform:none;font-size:10px;letter-spacing:.9px;padding:7px 13px}
@@ -647,7 +663,7 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
       </button>
       <div class="lang-menu" id="langMenu" role="menu"></div>
     </div>
-    <a href="savaya-contact.html" class="link" style="border:0;padding:0">Contact Us
+    <a href="savaya-contact.html" class="link">Contact Us
       <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg>
     </a>
     <button class="burger" aria-label="Menu">
@@ -708,17 +724,6 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
         </div>
         <div class="job-r">
           <p class="job-desc">Oversee reporting, reconciliation, and performance tracking across Savaya's strategic allocation book. Requires strong fluency in portfolio accounting systems and a meticulous, detail-first approach to capital stewardship.</p>
-          <a href="savaya-contact.html" class="link">Apply through the family office <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></a>
-        </div>
-      </article>
-      <article class="job rise">
-        <div class="job-l">
-          <span class="job-n">04</span>
-          <h3 class="job-title">Junior Analyst — Public Markets</h3>
-          <span class="job-meta">Remote / Abu Dhabi · Full-time</span>
-        </div>
-        <div class="job-r">
-          <p class="job-desc">Assist in monitoring the public equity and derivatives sleeve of the portfolio, building models, and preparing concise briefing materials for the Investment Committee. Strong quantitative background required.</p>
           <a href="savaya-contact.html" class="link">Apply through the family office <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></a>
         </div>
       </article>
