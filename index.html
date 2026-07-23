@@ -3,20 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Savaya Capital | Global Investments Office</title>
-<meta name="description" content="A single-family office deploying patient, long-horizon capital across private markets, real assets, and public equities — for the next generation.">
+<title>Savaya Capital | Global Family Office</title>
+<meta name="description" content="A single-family office investing patient, long-horizon capital across private markets, real assets, and public equities — for the next generation.">
+<link rel="canonical" href="https://www.savayacapital.com/">
 
 <!-- favicon (square 1:1 — required for Google brand recognition) -->
-<link rel="icon" href="favicon-96x96.png" sizes="96x96" type="image/png">
-<link rel="icon" href="favicon-48x48.png" sizes="48x48" type="image/png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/favicon-96x96.png" sizes="96x96" type="image/png">
+<link rel="icon" href="/favicon-48x48.png" sizes="48x48" type="image/png">
+<link rel="icon" href="/favicon-96x96.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+
+<!-- Open Graph / site identity -->
+<meta property="og:site_name" content="Savaya Capital">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Savaya Capital | Global Family Office">
+<meta property="og:description" content="A single-family office investing patient, long-horizon capital across private markets, real assets, and public equities — for the next generation.">
+<meta property="og:url" content="https://www.savayacapital.com/">
+<meta property="og:image" content="https://www.savayacapital.com/logo.png">
+
+<!-- WebSite structured data (drives the Savaya Capital site name in search) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Savaya Capital",
+  "alternateName": "Savaya Family Global Holdings SFO RSC Limited",
+  "url": "https://www.savayacapital.com/"
+}
+</script>
 
 <!-- Organization structured data -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "url": "https://www.savayacapital.com",
+  "url": "https://www.savayacapital.com/",
   "logo": "https://www.savayacapital.com/logo.png",
   "name": "Savaya Capital"
 }
@@ -202,7 +223,7 @@ h3.d{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.1}
 @keyframes figIn{to{opacity:1;transform:none}}
 .hero-eyebrow{color:var(--on-ink-muted);margin-bottom:40px}
 .sfo-pill{
-  position:absolute;top:104px;right:var(--pad-x);z-index:3;
+  position:absolute;top:50%;transform:translateY(-50%);right:var(--pad-x);z-index:3;
   font-family:var(--sans);font-size:11.5px;font-weight:500;
   letter-spacing:1.2px;text-transform:uppercase;color:var(--on-ink);
   border:1px solid var(--line-dark);border-radius:9999px;padding:9px 18px;
@@ -479,7 +500,7 @@ html[lang="zh"] body,html[lang="zh"] .d{font-family:'Noto Serif TC',var(--displa
   .nav{padding:9px 10px 9px 22px}
   .burger{display:block}
   .hero{padding-top:120px}
-  .sfo-pill{top:74px;transform:none;font-size:10px;letter-spacing:.9px;padding:7px 13px}
+  .sfo-pill{top:50%;transform:translateY(-50%);font-size:10px;letter-spacing:.9px;padding:7px 13px}
   h1.d{font-size:clamp(1.5rem,7.4vw,2rem)}
   .hero-split{grid-template-columns:1fr;gap:36px}
   .hero-figure{width:min(56%,210px)}
