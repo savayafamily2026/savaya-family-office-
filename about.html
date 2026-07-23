@@ -162,9 +162,13 @@ h3.d{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.1}
 
 /* ── hero ── */
 .hero{
-  background:var(--ink);color:var(--on-ink);
+  color:var(--on-ink);
   min-height:100svh;display:flex;flex-direction:column;justify-content:center;
-  padding:150px var(--pad-x) 44px;position:relative;
+  padding:150px var(--pad-x) 44px;position:relative;overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(8,8,8,.62) 0%,rgba(8,8,8,.5) 42%,rgba(8,8,8,.72) 74%,rgba(8,8,8,.94) 100%),
+    url('images/hero%20about%20us%20city.jpg') center/cover no-repeat,
+    var(--ink);
 }
 .hero::before{
   content:'';position:absolute;inset:0;pointer-events:none;opacity:.5;
@@ -172,7 +176,7 @@ h3.d{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.1}
     repeating-linear-gradient(97deg,transparent 0 118px,rgba(247,246,244,.05) 118px 119px);
 }
 .hero .inner{position:relative;z-index:2}
-.hero-split{display:grid;grid-template-columns:1fr auto;gap:72px;align-items:center}
+.hero-split{display:block}
 .hero-copy{min-width:0}
 .hero-figure{
   margin:0;flex:none;width:clamp(250px,26vw,390px);
@@ -725,6 +729,51 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
   .map-foot-ov .legend-item{font-size:9.5px}
   .map-foot-ov .map-note{display:none}
 }
+
+/* ── focus areas: coverflow carousel ── */
+.focus-wrap{margin-top:26px}
+.fa-viewport{overflow:hidden;padding:24px 0 10px}
+.fa-track{display:flex;align-items:stretch;gap:28px;
+  transition:transform .65s cubic-bezier(.16,1,.3,1);will-change:transform}
+.fa-card{
+  flex:0 0 min(880px,92vw);position:relative;
+  background:var(--paper);border:1px solid var(--line-light);border-radius:22px;
+  box-shadow:0 34px 66px -36px rgba(0,0,0,.30);
+  padding:38px 54px 34px;cursor:pointer;
+  opacity:.38;transform:scale(.93);filter:saturate(.55);
+  transition:opacity .55s ease,transform .55s ease,filter .55s ease,box-shadow .55s ease}
+.fa-card.active{opacity:1;transform:scale(1);filter:none;
+  box-shadow:0 44px 80px -32px rgba(0,0,0,.34)}
+.fac-wm{position:absolute;top:30px;right:42px;font-family:var(--display);font-weight:500;
+  font-size:5.2rem;line-height:1;color:rgba(10,10,10,.06);pointer-events:none}
+.fac-label{font-family:var(--sans);font-size:11.5px;letter-spacing:1.6px;text-transform:uppercase;
+  color:var(--on-paper-muted);display:block;max-width:66%;line-height:1.5;margin-bottom:20px}
+.fac-heading{font-family:var(--display);font-weight:500;letter-spacing:-.015em;line-height:1.1;
+  font-size:clamp(1.5rem,2.4vw,2.1rem);color:var(--on-paper);max-width:24ch;margin-bottom:18px}
+.fac-body{font-size:15px;line-height:1.62;color:var(--on-paper-muted);max-width:76ch;margin-bottom:14px}
+.fac-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.fac-tag{font-family:var(--sans);font-size:11.5px;letter-spacing:.4px;color:var(--on-paper);
+  border:1px solid var(--line-light);border-radius:9999px;padding:8px 16px;background:rgba(10,10,10,.015)}
+.fa-nav{display:flex;align-items:center;justify-content:center;gap:28px;margin-top:44px}
+.fa-arrow{width:54px;height:54px;border-radius:50%;flex:none;
+  border:1px solid var(--line-dark);background:none;color:var(--on-paper);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:background .3s ease,color .3s ease}
+.fa-arrow:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.fa-arrow svg{width:20px;height:14px}
+.fa-count{display:flex;align-items:center;gap:16px;font-family:var(--display);font-size:15px;
+  letter-spacing:.05em;color:var(--on-paper)}
+.fa-dots{display:flex;gap:8px;margin-left:6px}
+.fa-dot{width:26px;height:4px;border-radius:9999px;border:0;padding:0;cursor:pointer;
+  background:rgba(10,10,10,.14);transition:background .3s ease}
+.fa-dot.on{background:var(--ink)}
+@media(max-width:760px){
+  .fa-track{gap:16px}
+  .fa-card{flex-basis:88vw;padding:34px 26px 30px}
+  .fac-wm{font-size:3.6rem;top:24px;right:26px}
+  .fac-label{max-width:74%}
+  .fa-nav{gap:18px;margin-top:32px}
+  .fa-arrow{width:46px;height:46px}
+}
 </style>
 </head>
 <body>
@@ -777,10 +826,6 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
         <p class="body-lg hero-sub">Based in the UAE, Savaya Capital deploys long-term capital across geographies and thematic sectors shaping the next decade of growth.</p>
       </div>
     </div>
-    <figure class="hero-figure">
-      <img src="images/about%20photo%20.jpeg" alt="" loading="lazy" decoding="async"
-           onerror="this.closest('.hero-figure').style.display='none'">
-    </figure>
   </div>
   <div class="hero-cue"><span>Scroll to explore</span></div>
 </header>
@@ -792,49 +837,59 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
       <div class="eyebrow"><span class="n">01</span><i></i><span>Focus Areas</span></div>
       <h2 class="d">Five sectors shaping the <em>next decade.</em></h2>
     </div>
-    <div class="focus">
-      <div class="fa-row rise">
-        <div class="fa-left"><span class="fa-num">01</span><span class="fa-label">Artificial Intelligence · Global Infrastructure</span></div>
-        <div class="fa-right">
-          <h3 class="fa-heading d">AI &amp; Machine Intelligence</h3>
-          <p class="fa-body">Artificial intelligence has become the defining capital cycle of this decade, cumulative global spend on AI-specific infrastructure is projected to exceed USD 5 trillion by 2030. We invest across the value chain to capture a technology shift we believe will restructure how every industry computes, decides, and operates.</p>
-          <p class="fa-body">We believe enduring value will accrue to businesses that provide critical infrastructure, proprietary data and intelligent systems capable of translating AI capabilities into measurable productivity.</p>
-          <div class="fa-tags"><span class="fa-tag">Compute Infrastructure</span><span class="fa-tag">Foundation Models</span><span class="fa-tag">Vertical Applications</span><span class="fa-tag">Edge Computing</span></div>
+    <div class="focus-wrap">
+    <div class="fa-carousel rise">
+      <div class="fa-viewport" id="faViewport">
+        <div class="fa-track" id="faTrack">
+      <article class="fa-card">
+        <span class="fac-wm">01</span>
+        <span class="fac-label">Artificial Intelligence · Global Infrastructure</span>
+        <h3 class="fac-heading d">AI &amp; Machine Intelligence</h3>
+          <p class="fac-body">Artificial intelligence has become the defining capital cycle of this decade, cumulative global spend on AI-specific infrastructure is projected to exceed USD 5 trillion by 2030. We invest across the value chain to capture a technology shift we believe will restructure how every industry computes, decides, and operates.</p>
+          <p class="fac-body">We believe enduring value will accrue to businesses that provide critical infrastructure, proprietary data and intelligent systems capable of translating AI capabilities into measurable productivity.</p>
+        <div class="fac-tags"><span class="fac-tag">Compute Infrastructure</span><span class="fac-tag">Foundation Models</span><span class="fac-tag">Vertical Applications</span><span class="fac-tag">Edge Computing</span></div>
+      </article>
+      <article class="fa-card">
+        <span class="fac-wm">02</span>
+        <span class="fac-label">Energy · Nuclear, Solar &amp; Hydrogen</span>
+        <h3 class="fac-heading d">New Sources of Energy</h3>
+          <p class="fac-body">Global investment in renewables, nuclear, grids and related technologies reached approximately $2.2 trillion in 2025, twice the capital directed towards fossil fuels. We invest in nuclear, solar, and hydrogen — the technologies redefining how the world generates, stores, and distributes power.</p>
+        <div class="fac-tags"><span class="fac-tag">Nuclear</span><span class="fac-tag">Solar</span><span class="fac-tag">Hydrogen</span><span class="fac-tag">Grid Infrastructure</span></div>
+      </article>
+      <article class="fa-card">
+        <span class="fac-wm">03</span>
+        <span class="fac-label">Financial Technology · Capital Markets Infrastructure</span>
+        <h3 class="fac-heading d">Financial Technology &amp; Digital Finance</h3>
+          <p class="fac-body">We invest in the software rewriting the rules of finance. As embedded finance, stablecoins, and AI displace legacy banking rails, we back the companies rebuilding payments, lending, and capital markets from first principles.</p>
+        <div class="fac-tags"><span class="fac-tag">Payments Infrastructure</span><span class="fac-tag">Embedded Finance</span><span class="fac-tag">Digital Assets</span><span class="fac-tag">Regtech</span></div>
+      </article>
+      <article class="fa-card">
+        <span class="fac-wm">04</span>
+        <span class="fac-label">Infrastructure · Real Estate · Robotics</span>
+        <h3 class="fac-heading d">Infrastructure, Real Estate &amp; Robotics</h3>
+          <p class="fac-body">We invest in essential physical assets and the technologies that make them more productive—including logistics, digital infrastructure, real estate and automation. An estimated $20 trillion financing gap remains through 2040 — a shortfall only long-duration private capital can close. Within this thesis, we are building a deliberate and growing position in robotics.</p>
+        <div class="fac-tags"><span class="fac-tag">Robotics</span><span class="fac-tag">Automation</span><span class="fac-tag">Data Infrastructure</span><span class="fac-tag">Real Estate</span></div>
+      </article>
+      <article class="fa-card">
+        <span class="fac-wm">05</span>
+        <span class="fac-label">Healthcare · Biotech · Life Sciences</span>
+        <h3 class="fac-heading d">Healthcare &amp; Biotech</h3>
+          <p class="fac-body">Advancements in genetic therapies, precision medicine, and the global ageing demographic are reshaping capital flows across the life sciences — creating durable entry points across the value chain, from curative cell and gene therapies to novel modalities replacing chemotherapy and diagnostics that turn early warning into early cure.</p>
+        <div class="fac-tags"><span class="fac-tag">Gene Therapy</span><span class="fac-tag">Precision Medicine</span><span class="fac-tag">Oncology</span><span class="fac-tag">Diagnostics</span></div>
+      </article>
         </div>
       </div>
-      <div class="fa-row rise">
-        <div class="fa-left"><span class="fa-num">02</span><span class="fa-label">Energy · Nuclear, Solar &amp; Hydrogen</span></div>
-        <div class="fa-right">
-          <h3 class="fa-heading d">New Sources of Energy</h3>
-          <p class="fa-body">Global investment in renewables, nuclear, grids and related technologies reached approximately $2.2 trillion in 2025, twice the capital directed towards fossil fuels. We invest in nuclear, solar, and hydrogen — the technologies redefining how the world generates, stores, and distributes power.</p>
-          <div class="fa-tags"><span class="fa-tag">Nuclear</span><span class="fa-tag">Solar</span><span class="fa-tag">Hydrogen</span><span class="fa-tag">Grid Infrastructure</span></div>
-        </div>
-      </div>
-      <div class="fa-row rise">
-        <div class="fa-left"><span class="fa-num">03</span><span class="fa-label">Financial Technology · Capital Markets Infrastructure</span></div>
-        <div class="fa-right">
-          <h3 class="fa-heading d">Financial Technology &amp; Digital Finance</h3>
-          <p class="fa-body">We invest in the software rewriting the rules of finance. As embedded finance, stablecoins, and AI displace legacy banking rails, we back the companies rebuilding payments, lending, and capital markets from first principles.</p>
-          <div class="fa-tags"><span class="fa-tag">Payments Infrastructure</span><span class="fa-tag">Embedded Finance</span><span class="fa-tag">Digital Assets</span><span class="fa-tag">Regtech</span></div>
-        </div>
-      </div>
-      <div class="fa-row rise">
-        <div class="fa-left"><span class="fa-num">04</span><span class="fa-label">Infrastructure · Real Estate · Robotics</span></div>
-        <div class="fa-right">
-          <h3 class="fa-heading d">Infrastructure, Real Estate &amp; Robotics</h3>
-          <p class="fa-body">We invest in essential physical assets and the technologies that make them more productive—including logistics, digital infrastructure, real estate and automation. An estimated $20 trillion financing gap remains through 2040 — a shortfall only long-duration private capital can close. Within this thesis, we are building a deliberate and growing position in robotics.</p>
-          <div class="fa-tags"><span class="fa-tag">Robotics</span><span class="fa-tag">Automation</span><span class="fa-tag">Data Infrastructure</span><span class="fa-tag">Real Estate</span></div>
-        </div>
-      </div>
-      <div class="fa-row rise">
-        <div class="fa-left"><span class="fa-num">05</span><span class="fa-label">Healthcare · Biotech · Life Sciences</span></div>
-        <div class="fa-right">
-          <h3 class="fa-heading d">Healthcare &amp; Biotech</h3>
-          <p class="fa-body">Advancements in genetic therapies, precision medicine, and the global ageing demographic are reshaping capital flows across the life sciences — creating durable entry points across the value chain, from curative cell and gene therapies to novel modalities replacing chemotherapy and diagnostics that turn early warning into early cure.</p>
-          <div class="fa-tags"><span class="fa-tag">Gene Therapy</span><span class="fa-tag">Precision Medicine</span><span class="fa-tag">Oncology</span><span class="fa-tag">Diagnostics</span></div>
-        </div>
+      <div class="fa-nav">
+        <button class="fa-arrow" id="faPrev" aria-label="Previous sector">
+          <svg viewBox="0 0 20 14" fill="none" aria-hidden="true"><path d="M7 1L1 7l6 6M1 7h18" stroke="currentColor" stroke-width="1.3"/></svg>
+        </button>
+        <div class="fa-count"><span id="faIdx">01</span> / 05<span class="fa-dots"><button class="fa-dot" data-i="0" aria-label="Go to sector 1"></button><button class="fa-dot" data-i="1" aria-label="Go to sector 2"></button><button class="fa-dot" data-i="2" aria-label="Go to sector 3"></button><button class="fa-dot" data-i="3" aria-label="Go to sector 4"></button><button class="fa-dot" data-i="4" aria-label="Go to sector 5"></button></span></div>
+        <button class="fa-arrow" id="faNext" aria-label="Next sector">
+          <svg viewBox="0 0 20 14" fill="none" aria-hidden="true"><path d="M13 1l6 6-6 6M19 7H1" stroke="currentColor" stroke-width="1.3"/></svg>
+        </button>
       </div>
     </div>
+  </div>
   </div>
 </section>
 
@@ -1164,16 +1219,16 @@ const AR={
  '.hero-cue span':'مرّر للاستكشاف',
  '#focus .eyebrow span:last-child':'مجالات التركيز',
  '#focus .sec-head h2':'خمسة قطاعات تصوغ <em>العقد القادم.</em>',
- '.fa-row:nth-child(1) .fa-label':'الذكاء الاصطناعي · البنية التحتية العالمية',
- '.fa-row:nth-child(1) .fa-heading':'الذكاء الاصطناعي والذكاء الآلي',
- '.fa-row:nth-child(2) .fa-label':'الطاقة · النووية والشمسية والهيدروجين',
- '.fa-row:nth-child(2) .fa-heading':'مصادر الطاقة الجديدة',
- '.fa-row:nth-child(3) .fa-label':'التقنية المالية · بنية أسواق رأس المال',
- '.fa-row:nth-child(3) .fa-heading':'التقنية المالية والتمويل الرقمي',
- '.fa-row:nth-child(4) .fa-label':'البنية التحتية · العقارات · الروبوتات',
- '.fa-row:nth-child(4) .fa-heading':'البنية التحتية والعقارات والروبوتات',
- '.fa-row:nth-child(5) .fa-label':'الرعاية الصحية · التقنية الحيوية · علوم الحياة',
- '.fa-row:nth-child(5) .fa-heading':'الرعاية الصحية والتقنية الحيوية',
+ '.fa-card:nth-child(1) .fac-label':'الذكاء الاصطناعي · البنية التحتية العالمية',
+ '.fa-card:nth-child(1) .fac-heading':'الذكاء الاصطناعي والذكاء الآلي',
+ '.fa-card:nth-child(2) .fac-label':'الطاقة · النووية والشمسية والهيدروجين',
+ '.fa-card:nth-child(2) .fac-heading':'مصادر الطاقة الجديدة',
+ '.fa-card:nth-child(3) .fac-label':'التقنية المالية · بنية أسواق رأس المال',
+ '.fa-card:nth-child(3) .fac-heading':'التقنية المالية والتمويل الرقمي',
+ '.fa-card:nth-child(4) .fac-label':'البنية التحتية · العقارات · الروبوتات',
+ '.fa-card:nth-child(4) .fac-heading':'البنية التحتية والعقارات والروبوتات',
+ '.fa-card:nth-child(5) .fac-label':'الرعاية الصحية · التقنية الحيوية · علوم الحياة',
+ '.fa-card:nth-child(5) .fac-heading':'الرعاية الصحية والتقنية الحيوية',
  '#process .eyebrow span:last-child':'الدورة',
  '#process .sec-head h2':'مسار الاستثمار.',
  '.ring-center':'رأس مال<br>دائم',
@@ -1202,16 +1257,16 @@ const HI={
  '.hero-cue span':'देखने के लिए स्क्रॉल करें',
  '#focus .eyebrow span:last-child':'केंद्र क्षेत्र',
  '#focus .sec-head h2':'<em>अगले दशक</em> को आकार देने वाले पाँच क्षेत्र।',
- '.fa-row:nth-child(1) .fa-label':'कृत्रिम बुद्धिमत्ता · वैश्विक अवसंरचना',
- '.fa-row:nth-child(1) .fa-heading':'एआई और मशीन इंटेलिजेंस',
- '.fa-row:nth-child(2) .fa-label':'ऊर्जा · परमाणु, सौर और हाइड्रोजन',
- '.fa-row:nth-child(2) .fa-heading':'ऊर्जा के नए स्रोत',
- '.fa-row:nth-child(3) .fa-label':'वित्तीय प्रौद्योगिकी · पूंजी बाज़ार अवसंरचना',
- '.fa-row:nth-child(3) .fa-heading':'वित्तीय प्रौद्योगिकी और डिजिटल वित्त',
- '.fa-row:nth-child(4) .fa-label':'अवसंरचना · रियल एस्टेट · रोबोटिक्स',
- '.fa-row:nth-child(4) .fa-heading':'अवसंरचना, रियल एस्टेट और रोबोटिक्स',
- '.fa-row:nth-child(5) .fa-label':'स्वास्थ्य · बायोटेक · जीवन विज्ञान',
- '.fa-row:nth-child(5) .fa-heading':'स्वास्थ्य सेवा और बायोटेक',
+ '.fa-card:nth-child(1) .fac-label':'कृत्रिम बुद्धिमत्ता · वैश्विक अवसंरचना',
+ '.fa-card:nth-child(1) .fac-heading':'एआई और मशीन इंटेलिजेंस',
+ '.fa-card:nth-child(2) .fac-label':'ऊर्जा · परमाणु, सौर और हाइड्रोजन',
+ '.fa-card:nth-child(2) .fac-heading':'ऊर्जा के नए स्रोत',
+ '.fa-card:nth-child(3) .fac-label':'वित्तीय प्रौद्योगिकी · पूंजी बाज़ार अवसंरचना',
+ '.fa-card:nth-child(3) .fac-heading':'वित्तीय प्रौद्योगिकी और डिजिटल वित्त',
+ '.fa-card:nth-child(4) .fac-label':'अवसंरचना · रियल एस्टेट · रोबोटिक्स',
+ '.fa-card:nth-child(4) .fac-heading':'अवसंरचना, रियल एस्टेट और रोबोटिक्स',
+ '.fa-card:nth-child(5) .fac-label':'स्वास्थ्य · बायोटेक · जीवन विज्ञान',
+ '.fa-card:nth-child(5) .fac-heading':'स्वास्थ्य सेवा और बायोटेक',
  '#process .eyebrow span:last-child':'चक्र',
  '#process .sec-head h2':'निवेश प्रक्रिया।',
  '.ring-center':'स्थायी<br>पूंजी',
@@ -1240,16 +1295,16 @@ const FR={
  '.hero-cue span':'Faites défiler pour explorer',
  '#focus .eyebrow span:last-child':"Domaines d'intervention",
  '#focus .sec-head h2':'Cinq secteurs qui façonnent <em>la prochaine décennie.</em>',
- '.fa-row:nth-child(1) .fa-label':'Intelligence artificielle · Infrastructures mondiales',
- '.fa-row:nth-child(1) .fa-heading':'IA et intelligence machine',
- '.fa-row:nth-child(2) .fa-label':'Énergie · Nucléaire, solaire et hydrogène',
- '.fa-row:nth-child(2) .fa-heading':"Nouvelles sources d'énergie",
- '.fa-row:nth-child(3) .fa-label':'Technologie financière · Infrastructures de marché',
- '.fa-row:nth-child(3) .fa-heading':'Technologie financière et finance numérique',
- '.fa-row:nth-child(4) .fa-label':'Infrastructures · Immobilier · Robotique',
- '.fa-row:nth-child(4) .fa-heading':'Infrastructures, immobilier et robotique',
- '.fa-row:nth-child(5) .fa-label':'Santé · Biotechnologies · Sciences de la vie',
- '.fa-row:nth-child(5) .fa-heading':'Santé et biotechnologies',
+ '.fa-card:nth-child(1) .fac-label':'Intelligence artificielle · Infrastructures mondiales',
+ '.fa-card:nth-child(1) .fac-heading':'IA et intelligence machine',
+ '.fa-card:nth-child(2) .fac-label':'Énergie · Nucléaire, solaire et hydrogène',
+ '.fa-card:nth-child(2) .fac-heading':"Nouvelles sources d'énergie",
+ '.fa-card:nth-child(3) .fac-label':'Technologie financière · Infrastructures de marché',
+ '.fa-card:nth-child(3) .fac-heading':'Technologie financière et finance numérique',
+ '.fa-card:nth-child(4) .fac-label':'Infrastructures · Immobilier · Robotique',
+ '.fa-card:nth-child(4) .fac-heading':'Infrastructures, immobilier et robotique',
+ '.fa-card:nth-child(5) .fac-label':'Santé · Biotechnologies · Sciences de la vie',
+ '.fa-card:nth-child(5) .fac-heading':'Santé et biotechnologies',
  '#process .eyebrow span:last-child':'Cycle',
  '#process .sec-head h2':"Processus d'investissement.",
  '.ring-center':'Capital<br>permanent',
@@ -1278,16 +1333,16 @@ const ZH={
  '.hero-cue span':'向下滾動以探索',
  '#focus .eyebrow span:last-child':'重點領域',
  '#focus .sec-head h2':'形塑<em>下一個十年</em>的五大產業。',
- '.fa-row:nth-child(1) .fa-label':'人工智能 · 全球基礎設施',
- '.fa-row:nth-child(1) .fa-heading':'人工智能與機器智能',
- '.fa-row:nth-child(2) .fa-label':'能源 · 核能、太陽能與氫能',
- '.fa-row:nth-child(2) .fa-heading':'新能源來源',
- '.fa-row:nth-child(3) .fa-label':'金融科技 · 資本市場基礎設施',
- '.fa-row:nth-child(3) .fa-heading':'金融科技與數位金融',
- '.fa-row:nth-child(4) .fa-label':'基礎設施 · 房地產 · 機器人',
- '.fa-row:nth-child(4) .fa-heading':'基礎設施、房地產與機器人',
- '.fa-row:nth-child(5) .fa-label':'醫療 · 生技 · 生命科學',
- '.fa-row:nth-child(5) .fa-heading':'醫療與生物科技',
+ '.fa-card:nth-child(1) .fac-label':'人工智能 · 全球基礎設施',
+ '.fa-card:nth-child(1) .fac-heading':'人工智能與機器智能',
+ '.fa-card:nth-child(2) .fac-label':'能源 · 核能、太陽能與氫能',
+ '.fa-card:nth-child(2) .fac-heading':'新能源來源',
+ '.fa-card:nth-child(3) .fac-label':'金融科技 · 資本市場基礎設施',
+ '.fa-card:nth-child(3) .fac-heading':'金融科技與數位金融',
+ '.fa-card:nth-child(4) .fac-label':'基礎設施 · 房地產 · 機器人',
+ '.fa-card:nth-child(4) .fac-heading':'基礎設施、房地產與機器人',
+ '.fa-card:nth-child(5) .fac-label':'醫療 · 生技 · 生命科學',
+ '.fa-card:nth-child(5) .fac-heading':'醫療與生物科技',
  '#process .eyebrow span:last-child':'週期',
  '#process .sec-head h2':'投資流程。',
  '.ring-center':'永續<br>資本',
@@ -1365,6 +1420,35 @@ apply('en');
   m.querySelectorAll('a').forEach(a=>a.addEventListener('click',shut));
   document.addEventListener('keydown',e=>{if(e.key==='Escape')shut()});
   addEventListener('resize',()=>{if(innerWidth>760)shut()});
+})();
+</script>
+
+<script>
+/* ── focus areas carousel ── */
+(function(){
+  const vp=document.getElementById('faViewport'),track=document.getElementById('faTrack');
+  if(!vp||!track)return;
+  const cards=[...track.querySelectorAll('.fa-card')];
+  const idxEl=document.getElementById('faIdx');
+  const dots=[...document.querySelectorAll('.fa-dot')];
+  let idx=0;
+  function go(n){
+    idx=(n+cards.length)%cards.length;
+    cards.forEach((c,i)=>c.classList.toggle('active',i===idx));
+    const c=cards[idx];
+    const target=c.offsetLeft+c.offsetWidth/2-vp.clientWidth/2;
+    track.style.transform='translateX('+(-target)+'px)';
+    if(idxEl)idxEl.textContent=String(idx+1).padStart(2,'0');
+    dots.forEach((d,i)=>d.classList.toggle('on',i===idx));
+  }
+  document.getElementById('faPrev').addEventListener('click',()=>go(idx-1));
+  document.getElementById('faNext').addEventListener('click',()=>go(idx+1));
+  dots.forEach((d,i)=>d.addEventListener('click',()=>go(i)));
+  cards.forEach((c,i)=>c.addEventListener('click',()=>{if(i!==idx)go(i);}));
+  let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>go(idx),120);});
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){go(0);io.disconnect();}}),{threshold:.15});
+  io.observe(vp);
+  go(0);
 })();
 </script>
 </body>
