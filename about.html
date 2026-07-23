@@ -1424,31 +1424,48 @@ apply('en');
 </script>
 
 <script>
-/* ── focus areas carousel ── */
+/* ── focus areas carousel (seamless infinite loop) ── */
 (function(){
   const vp=document.getElementById('faViewport'),track=document.getElementById('faTrack');
   if(!vp||!track)return;
-  const cards=[...track.querySelectorAll('.fa-card')];
+  const orig=[...track.querySelectorAll('.fa-card')];
+  const N=orig.length;
   const idxEl=document.getElementById('faIdx');
   const dots=[...document.querySelectorAll('.fa-dot')];
-  let idx=0;
-  function go(n){
-    idx=(n+cards.length)%cards.length;
-    cards.forEach((c,i)=>c.classList.toggle('active',i===idx));
-    const c=cards[idx];
+  /* clone the full set before and after so movement never runs out either way */
+  const firstReal=track.firstChild;
+  orig.forEach(c=>track.insertBefore(c.cloneNode(true),firstReal)); // leading clones, in order
+  orig.forEach(c=>track.appendChild(c.cloneNode(true)));            // trailing clones, in order
+  const all=[...track.querySelectorAll('.fa-card')];  // 3N nodes; reals occupy [N .. 2N-1]
+  let dom=N, busy=false;
+  function place(i,animate){
+    track.style.transition=animate?'':'none';
+    const c=all[i];
     const target=c.offsetLeft+c.offsetWidth/2-vp.clientWidth/2;
     track.style.transform='translateX('+(-target)+'px)';
-    if(idxEl)idxEl.textContent=String(idx+1).padStart(2,'0');
-    dots.forEach((d,i)=>d.classList.toggle('on',i===idx));
+    all.forEach((x,j)=>x.classList.toggle('active',j===i));
+    const real=((i%N)+N)%N;
+    if(idxEl)idxEl.textContent=String(real+1).padStart(2,'0');
+    dots.forEach((d,k)=>d.classList.toggle('on',k===real));
   }
-  document.getElementById('faPrev').addEventListener('click',()=>go(idx-1));
-  document.getElementById('faNext').addEventListener('click',()=>go(idx+1));
-  dots.forEach((d,i)=>d.addEventListener('click',()=>go(i)));
-  cards.forEach((c,i)=>c.addEventListener('click',()=>{if(i!==idx)go(i);}));
-  let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>go(idx),120);});
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){go(0);io.disconnect();}}),{threshold:.15});
+  function step(dir){
+    if(busy)return; busy=true; dom+=dir; place(dom,true);
+  }
+  function jumpTo(i){ if(busy||i===dom)return; busy=true; dom=i; place(dom,true); }
+  track.addEventListener('transitionend',e=>{
+    if(e.propertyName!=='transform')return;
+    busy=false;
+    if(dom>=2*N){dom-=N;place(dom,false);}      // ran into trailing clones -> snap back to reals
+    else if(dom<N){dom+=N;place(dom,false);}    // ran into leading clones  -> snap forward to reals
+  });
+  document.getElementById('faPrev').addEventListener('click',()=>step(-1));
+  document.getElementById('faNext').addEventListener('click',()=>step(1));
+  dots.forEach((d,k)=>d.addEventListener('click',()=>jumpTo(N+k)));
+  all.forEach((c,j)=>c.addEventListener('click',()=>{if(j!==dom)jumpTo(j);}));
+  let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>place(dom,false),120);});
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){place(dom,false);io.disconnect();}}),{threshold:.15});
   io.observe(vp);
-  go(0);
+  place(dom,false);
 })();
 </script>
 </body>
