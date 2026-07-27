@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Our Portfolio — Savaya Capital</title>
+<title>Contact Us — Savaya Capital</title>
 <meta name="description" content="Long-term capital partners. Powering the innovation of tomorrow.">
 
 <!-- favicon (square 1:1) -->
@@ -72,7 +72,7 @@ section{padding:var(--pad-y) var(--pad-x)}
 /* ── type ── */
 .d{font-family:var(--display);font-weight:500;line-height:1.04;letter-spacing:-.015em}
 .d em{font-family:var(--italic);font-style:italic;font-weight:400;letter-spacing:-.005em}
-h1.d{font-size:clamp(2.3rem,5.9vw,4.8rem);white-space:nowrap}
+h1.d{font-size:clamp(2rem,5vw,4rem);white-space:nowrap}
 .hero h1 .l2{display:block}
 h2.d{font-size:clamp(1.85rem,4.6vw,3.4rem)}
 h3.d{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.1}
@@ -163,13 +163,9 @@ h3.d{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.1}
 
 /* ── hero ── */
 .hero{
-  color:var(--on-ink);
+  background:var(--ink);color:var(--on-ink);
   min-height:100svh;display:flex;flex-direction:column;justify-content:center;
-  padding:150px var(--pad-x) 44px;position:relative;overflow:hidden;
-  background:
-    linear-gradient(180deg,rgba(8,8,8,.42) 0%,rgba(8,8,8,.5) 44%,rgba(8,8,8,.74) 76%,rgba(8,8,8,.94) 100%),
-    url('images/hero%20home%20city%20bg.jpg') center/cover no-repeat,
-    var(--ink);
+  padding:150px var(--pad-x) 44px;position:relative;
 }
 .hero::before{
   content:'';position:absolute;inset:0;pointer-events:none;opacity:.5;
@@ -177,18 +173,6 @@ h3.d{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.1}
     repeating-linear-gradient(97deg,transparent 0 118px,rgba(247,246,244,.05) 118px 119px);
 }
 .hero .inner{position:relative;z-index:2}
-.hero-split{display:block}
-.hero-copy{min-width:0}
-.hero-figure{
-  margin:0;flex:none;width:clamp(230px,24vw,350px);
-  opacity:0;transform:translateY(16px);
-  animation:figIn 1.1s cubic-bezier(.16,1,.3,1) .5s forwards;
-}
-.hero-figure img{
-  display:block;width:100%;height:auto;aspect-ratio:4/7;object-fit:cover;
-  filter:grayscale(1) brightness(.97) contrast(1.02);
-}
-@keyframes figIn{to{opacity:1;transform:none}}
 .hero-eyebrow{color:var(--on-ink-muted);margin-bottom:40px}
 .sfo-pill{
   position:absolute;top:50%;transform:translateY(-50%);right:var(--pad-x);z-index:3;
@@ -393,7 +377,7 @@ h3.d{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.1}
 /* ── enquiries ── */
 .enq{text-align:center}
 .enq .eyebrow{justify-content:center;margin-bottom:30px}
-.enq h2{max-width:36ch;margin:0 auto 26px}
+.enq h2{max-width:17ch;margin:0 auto 26px}
 .enq p{max-width:58ch;margin:0 auto 40px;color:#b6b6b2;font-size:15.5px;line-height:1.7}
 
 /* ── footer ── */
@@ -436,8 +420,6 @@ html[lang="zh"] body,html[lang="zh"] .d{font-family:'Noto Serif TC',var(--displa
 }
 @media(max-width:760px){
   :root{--pad-y:72px;--pad-x:22px}
-  .hero-split{grid-template-columns:1fr;gap:36px}
-  .hero-figure{width:min(52%,200px)}
   .nav ul{display:none}
   .nav-right .link{display:none}
   .nav{padding:9px 10px 9px 22px}
@@ -467,7 +449,6 @@ html[lang="zh"] body,html[lang="zh"] .d{font-family:'Noto Serif TC',var(--displa
   *{animation:none!important;transition:none!important}
   .rise{opacity:1;transform:none}
   .inv-item{opacity:1!important;transform:none!important}
-  .iv-card{opacity:1!important}
   .abar{transform:none!important}
   .ring-stage{opacity:1!important}
   .ring-glow{animation:none!important}
@@ -523,60 +504,29 @@ html[lang="zh"] body,html[lang="zh"] .d{font-family:'Noto Serif TC',var(--displa
 }
 
 
-/* ── portfolio: selected investments (grid) ── */
-.sel-intro{margin-top:22px;line-height:1.6;color:var(--on-paper-muted);
-  max-width:94ch;white-space:normal;font-size:15.5px}
-@media(max-width:960px){
-  .sel-intro{white-space:normal;font-size:16px;max-width:64ch}
-}
-.iv-year{font-family:var(--sans);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;
-  color:#8f897c;padding-top:14px;margin-top:20px;
-  border-top:1px solid rgba(247,246,244,.12);width:100%}
-.iv-year b{font-weight:400;color:#ece5d6}
-.inv-grid-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.iv-coinv{font-family:var(--sans);font-size:10px;letter-spacing:.4px;text-transform:uppercase;color:var(--on-ink-muted);opacity:.72;margin-top:7px;line-height:1.4}
-.iv-card{display:flex;flex-direction:column;align-items:flex-start;
-  background:
-    linear-gradient(158deg,rgba(38,38,35,.60),rgba(12,12,11,.78) 55%,rgba(6,6,5,.85)),
-    rgba(10,10,9,.5);
-  -webkit-backdrop-filter:blur(22px) saturate(130%);backdrop-filter:blur(22px) saturate(130%);
-  border:1px solid rgba(247,246,244,.13);border-radius:18px;
-  box-shadow:inset 0 1px 0 rgba(247,246,244,.10),inset 0 0 0 1px rgba(0,0,0,.2),0 22px 44px -30px rgba(0,0,0,.65);
-  color:var(--on-ink);padding:30px 26px 26px;min-height:340px;opacity:0;
-  transition:transform .5s cubic-bezier(.16,1,.3,1),border-color .35s ease,box-shadow .35s ease}
-.rise.in .iv-card{animation:invpop .7s cubic-bezier(.16,1,.3,1) both}
-.rise.in .iv-card:nth-child(1){animation-delay:.03s}
-.rise.in .iv-card:nth-child(2){animation-delay:.09s}
-.rise.in .iv-card:nth-child(3){animation-delay:.15s}
-.rise.in .iv-card:nth-child(4){animation-delay:.21s}
-.rise.in .iv-card:nth-child(5){animation-delay:.27s}
-.rise.in .iv-card:nth-child(6){animation-delay:.33s}
-.rise.in .iv-card:nth-child(7){animation-delay:.39s}
-.rise.in .iv-card:nth-child(8){animation-delay:.45s}
-.rise.in .iv-card:nth-child(9){animation-delay:.51s}
-.rise.in .iv-card:nth-child(10){animation-delay:.57s}
-.rise.in .iv-card:nth-child(11){animation-delay:.63s}
-.rise.in .iv-card:nth-child(12){animation-delay:.69s}
-.iv-card--static{cursor:default}
-.iv-card--static:hover{background:transparent}
-@keyframes invpop{from{opacity:0;transform:translateY(24px) scale(.985)}to{opacity:1;transform:none}}
-.iv-card:hover{transform:translateY(-4px);border-color:rgba(247,246,244,.26);
-  box-shadow:inset 0 1px 0 rgba(247,246,244,.16),inset 0 0 0 1px rgba(0,0,0,.2),0 28px 54px -26px rgba(0,0,0,.72)}
-.ivc-logo{height:38px;display:flex;align-items:center;margin-bottom:22px}
-.ivc-logo img{max-height:38px;max-width:120px;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.92;transition:opacity .3s ease,transform .5s cubic-bezier(.16,1,.3,1)}
-.ivc-logo img[alt="SpaceX"]{max-width:215px;max-height:60px}
-.iv-card:hover .ivc-logo img{opacity:1;transform:scale(1.05)}
-.ivc-id{display:flex;flex-direction:column;align-items:flex-start;gap:11px;margin-bottom:18px}
-.iv-name{font-size:clamp(1.15rem,1.35vw,1.4rem);line-height:1.12}
-.iv-cat{display:inline-block;font-family:var(--sans);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:#c9c3b6;border:1px solid rgba(247,246,244,.2);border-radius:9999px;padding:5px 13px}
-.iv-desc{font-size:14px;line-height:1.6;color:#b3ac9e;margin-bottom:22px}
-.iv-visit{margin-top:auto;display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:13px;color:var(--on-ink);padding-bottom:3px;border-bottom:1px solid currentColor;transition:gap .3s ease}
-.iv-card:hover .iv-visit{gap:14px}
-.iv-visit svg{width:12px;height:12px}
-@media(max-width:1240px){ .inv-grid-cards{grid-template-columns:repeat(3,1fr)} }
-@media(max-width:940px){ .inv-grid-cards{grid-template-columns:repeat(2,1fr)} }
+/* ── contact page ── */
+.contact-hero h1{white-space:normal;max-width:18ch}
 
-@media(max-width:700px){ .inv-grid-cards{grid-template-columns:1fr} .iv-card{min-height:0;padding:30px 26px} }
+/* ── contact details now live inside the dark hero ── */
+.contact-hero{min-height:auto;padding-top:190px;padding-bottom:104px}
+.contact-hero .hero-grid{border-top:0;padding-top:0}
+.contact-hero .contact-grid{
+  margin-top:64px;padding-top:52px;border-top:1px solid var(--line-dark);
+}
+.contact-hero .contact-col .eyebrow{color:var(--on-ink-muted)}
+.contact-hero .contact-email{color:var(--on-ink);border-bottom-color:var(--line-dark)}
+.contact-hero .contact-email:hover{border-bottom-color:var(--on-ink)}
+.contact-hero .contact-note{color:#b9b3a6}
+.contact-hero .contact-addr{color:var(--on-ink)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;border-top:1px solid var(--line-light);padding-top:60px}
+.contact-col .eyebrow{margin-bottom:28px}
+.contact-email{font-family:var(--display);font-weight:500;font-size:clamp(1.28rem,2.2vw,2rem);letter-spacing:-.01em;color:var(--on-paper);border-bottom:1px solid var(--line-light);padding-bottom:8px;display:inline-block;transition:border-color .3s ease}
+.contact-email:hover{border-color:var(--on-paper)}
+.contact-note{margin-top:26px;font-size:14px;line-height:1.62;color:var(--on-paper-muted);max-width:46ch}
+.contact-addr{font-style:normal;font-family:var(--display);font-size:clamp(1rem,1.45vw,1.35rem);line-height:1.7;color:var(--on-paper)}
+.contact-quote-text{max-width:24ch;margin:0 auto 26px}
+.contact-quote-attr{font-family:var(--sans);font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--on-ink-muted)}
+@media(max-width:760px){ .contact-grid{grid-template-columns:1fr;gap:40px} }
 
 /* ── closing band: photo backdrop instead of flat ink ── */
 .enq{
@@ -589,10 +539,6 @@ html[lang="zh"] body,html[lang="zh"] .d{font-family:'Noto Serif TC',var(--displa
   background-repeat:no-repeat,no-repeat;
 }
 .enq > .inner{position:relative;z-index:1}
-
-.ast{font-family:var(--sans);font-size:.72em;vertical-align:super;line-height:0;
-  opacity:.75;margin-left:1px;letter-spacing:0}
-.foot-disclaimer .ast{opacity:.8;margin-left:0;margin-right:2px}
 
 /* ── non-English: release the English-tuned nowrap / shrink-to-fit rules ──
    (.marquee-track intentionally excluded — it must stay on one line)      */
@@ -736,136 +682,32 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
 
 
 <!-- ══ HERO ══ -->
-<header class="hero">
-  <div class="inner hero-split">
-    <div class="hero-copy">
-      <h1 class="d">Our <em>Investments</em>.</h1>
-      <div class="hero-grid">
-        <p class="body-lg hero-sub">Savaya makes a small number of carefully selected investments, guided by long-term thematic conviction rather than short-term market activity.</p>
+<header class="hero contact-hero">
+  <div class="inner">
+    <h1 class="d">Every opportunity begins with a <em>conversation.</em></h1>
+    <div class="hero-grid">
+      <p class="body-lg hero-sub">Savaya Capital does not accept unsolicited proposals or public applications. Every enquiry is directed through the family office and held in absolute confidence.</p>
+    </div>
+
+    <div class="contact-grid" id="contact-details">
+      <div class="contact-col">
+        <div class="eyebrow"><span class="n">01</span><i></i><span>Correspondence</span></div>
+        <a class="contact-email" href="mailto:inquiries@savayafamily.com">inquiries@savayafamily.com</a>
+        <p class="contact-note">Written enquiries only. A member of the family office will respond directly and in confidence.</p>
+      </div>
+      <div class="contact-col">
+        <div class="eyebrow"><span class="n">02</span><i></i><span>Family Office</span></div>
+        <address class="contact-addr">Office 2906<br>Sky Tower<br>Shams Abu Dhabi, Al Reem Island<br>Abu Dhabi · United Arab Emirates</address>
       </div>
     </div>
   </div>
-  <div class="hero-cue"><span>Scroll to explore</span></div>
 </header>
 
-<!-- ══ 01 SELECTED INVESTMENTS ══ -->
-<section class="band-paper" id="selected">
-  <div class="inner">
-    <div class="sec-head rise">
-      <h2 class="d">Portfolio Partners</h2>
-      <p class="sel-intro">Companies we are grateful to have partnered with. We are humbled by the opportunity to work with great businesses and support them.<span class="ast">*</span> Note a number of our investments are held via SPVs and other strategic vehicles with our partners. Please see the footnote below for more information<span class="ast">*</span></p>
-    </div>
-    <div class="inv-grid-cards rise">
-      <a class="iv-card" href="https://openai.com/" target="_blank" rel="noopener">
-        <div class="ivc-logo"><img src="logos/open ai logo main.png" alt="OpenAI"></div>
-        <div class="ivc-id"><span class="iv-name d">OpenAI</span><span class="iv-cat">Frontier AI</span></div>
-        <p class="iv-desc">The company behind ChatGPT and the GPT family of models — a direct position at the foundation of general-purpose artificial intelligence.</p>
-        <span class="iv-visit">Visit OpenAI <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        <span class="iv-year">First partnered · <b>2023</b></span>
-        <span class="iv-coinv">Via Co-Investment / SPV with partners</span>
-      </a>
-      <a class="iv-card" href="https://www.spacex.com/" target="_blank" rel="noopener">
-        <div class="ivc-logo"><img src="logos/space x logo.png" alt="SpaceX"></div>
-        <div class="ivc-id"><span class="iv-name d">SpaceX</span><span class="iv-cat">Aerospace & Space</span></div>
-        <p class="iv-desc">Designer and operator of reusable rockets and the Starlink network — building the launch infrastructure and orbital connectivity of the space economy.</p>
-        <span class="iv-visit">Visit SpaceX <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        <span class="iv-year">First partnered · <b>2023</b></span>
-        <span class="iv-coinv">Via Co-Investment / SPV with partners</span>
-      </a>
-      <a class="iv-card" href="https://www.anthropic.com/" target="_blank" rel="noopener">
-        <div class="ivc-logo"><img src="logos/antropic main.png" alt="Anthropic"></div>
-        <div class="ivc-id"><span class="iv-name d">Anthropic</span><span class="iv-cat">Frontier AI</span></div>
-        <p class="iv-desc">An AI safety company building the Claude family of models, pairing frontier capability with a rigorous approach to reliability and alignment.</p>
-        <span class="iv-visit">Visit Anthropic <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        <span class="iv-year">First partnered · <b>2024</b></span>
-        <span class="iv-coinv">Via Co-Investment / SPV with partners</span>
-      </a>
-      <a class="iv-card" href="https://trajectory.ai/" target="_blank" rel="noopener">
-        <div class="ivc-logo"><img src="logos/trajectory logo.png?v=2" alt="Trajectory"></div>
-        <div class="ivc-id"><span class="iv-name d">Trajectory</span><span class="iv-cat">Applied AI</span></div>
-        <p class="iv-desc">Applied AI for autonomy in the physical world, extending machine intelligence from software into real-world systems and environments.</p>
-        <span class="iv-visit">Visit Trajectory <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        <span class="iv-year">First partnered · <b>2025</b></span>
-      </a>
-      <a class="iv-card" href="https://sfcompute.com/" target="_blank" rel="noopener">
-        <div class="ivc-logo"><img src="logos/sf compute logo main.png" alt="SF Compute"></div>
-        <div class="ivc-id"><span class="iv-name d">SF Compute</span><span class="iv-cat">Compute Markets</span></div>
-        <p class="iv-desc">A marketplace for large-scale GPU compute, matching supply and demand for the scarcest resource in AI: access to training capacity.</p>
-        <span class="iv-visit">Visit SF Compute <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        <span class="iv-year">First partnered · <b>2024</b></span>
-      </a>
-      <a class="iv-card" href="https://www.fractalpower.com/" target="_blank" rel="noopener">
-        <div class="ivc-logo"><img src="logos/fractal power logo.png" alt="Fractal Power"></div>
-        <div class="ivc-id"><span class="iv-name d">Fractal Power</span><span class="iv-cat">Energy Infrastructure</span></div>
-        <p class="iv-desc">A vertically integrated platform developing grid-scale distributed generation — building the power capacity the next decade of compute demand requires.</p>
-        <span class="iv-visit">Visit Fractal Power <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        <span class="iv-year">First partnered · <b>2025</b></span>
-      </a>
-      <a class="iv-card" href="https://x.ai/" target="_blank" rel="noopener">
-        <div class="ivc-logo"><img src="logos/xai logo.png" alt="xAI"></div>
-        <div class="ivc-id"><span class="iv-name d">xAI</span><span class="iv-cat">Frontier AI</span></div>
-        <p class="iv-desc">An AI lab building Grok and frontier models, pairing large-scale compute with a mission to advance our collective understanding of the universe.</p>
-        <span class="iv-visit">Visit xAI <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        <span class="iv-year">First partnered · <b>2023</b></span>
-        <span class="iv-coinv">Via Co-Investment / SPV with partners</span>
-      </a>
-      <a class="iv-card" href="https://www.alphaxiv.org/" target="_blank" rel="noopener">
-        <div class="ivc-logo"><img src="logos/alphaxiv_logo.png" alt="alphaXiv"></div>
-        <div class="ivc-id"><span class="iv-name d">alphaXiv</span><span class="iv-cat">AI Research</span></div>
-        <p class="iv-desc">An open platform for discussing and discovering research — turning the world's scientific papers into a living, collaborative conversation.</p>
-        <span class="iv-visit">Visit alphaXiv <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        <span class="iv-year">First partnered · <b>2025</b></span>
-      </a>
-      <a class="iv-card" href="https://www.sesame.com/" target="_blank" rel="noopener">
-        <div class="ivc-logo"><img src="logos/sesame ai logo.png" alt="Sesame"></div>
-        <div class="ivc-id"><span class="iv-name d">Sesame</span><span class="iv-cat">Consumer AI</span></div>
-        <p class="iv-desc">Consumer AI building personal companions with a natural, lifelike voice — ambient intelligence designed for everyday life.</p>
-        <span class="iv-visit">Visit Sesame <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        <span class="iv-year">First partnered · <b>2024</b></span>
-      </a>
-      <a class="iv-card" href="https://www.openevidence.com/" target="_blank" rel="noopener">
-        <div class="ivc-logo"><img src="logos/openevidence logo.png" alt="OpenEvidence"></div>
-        <div class="ivc-id"><span class="iv-name d">OpenEvidence</span><span class="iv-cat">Healthcare AI</span></div>
-        <p class="iv-desc">An AI platform that brings medical evidence to the point of care, giving clinicians fast, sourced answers to complex clinical questions.</p>
-        <span class="iv-visit">Visit OpenEvidence <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        <span class="iv-year">First partnered · <b>2026</b></span>
-        <span class="iv-coinv">Via Co-Investment / SPV with partners</span>
-      </a>
-      <a class="iv-card" href="https://www.ornnai.com/" target="_blank" rel="noopener">
-        <div class="ivc-logo"><img src="logos/ornn compute logo.png" alt="Ornn"></div>
-        <div class="ivc-id"><span class="iv-name d">Ornn</span><span class="iv-cat">Compute Markets</span></div>
-        <p class="iv-desc">Financial markets for compute — reference pricing, hedging, and risk transfer for GPU capacity; capital-markets infrastructure for the AI era.</p>
-        <span class="iv-visit">Visit Ornn <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        <span class="iv-year">First partnered · <b>2026</b></span>
-      </a>
-      <a class="iv-card" href="https://nebulagroup.ca/" target="_blank" rel="noopener">
-        <div class="ivc-logo"><img src="logos/nebula group logo .png" alt="Nebula Group"></div>
-        <div class="ivc-id"><span class="iv-name d">Nebula Group</span><span class="iv-cat">Agricultural Infrastructure</span></div>
-        <p class="iv-desc">A vertically integrated turnkey provider for indoor farming — designing, building, and automating greenhouses and livestock facilities worldwide across six operating companies.</p>
-        <span class="iv-visit">Visit Nebula Group <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        <span class="iv-year">First partnered · <b>2019</b></span>
-      </a>
-      <a class="iv-card" href="https://mercor.com/" target="_blank" rel="noopener">
-        <div class="ivc-logo"><img src="logos/mercor logo.png" alt="Mercor"></div>
-        <div class="ivc-id"><span class="iv-name d">Mercor</span><span class="iv-cat">AI Talent Marketplace</span></div>
-        <p class="iv-desc">A marketplace connecting frontier AI labs with domain experts — physicians, lawyers, and researchers whose judgement trains and evaluates the models.</p>
-        <span class="iv-visit">Visit Mercor <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        <span class="iv-year">First partnered · <b>2024</b></span>
-        <span class="iv-coinv">Via Co-Investment / SPV with partners</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ══ ENQUIRIES ══ -->
-<section class="band-ink enq" id="enquiries">
+<!-- ══ CLOSING QUOTE ══ -->
+<section class="band-ink enq" id="contact-quote">
   <div class="inner rise">
-    <div class="eyebrow"><span>Enquiries</span></div>
-    <h2 class="d">Governance that earns <em>trust</em> before capital is committed.</h2>
-    <p>For advisors, co-investors, and counterparties seeking to understand our framework, we welcome a confidential conversation.</p>
-    <a href="/contact" class="pill">Contact the family office
-      <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg>
-    </a>
+    <h2 class="d contact-quote-text">&ldquo;The most enduring relationships begin quietly — with a single, considered <em>conversation.</em>&rdquo;</h2>
+    <p class="contact-quote-attr">Savaya · Family Global Holdings</p>
   </div>
 </section>
 
@@ -1058,92 +900,44 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
 
 <script>
 const AR={
- '.hero h1':'نهجٌ <em>انتقائي.</em>',
- '.hero-sub':'تنفّذ سافايا عدداً محدوداً من الاستثمارات المنتقاة بعناية، مدفوعةً بقناعةٍ موضوعية طويلة الأمد لا بنشاط السوق قصير الأجل.',
+ '.hero h1':'تبدأ كل فرصة <em>بمحادثة.</em>',
+ '.hero-sub':'لا تقبل سافايا كابيتال المقترحات غير المطلوبة أو الطلبات العامة. وتُوجَّه كل استفسار عبر المكتب العائلي ويُعامَل بسرّيةٍ تامة.',
  '.hero-cue span':'مرّر للاستكشاف',
- '#selected h2':'شركاء المحفظة',
- '.sel-intro':'شركاتٌ نعتزّ بشراكتنا معها. ويشرّفنا أن نعمل مع شركاتٍ عظيمة وأن ندعمها.<span class="ast">*</span>',
- '.iv-card:nth-child(1) .iv-cat':'ذكاء اصطناعي متقدم',
- '.iv-card:nth-child(2) .iv-cat':'ذكاء اصطناعي متقدم',
- '.iv-card:nth-child(3) .iv-cat':'سوق كفاءات الذكاء الاصطناعي',
- '.iv-card:nth-child(4) .iv-cat':'أسواق التنبؤ',
- '.iv-card:nth-child(5) .iv-cat':'أسواق الحوسبة',
- '.iv-card:nth-child(6) .iv-cat':'برمجيات الذكاء الاصطناعي',
- '.iv-card:nth-child(7) .iv-cat':'الذكاء الاصطناعي في الرعاية الصحية',
- '.iv-card:nth-child(8) .iv-cat':'ذكاء اصطناعي استهلاكي',
- '.iv-card:nth-child(9) .iv-cat':'أسواق الحوسبة',
- '.iv-card:nth-child(10) .iv-cat':'الذكاء الاصطناعي التطبيقي',
- '.iv-card:nth-child(11) .iv-cat':'البنية التحتية للطاقة',
- '.iv-card:nth-child(12) .iv-cat':'شركة قابضة خاصة',
- '.enq .eyebrow span':'الاستفسارات',
- '.enq h2':'حوكمةٌ تكسب <em>الثقة</em> قبل أن يُلتزم رأس المال.',
- '.enq p':'للمستشارين والمستثمرين المشاركين والأطراف المقابلة الراغبين في فهم إطار عملنا، نرحّب بمحادثةٍ سرّية.'
+ '.contact-col:nth-child(1) .eyebrow span:last-child':'المراسلات',
+ '.contact-note':'الاستفسارات الكتابية فقط. سيردّ أحد أعضاء المكتب العائلي مباشرةً وبسرّية.',
+ '.contact-col:nth-child(2) .eyebrow span:last-child':'المكتب العائلي',
+ '.contact-quote-text':'«أمتن العلاقات تبدأ بهدوء — <em>بمحادثةٍ واحدة متأنّية.</em>»',
+ '.contact-quote-attr':'سافايا · فاميلي جلوبال هولدينجز'
 };
 const HI={
- '.hero h1':'एक <em>चयनात्मक</em> दृष्टिकोण।',
- '.hero-sub':'सावाया अल्पसंख्यक किंतु सावधानीपूर्वक चुने गए निवेश करती है, जो अल्पकालिक बाज़ार गतिविधि के बजाय दीर्घकालिक विषयगत विश्वास से निर्देशित होते हैं।',
+ '.hero h1':'हर अवसर एक <em>बातचीत</em> से आरंभ होता है।',
+ '.hero-sub':'सावाया कैपिटल अवांछित प्रस्ताव या सार्वजनिक आवेदन स्वीकार नहीं करती। प्रत्येक पूछताछ पारिवारिक कार्यालय के माध्यम से निर्देशित और पूर्ण गोपनीयता में रखी जाती है।',
  '.hero-cue span':'देखने के लिए स्क्रॉल करें',
- '#selected h2':'पोर्टफोलियो भागीदार',
- '.sel-intro':'वे कंपनियाँ जिनके साथ साझेदारी करके हम आभारी हैं। महान व्यवसायों के साथ कार्य करने और उन्हें समर्थन देने का अवसर पाकर हम विनम्र हैं।<span class="ast">*</span>',
- '.iv-card:nth-child(1) .iv-cat':'फ्रंटियर एआई',
- '.iv-card:nth-child(2) .iv-cat':'फ्रंटियर एआई',
- '.iv-card:nth-child(3) .iv-cat':'एआई प्रतिभा बाज़ार',
- '.iv-card:nth-child(4) .iv-cat':'पूर्वानुमान बाज़ार',
- '.iv-card:nth-child(5) .iv-cat':'कंप्यूट बाज़ार',
- '.iv-card:nth-child(6) .iv-cat':'एआई सॉफ़्टवेयर',
- '.iv-card:nth-child(7) .iv-cat':'हेल्थकेयर एआई',
- '.iv-card:nth-child(8) .iv-cat':'उपभोक्ता एआई',
- '.iv-card:nth-child(9) .iv-cat':'कंप्यूट बाज़ार',
- '.iv-card:nth-child(10) .iv-cat':'अनुप्रयुक्त एआई',
- '.iv-card:nth-child(11) .iv-cat':'ऊर्जा अवसंरचना',
- '.iv-card:nth-child(12) .iv-cat':'निजी होल्डिंग',
- '.enq .eyebrow span':'पूछताछ',
- '.enq h2':'पूंजी प्रतिबद्ध होने से पूर्व <em>विश्वास</em> अर्जित करने वाला अभिशासन।',
- '.enq p':'सलाहकारों, सह-निवेशकों और प्रतिपक्षों के लिए जो हमारे ढाँचे को समझना चाहते हैं, हम एक गोपनीय बातचीत का स्वागत करते हैं।'
+ '.contact-col:nth-child(1) .eyebrow span:last-child':'पत्राचार',
+ '.contact-note':'केवल लिखित पूछताछ। पारिवारिक कार्यालय का एक सदस्य सीधे और गोपनीय रूप से उत्तर देगा।',
+ '.contact-col:nth-child(2) .eyebrow span:last-child':'पारिवारिक कार्यालय',
+ '.contact-quote-text':'“सबसे स्थायी संबंध चुपचाप आरंभ होते हैं — <em>एक विचारशील बातचीत से।</em>”',
+ '.contact-quote-attr':'सावाया · फैमिली ग्लोबल होल्डिंग्स'
 };
 const FR={
- '.hero h1':'Une approche <em>sélective.</em>',
- '.hero-sub':"Savaya réalise un nombre restreint d'investissements soigneusement sélectionnés, guidés par une conviction thématique de long terme plutôt que par l'activité de marché à court terme.",
+ '.hero h1':'Chaque opportunité commence par une <em>conversation.</em>',
+ '.hero-sub':"Savaya Capital n'accepte pas de propositions non sollicitées ni de candidatures publiques. Chaque demande est adressée au family office et traitée en toute confidentialité.",
  '.hero-cue span':'Faites défiler pour explorer',
- '#selected h2':'Partenaires du portefeuille',
- '.sel-intro':"Des entreprises avec lesquelles nous sommes reconnaissants de nous être associés. Nous sommes honorés de travailler avec de grandes entreprises et de les accompagner.<span class=\"ast\">*</span>",
- '.iv-card:nth-child(1) .iv-cat':'IA de frontière',
- '.iv-card:nth-child(2) .iv-cat':'IA de frontière',
- '.iv-card:nth-child(3) .iv-cat':'Place de marché de talents IA',
- '.iv-card:nth-child(4) .iv-cat':'Marchés prédictifs',
- '.iv-card:nth-child(5) .iv-cat':'Marchés de calcul',
- '.iv-card:nth-child(6) .iv-cat':'Logiciel IA',
- '.iv-card:nth-child(7) .iv-cat':'IA en santé',
- '.iv-card:nth-child(8) .iv-cat':'IA grand public',
- '.iv-card:nth-child(9) .iv-cat':'Marchés de calcul',
- '.iv-card:nth-child(10) .iv-cat':'IA appliquée',
- '.iv-card:nth-child(11) .iv-cat':'Infrastructures énergétiques',
- '.iv-card:nth-child(12) .iv-cat':'Participation privée',
- '.enq .eyebrow span':'Demandes',
- '.enq h2':'Une gouvernance qui mérite la <em>confiance</em> avant tout engagement de capital.',
- '.enq p':"Pour les conseillers, co-investisseurs et contreparties souhaitant comprendre notre cadre, nous accueillons volontiers une conversation confidentielle."
+ '.contact-col:nth-child(1) .eyebrow span:last-child':'Correspondance',
+ '.contact-note':"Demandes écrites uniquement. Un membre du family office répondra directement et en toute confidentialité.",
+ '.contact-col:nth-child(2) .eyebrow span:last-child':'Family office',
+ '.contact-quote-text':'« Les relations les plus durables commencent discrètement — <em>par une seule conversation, mûrement réfléchie.</em> »',
+ '.contact-quote-attr':'Savaya · Family Global Holdings'
 };
 const ZH={
- '.hero h1':'審慎<em>精選</em>之道。',
- '.hero-sub':'Savaya 僅進行少數經審慎挑選的投資，以長期主題信念為依歸，而非短期市場動態。',
+ '.hero h1':'每一個機遇皆始於一場<em>對話。</em>',
+ '.hero-sub':'Savaya Capital 不接受未經邀約的提案或公開申請。所有查詢均透過家族辦公室處理，並絕對保密。',
  '.hero-cue span':'向下滾動以探索',
- '#selected h2':'投資組合夥伴',
- '.sel-intro':'我們感恩能與之合作的企業。能與卓越的企業攜手並予以支持，我們深感榮幸。<span class="ast">*</span>',
- '.iv-card:nth-child(1) .iv-cat':'前沿人工智能',
- '.iv-card:nth-child(2) .iv-cat':'前沿人工智能',
- '.iv-card:nth-child(3) .iv-cat':'人工智能人才市場',
- '.iv-card:nth-child(4) .iv-cat':'預測市場',
- '.iv-card:nth-child(5) .iv-cat':'算力市場',
- '.iv-card:nth-child(6) .iv-cat':'人工智能軟件',
- '.iv-card:nth-child(7) .iv-cat':'醫療人工智能',
- '.iv-card:nth-child(8) .iv-cat':'消費人工智能',
- '.iv-card:nth-child(9) .iv-cat':'算力市場',
- '.iv-card:nth-child(10) .iv-cat':'應用人工智能',
- '.iv-card:nth-child(11) .iv-cat':'能源基礎設施',
- '.iv-card:nth-child(12) .iv-cat':'私人控股',
- '.enq .eyebrow span':'查詢',
- '.enq h2':'先贏得<em>信任</em>，再投入資本的治理。',
- '.enq p':'對於希望了解我們框架的顧問、共同投資人及交易對手，我們歡迎一場保密的對話。'
+ '.contact-col:nth-child(1) .eyebrow span:last-child':'書面往來',
+ '.contact-note':'僅接受書面查詢。家族辦公室成員將直接且保密地回覆。',
+ '.contact-col:nth-child(2) .eyebrow span:last-child':'家族辦公室',
+ '.contact-quote-text':'「最恆久的關係始於靜默 — <em>源自一場深思熟慮的對話。</em>」',
+ '.contact-quote-attr':'Savaya · Family Global Holdings'
 };
 
 /* ── 5-language switcher (EN · AR · HI · FR · ZH) ── */
