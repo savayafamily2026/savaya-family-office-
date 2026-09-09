@@ -120,7 +120,8 @@ h3.d{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.1}
   transition:background .45s ease,border-color .45s ease;
 }
 .nav.solid{background:rgba(10,10,10,.8);border-color:rgba(247,246,244,.1)}
-.nav .mark{font-family:var(--display);font-size:18px;letter-spacing:.1em;font-weight:500;white-space:nowrap}
+.nav .mark{font-family:var(--display);font-size:18px;letter-spacing:.1em;font-weight:500;white-space:nowrap;display:inline-flex;align-items:center;gap:10px}
+.nav .mark img{height:20px;width:auto;display:block}
 .nav ul{
   display:flex;gap:4px;list-style:none;
   font-family:var(--sans);font-weight:500;font-size:14px;letter-spacing:.03em;
@@ -782,13 +783,89 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
   .fa-nav{gap:18px;margin-top:32px}
   .fa-arrow{width:46px;height:46px}
 }
+
+/* ── 03 management & values ── */
+#governance{padding-bottom:96px}
+#governance .sec-head{margin-bottom:0}
+
+.gov-top{
+  display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
+  gap:16px 100px;align-items:start;
+}
+.gov-head{position:sticky;top:112px}
+.gov-head h2{max-width:14ch;margin-bottom:0}
+.gov-lede{
+  font-size:clamp(17px,1.28vw,19.5px);line-height:1.72;
+  color:var(--on-paper-muted);max-width:64ch;
+}
+.gov-lede + .gov-lede{margin-top:22px}
+.gov-intro .gov-lede:first-child{
+  font-size:clamp(19px,1.55vw,23px);line-height:1.6;color:var(--ink);
+}
+.gov-sign{
+  margin-top:34px;padding-top:22px;border-top:1px solid var(--line-light);
+  font-family:var(--display);font-style:italic;font-size:17px;
+  color:var(--on-paper);max-width:64ch;
+}
+.gov-sign::before{content:"— ";font-style:normal;color:var(--on-paper-muted)}
+
+/* leadership roster */
+.gov-team{margin-top:96px}
+.gov-team-head{
+  display:flex;align-items:baseline;justify-content:space-between;gap:24px;
+  padding-bottom:20px;border-bottom:1px solid var(--ink);
+}
+.gov-team-head .eyebrow{color:var(--on-paper)}
+.gov-team-note{font-size:12px;letter-spacing:.06em;color:var(--on-paper-muted)}
+.gov-roster{list-style:none}
+.gov-person{
+  display:grid;grid-template-columns:44px auto 1fr auto;align-items:baseline;
+  gap:0 24px;padding:30px 0;border-bottom:1px solid var(--line-light);
+}
+.gov-person .gp-n{
+  font-family:var(--sans);font-size:11px;letter-spacing:.14em;
+  color:var(--on-paper-muted);opacity:.65;
+}
+.gov-person .gp-name{
+  font-family:var(--display);font-weight:500;letter-spacing:-.015em;
+  font-size:clamp(1.5rem,2.5vw,2.15rem);line-height:1.1;color:var(--ink);
+}
+.gov-person .gp-rule{
+  height:1px;background:var(--line-light);align-self:center;
+  transform:translateY(2px);
+}
+.gov-person .gp-role{
+  font-family:var(--sans);font-size:12px;font-weight:500;
+  letter-spacing:1.4px;text-transform:uppercase;color:var(--on-paper-muted);
+  text-align:right;white-space:nowrap;
+}
+
+@media(max-width:1080px){
+  .gov-top{grid-template-columns:1fr;gap:40px}
+  .gov-head{position:static}
+  .gov-head h2{max-width:20ch}
+  .gov-lede{max-width:66ch}
+  .gov-team{margin-top:72px}
+}
+@media(max-width:640px){
+  #governance{padding-bottom:72px}
+  .gov-sign{margin-top:28px}
+  .gov-person{
+    grid-template-columns:30px 1fr;gap:0 14px;padding:22px 0;align-items:start;
+  }
+  .gov-person .gp-rule{display:none}
+  .gov-person .gp-role{
+    grid-column:2;text-align:left;white-space:normal;margin-top:8px;
+  }
+  .gov-team-note{display:none}
+}
 </style>
 </head>
 <body>
 
 <!-- ══ NAV ══ -->
 <nav class="nav" id="nav">
-  <a href="/" class="mark">Savaya Capital</a>
+  <a href="/" class="mark"><img src="sc-mark.png" alt=""> Savaya Capital</a>
   <ul>
     <li><a href="/about">About Us</a></li>
     <li><a href="/portfolio">Our Portfolio</a></li>
@@ -970,22 +1047,73 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
 </section>
 
 <!-- ══ 03 GLOBAL REACH ══ -->
-<section class="band-paper" id="reach-sec">
+<section class="band-paper" id="governance">
   <div class="inner">
-    <div class="map-panel rise">
-      <div class="map-head-ov">
-        <div class="eyebrow"><span class="n">03</span><i></i><span>Global Reach</span></div>
-        <h3 class="d">Investing across 5 continents</h3>
+
+    <div class="gov-top rise">
+      <div class="sec-head gov-head">
+        <div class="eyebrow"><span class="n">03</span><i></i><span>Management &amp; Values</span></div>
+        <h2 class="d">Managed by the <em>family.</em></h2>
       </div>
-      <svg id="world-map-svg" viewBox="0 0 1200 590" preserveAspectRatio="xMidYMid meet" aria-label="World map showing Savaya Capital's global reach"></svg>
-      <div class="map-foot-ov">
-        <div class="map-legend">
-          <div class="legend-item"><span class="legend-dot hq"></span>HQ · UAE</div>
-          <div class="legend-item"><span class="legend-dot focus"></span>Active Investment Regions</div>
-        </div>
-        <span class="map-note">Click a region to explore</span>
+
+      <div class="gov-intro">
+        <p class="gov-lede">Savaya Capital is the single-family office of the Patel family. We manage one pool of capital, with a mandate to preserve it, grow it, and pass it on intact.</p>
+        <p class="gov-lede">There are no outside investors, no fund cycles, and no redemption calendar. We invest only our own money, so our interests and our partners' are the same by construction rather than by agreement. That lets us underwrite decades rather than quarters, and decline far more often than we commit.</p>
+        <p class="gov-sign">The Patel Family</p>
       </div>
     </div>
+
+    <div class="gov-team rise">
+      <div class="gov-team-head">
+        <div class="eyebrow"><span>Leadership</span></div>
+        <span class="gov-team-note">The people you meet are the people who decide.</span>
+      </div>
+      <ul class="gov-roster">
+        <li class="gov-person">
+          <span class="gp-n">01</span>
+          <span class="gp-name">Mahendra Patel</span>
+          <span class="gp-rule" aria-hidden="true"></span>
+          <span class="gp-role">Chairman</span>
+        </li>
+        <li class="gov-person">
+          <span class="gp-n">02</span>
+          <span class="gp-name">Taruna Patel</span>
+          <span class="gp-rule" aria-hidden="true"></span>
+          <span class="gp-role">Vice Chairman</span>
+        </li>
+        <li class="gov-person">
+          <span class="gp-n">03</span>
+          <span class="gp-name">Zeel Patel</span>
+          <span class="gp-rule" aria-hidden="true"></span>
+          <span class="gp-role">President</span>
+        </li>
+        <li class="gov-person">
+          <span class="gp-n">04</span>
+          <span class="gp-name">Tim Wu</span>
+          <span class="gp-rule" aria-hidden="true"></span>
+          <span class="gp-role">Chief Executive Officer</span>
+        </li>
+        <li class="gov-person">
+          <span class="gp-n">05</span>
+          <span class="gp-name">Utkarsh</span>
+          <span class="gp-rule" aria-hidden="true"></span>
+          <span class="gp-role">Chief Financial Officer</span>
+        </li>
+        <li class="gov-person">
+          <span class="gp-n">06</span>
+          <span class="gp-name">Shlok Mehta</span>
+          <span class="gp-rule" aria-hidden="true"></span>
+          <span class="gp-role">Chief of Staff</span>
+        </li>
+        <li class="gov-person">
+          <span class="gp-n">07</span>
+          <span class="gp-name">Krishna Turkane</span>
+          <span class="gp-rule" aria-hidden="true"></span>
+          <span class="gp-role">Investment Analyst</span>
+        </li>
+      </ul>
+    </div>
+
   </div>
 </section>
 
@@ -1250,12 +1378,20 @@ const AR={
  '.proc-item[data-stage="3"] p':'تقيّم لجنة الاستثمار المقترح النهائي بصرامة وفق سياساتٍ مكتوبة، ثم تصوّت رسمياً على توظيف رأس المال وتوافق عليه.',
  '.proc-item[data-stage="4"] h4':'التنفيذ والمتابعة',
  '.proc-item[data-stage="4"] p':'تضع الشركة شروط الصفقة النهائية، وتوظّف رأس المال طويل الأمد، وتُرسي فوراً حوكمةً فاعلة لتوجيه النمو التشغيلي وحماية القيمة.',
- '#reach-sec .eyebrow span:last-child':'الحضور العالمي',
- '.reach-title':'الاستثمار في أكثر من 50 <em>دولة.</em>',
- '.reach-sub':'بموقعها بين الشرق والغرب، تضع الإمارات سافايا كابيتال على مسافة يومٍ واحد من أهم أسواق رأس المال والمناطق الزمنية والأطراف المقابلة في العالم.',
- '.legend-item:nth-child(1)':'<span class="legend-dot hq"></span>المقر · الإمارات',
- '.legend-item:nth-child(2)':'<span class="legend-dot focus"></span>مناطق الاستثمار النشطة',
- '.map-note':'انقر على منطقة لاستكشافها',
+ '#governance .eyebrow span:last-child':'الإدارة والقيم',
+ '#governance h2':'تُدار من قِبل <em>العائلة.</em>',
+ '.gov-intro p:nth-of-type(1)':'سافايا كابيتال هي المكتب العائلي الخاص لعائلة باتيل. ندير رأس مالٍ واحداً، بتفويضٍ للحفاظ عليه وتنميته ونقله سليماً إلى الجيل التالي.',
+ '.gov-intro p:nth-of-type(2)':'لا مستثمرين خارجيين، ولا دوراتِ صناديق، ولا جدولَ استرداد. نستثمر رأس مالنا وحده، فتكون مصالحنا ومصالح شركائنا واحدة بحكم البنية لا بحكم الاتفاق. وهذا يتيح لنا أن نكتتب على مدى عقودٍ لا أرباع، وأن نرفض أكثر بكثير مما نلتزم به.',
+ '.gov-sign':'عائلة باتيل',
+ '.gov-team-head .eyebrow span':'القيادة',
+ '.gov-team-note':'من تلتقيهم هم من يقرّرون.',
+ '.gov-person:nth-child(1) .gp-role':'رئيس مجلس الإدارة',
+ '.gov-person:nth-child(2) .gp-role':'نائب رئيس مجلس الإدارة',
+ '.gov-person:nth-child(3) .gp-role':'الرئيس',
+ '.gov-person:nth-child(4) .gp-role':'الرئيس التنفيذي',
+ '.gov-person:nth-child(5) .gp-role':'المدير المالي',
+ '.gov-person:nth-child(6) .gp-role':'رئيس الديوان',
+ '.gov-person:nth-child(7) .gp-role':'محلل استثمار',
  '.enq .eyebrow span':'نهج الاستثمار',
  '.enq h2':'رأس المال ملتزمٌ بالتحوّل البنيوي، لا <em>بدورات السوق.</em>',
  '.enq p':'لا تتاجر سافايا كابيتال بالمواضيع. وحين نتبيّن تحوّلاً بنيوياً مستداماً، نلتزم برأس المال على آفاقٍ تمتد لعقدٍ أو أكثر، ونبني مراكز مركّزة عالية القناعة نملك فيها ميزةً معلوماتية أو علاقاتية واضحة.'
@@ -1288,12 +1424,20 @@ const HI={
  '.proc-item[data-stage="3"] p':'निवेश समिति अंतिम प्रस्ताव का कठोर लिखित नीतियों के विरुद्ध मूल्यांकन करती है और पूंजी नियोजन पर औपचारिक मतदान कर उसे स्वीकृति देती है।',
  '.proc-item[data-stage="4"] h4':'निष्पादन और निगरानी',
  '.proc-item[data-stage="4"] p':'फर्म अंतिम सौदे की शर्तें तय करती है, दीर्घकालिक धन नियोजित करती है, और परिचालन वृद्धि के मार्गदर्शन तथा मूल्य संरक्षण हेतु तत्काल सक्रिय अभिशासन स्थापित करती है।',
- '#reach-sec .eyebrow span:last-child':'वैश्विक पहुँच',
- '.reach-title':'50+ <em>देशों</em> में निवेश।',
- '.reach-sub':'पूर्व और पश्चिम के बीच स्थित होने के कारण यूएई सावाया कैपिटल को विश्व के सबसे महत्वपूर्ण पूंजी बाज़ारों, समय क्षेत्रों और प्रतिपक्षों से एक दिन की दूरी पर रखता है।',
- '.legend-item:nth-child(1)':'<span class="legend-dot hq"></span>मुख्यालय · यूएई',
- '.legend-item:nth-child(2)':'<span class="legend-dot focus"></span>सक्रिय निवेश क्षेत्र',
- '.map-note':'अन्वेषण हेतु किसी क्षेत्र पर क्लिक करें',
+ '#governance .eyebrow span:last-child':'प्रबंधन और मूल्य',
+ '#governance h2':'<em>परिवार</em> द्वारा संचालित।',
+ '.gov-intro p:nth-of-type(1)':'सावाया कैपिटल पटेल परिवार का निजी पारिवारिक कार्यालय है। हम एक ही पूंजी कोष का प्रबंधन करते हैं — उसे संरक्षित करने, बढ़ाने और अगली पीढ़ी तक अक्षुण्ण पहुँचाने के अधिदेश के साथ।',
+ '.gov-intro p:nth-of-type(2)':'कोई बाहरी निवेशक नहीं, कोई फंड चक्र नहीं, कोई मोचन कैलेंडर नहीं। हम केवल अपनी पूंजी निवेश करते हैं, इसलिए हमारे और हमारे साझेदारों के हित समझौते से नहीं, संरचना से एक होते हैं। इससे हम तिमाहियों के बजाय दशकों का आकलन कर पाते हैं, और प्रतिबद्ध होने से कहीं अधिक बार इनकार कर पाते हैं।',
+ '.gov-sign':'पटेल परिवार',
+ '.gov-team-head .eyebrow span':'नेतृत्व',
+ '.gov-team-note':'जिनसे आप मिलते हैं, निर्णय वही लेते हैं।',
+ '.gov-person:nth-child(1) .gp-role':'अध्यक्ष',
+ '.gov-person:nth-child(2) .gp-role':'उपाध्यक्ष',
+ '.gov-person:nth-child(3) .gp-role':'प्रेसिडेंट',
+ '.gov-person:nth-child(4) .gp-role':'मुख्य कार्यकारी अधिकारी',
+ '.gov-person:nth-child(5) .gp-role':'मुख्य वित्तीय अधिकारी',
+ '.gov-person:nth-child(6) .gp-role':'चीफ ऑफ स्टाफ',
+ '.gov-person:nth-child(7) .gp-role':'निवेश विश्लेषक',
  '.enq .eyebrow span':'निवेश दृष्टिकोण',
  '.enq h2':'पूंजी संरचनात्मक परिवर्तन के प्रति प्रतिबद्ध है, <em>बाज़ार चक्रों</em> के प्रति नहीं।',
  '.enq p':'सावाया कैपिटल विषयों का व्यापार नहीं करती। जहाँ हम एक टिकाऊ संरचनात्मक परिवर्तन पहचानते हैं, वहाँ हम एक दशक या उससे अधिक की अवधि के लिए पूंजी प्रतिबद्ध करते हैं और ऐसी केंद्रित, उच्च-विश्वास स्थितियाँ बनाते हैं जिनमें हमें स्पष्ट सूचनात्मक या संबंधपरक लाभ प्राप्त हो।'
@@ -1326,12 +1470,20 @@ const FR={
  '.proc-item[data-stage="3"] p':"Le comité d'investissement évalue rigoureusement la proposition finale au regard de politiques écrites strictes, puis vote formellement et approuve le déploiement du capital.",
  '.proc-item[data-stage="4"] h4':'Exécution et suivi',
  '.proc-item[data-stage="4"] p':"La société structure les termes définitifs de l'opération, déploie des fonds de long terme et met immédiatement en place une gouvernance active pour accompagner la croissance opérationnelle et protéger la valeur.",
- '#reach-sec .eyebrow span:last-child':'Présence mondiale',
- '.reach-title':'Investir dans plus de 50 <em>pays.</em>',
- '.reach-sub':"Positionnés entre l'Orient et l'Occident, les Émirats placent Savaya Capital à une journée des marchés de capitaux, fuseaux horaires et contreparties les plus importants au monde.",
- '.legend-item:nth-child(1)':'<span class="legend-dot hq"></span>Siège · EAU',
- '.legend-item:nth-child(2)':"<span class=\"legend-dot focus\"></span>Régions d'investissement actives",
- '.map-note':'Cliquez sur une région pour explorer',
+ '#governance .eyebrow span:last-child':'Direction & Valeurs',
+ '#governance h2':'Dirigée par la <em>famille.</em>',
+ '.gov-intro p:nth-of-type(1)':'Savaya Capital est le family office unique de la famille Patel. Nous gérons un seul pool de capitaux, avec le mandat de le préserver, de le faire croître et de le transmettre intact à la génération suivante.',
+ '.gov-intro p:nth-of-type(2)':'Aucun investisseur extérieur, aucun cycle de fonds, aucun calendrier de rachat. Nous n’investissons que notre propre capital : nos intérêts et ceux de nos partenaires sont donc identiques par construction, non par convention. Cela nous permet de raisonner en décennies plutôt qu’en trimestres, et de refuser bien plus souvent que nous n’engageons.',
+ '.gov-sign':'La famille Patel',
+ '.gov-team-head .eyebrow span':'Direction',
+ '.gov-team-note':'Ceux que vous rencontrez sont ceux qui décident.',
+ '.gov-person:nth-child(1) .gp-role':'Président du conseil',
+ '.gov-person:nth-child(2) .gp-role':'Vice-président du conseil',
+ '.gov-person:nth-child(3) .gp-role':'Président',
+ '.gov-person:nth-child(4) .gp-role':'Directeur général',
+ '.gov-person:nth-child(5) .gp-role':'Directeur financier',
+ '.gov-person:nth-child(6) .gp-role':'Directeur de cabinet',
+ '.gov-person:nth-child(7) .gp-role':'Analyste en investissement',
  '.enq .eyebrow span':"Approche d'investissement",
  '.enq h2':'Le capital est engagé au service du changement structurel, non des <em>cycles de marché.</em>',
  '.enq p':"Savaya Capital ne négocie pas de thématiques. Lorsque nous identifions une transformation structurelle durable, nous engageons du capital sur des horizons d'une décennie ou plus, en construisant des positions concentrées et de forte conviction où nous disposons d'un avantage informationnel ou relationnel clair."
@@ -1364,12 +1516,20 @@ const ZH={
  '.proc-item[data-stage="3"] p':'投資委員會依據嚴格的書面政策審慎評估最終提案，並正式表決通過資本部署。',
  '.proc-item[data-stage="4"] h4':'執行與監控',
  '.proc-item[data-stage="4"] p':'公司擬定最終交易條款、投入長期資金，並即時建立積極治理機制，以引導營運成長並保全價值。',
- '#reach-sec .eyebrow span:last-child':'全球網絡',
- '.reach-title':'投資遍及 50 多個<em>國家。</em>',
- '.reach-sub':'阿聯酋位處東西之間，使 Savaya Capital 與全球最重要的資本市場、時區及交易對手僅一日之遙。',
- '.legend-item:nth-child(1)':'<span class="legend-dot hq"></span>總部 · 阿聯酋',
- '.legend-item:nth-child(2)':'<span class="legend-dot focus"></span>活躍投資區域',
- '.map-note':'點擊區域以探索',
+ '#governance .eyebrow span:last-child':'管理與價值',
+ '#governance h2':'由<em>家族</em>管理。',
+ '.gov-intro p:nth-of-type(1)':'Savaya Capital 是 Patel 家族的單一家族辦公室。我們管理一筆資本，肩負保全、增值，並完整傳予下一代的使命。',
+ '.gov-intro p:nth-of-type(2)':'沒有外部投資者，沒有基金週期，沒有贖回時間表。我們只投入自己的資本，因此我們與夥伴的利益源於結構本身而非協議。這讓我們得以用數十年而非數季度來衡量，並且拒絕的次數遠多於承諾的次數。',
+ '.gov-sign':'Patel 家族',
+ '.gov-team-head .eyebrow span':'領導團隊',
+ '.gov-team-note':'與您會面的人，就是作出決定的人。',
+ '.gov-person:nth-child(1) .gp-role':'董事長',
+ '.gov-person:nth-child(2) .gp-role':'副董事長',
+ '.gov-person:nth-child(3) .gp-role':'總裁',
+ '.gov-person:nth-child(4) .gp-role':'行政總裁',
+ '.gov-person:nth-child(5) .gp-role':'財務總監',
+ '.gov-person:nth-child(6) .gp-role':'幕僚長',
+ '.gov-person:nth-child(7) .gp-role':'投資分析師',
  '.enq .eyebrow span':'投資理念',
  '.enq h2':'資本承諾於結構性變革，而非<em>市場週期。</em>',
  '.enq p':'Savaya Capital 不追逐題材。當我們辨識出持久的結構性轉變時，便以十年以上的視野投入資本，在我們具備明確資訊或關係優勢之處，建立集中而高信念的持倉。'

@@ -100,6 +100,8 @@ section{padding:var(--pad-y) var(--pad-x)}
   animation:introIn 1.2s cubic-bezier(.16,1,.3,1) .25s forwards;
 }
 @keyframes introIn{to{opacity:1;transform:none}}
+.intro-inner{display:flex;flex-direction:column;align-items:center;gap:24px}
+.intro-logo{height:74px;width:auto;opacity:0;transform:translateY(10px);animation:introIn 1.1s cubic-bezier(.16,1,.3,1) .1s forwards}
 
 /* ── type ── */
 .d{font-family:var(--display);font-weight:500;line-height:1.04;letter-spacing:-.015em}
@@ -152,7 +154,8 @@ h3.d{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.1}
   transition:background .45s ease,border-color .45s ease;
 }
 .nav.solid{background:rgba(10,10,10,.8);border-color:rgba(247,246,244,.1)}
-.nav .mark{font-family:var(--display);font-size:18px;letter-spacing:.1em;font-weight:500;white-space:nowrap}
+.nav .mark{font-family:var(--display);font-size:18px;letter-spacing:.1em;font-weight:500;white-space:nowrap;display:inline-flex;align-items:center;gap:10px}
+.nav .mark img{height:20px;width:auto;display:block}
 .nav ul{
   display:flex;gap:4px;list-style:none;
   font-family:var(--sans);font-weight:500;font-size:14px;letter-spacing:.03em;
@@ -690,11 +693,11 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
 <body class="intro-lock">
 
 <!-- ══ INTRO ══ -->
-<div class="intro" id="intro"><span class="intro-mark">Savaya Capital</span></div>
+<div class="intro" id="intro"><div class="intro-inner"><img class="intro-logo" src="sc-mark.png" alt=""><span class="intro-mark">Savaya Capital</span></div></div>
 
 <!-- ══ NAV ══ -->
 <nav class="nav" id="nav">
-  <a href="/" class="mark">Savaya Capital</a>
+  <a href="/" class="mark"><img src="sc-mark.png" alt=""> Savaya Capital</a>
   <ul>
     <li><a href="/about">About Us</a></li>
     <li><a href="/portfolio">Our Portfolio</a></li>
@@ -751,7 +754,7 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
     <div class="sec-head rise">
       <div class="eyebrow"><span class="n">01</span><i></i><span>Approach</span></div>
       <h2 class="d">We invest with insight, hold with <em>conviction</em>, and operate with global reach.</h2>
-      <p class="approach-sub">We invest globally across a diversified set of asset classes — including land and real estate, start-ups and early-stage venture-backed companies, private equity, private credit, hedge fund strategies, and public equities across the world's leading markets.</p>
+      <p class="approach-sub">We invest globally across a diversified set of asset classes — including land and real estate, start-ups and early-stage venture-backed companies, private equity, private credit, hedge fund strategies, and public markets across global G20 markets.</p>
     </div>
     <div class="map-panel rise">
       <div class="map-head-ov">
@@ -776,7 +779,7 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
 <section class="band-invest" id="investments">
   <div class="inner">
     <div class="inv-head rise">
-      <div class="eyebrow"><span>Selected Investments</span></div>
+      <div class="eyebrow"><span>Select Investments</span></div>
       <h3 class="d">We are <em>grateful</em> to have partnered with many businesses.</h3>
       <p class="inv-sub">Featured are a sample of our portfolio, representing both direct and partner-led co-investments. Note a number of our investments are held via SPVs and other strategic vehicles with our partners. Please see the footnote below for more information<span class="ast">*</span></p>
     </div>
@@ -789,14 +792,14 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
           <img src="logos/space x logo.png" alt="SpaceX"><span class="inv-name">SpaceX</span></a>
         <a class="inv-item" href="https://sfcompute.com/" target="_blank" rel="noopener">
           <img src="logos/sf compute logo main.png" alt="SF Compute"><span class="inv-name">SF Compute</span></a>
-        <a class="inv-item" href="https://mercor.com/" target="_blank" rel="noopener">
-          <img src="logos/mercor logo.png" alt="Mercor"><span class="inv-name">Mercor</span></a>
         <a class="inv-item" href="https://www.sesame.com/" target="_blank" rel="noopener">
           <img src="logos/sesame ai logo.png" alt="Sesame AI"><span class="inv-name">Sesame AI</span></a>
-        <a class="inv-item" href="https://polymarket.com/" target="_blank" rel="noopener">
-          <img src="logos/polymarket logo.png" alt="Polymarket"><span class="inv-name">Polymarket</span></a>
         <a class="inv-item" href="https://trajectory.ai/" target="_blank" rel="noopener">
           <img src="logos/trajectory logo.png?v=2" alt="Trajectory AI"><span class="inv-name">Trajectory AI</span></a>
+        <a class="inv-item" href="https://www.ornnai.com/" target="_blank" rel="noopener">
+          <img src="logos/ornn compute logo.png" alt="Ornn"><span class="inv-name">Ornn</span></a>
+        <a class="inv-item" href="#" target="_blank" rel="noopener">
+          <img src="logos/capable logo.png" alt="Capable"><span class="inv-name">Capable</span></a>
       </div>
       <div class="inv-foot rise">
         <a href="/portfolio" class="link">View portfolio
@@ -846,18 +849,18 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
       <span class="mq-item">Anthropic</span><span class="mq-sep">✦</span>
       <span class="mq-item">SpaceX</span><span class="mq-sep">✦</span>
       <span class="mq-item">SF Compute</span><span class="mq-sep">✦</span>
-      <span class="mq-item">Mercor</span><span class="mq-sep">✦</span>
       <span class="mq-item">Sesame AI</span><span class="mq-sep">✦</span>
-      <span class="mq-item">Polymarket</span><span class="mq-sep">✦</span>
       <span class="mq-item">Trajectory AI</span><span class="mq-sep">✦</span>
+      <span class="mq-item">Ornn</span><span class="mq-sep">✦</span>
+      <span class="mq-item">Capable</span><span class="mq-sep">✦</span>
       <span class="mq-item">OpenAI</span><span class="mq-sep">✦</span>
       <span class="mq-item">Anthropic</span><span class="mq-sep">✦</span>
       <span class="mq-item">SpaceX</span><span class="mq-sep">✦</span>
       <span class="mq-item">SF Compute</span><span class="mq-sep">✦</span>
-      <span class="mq-item">Mercor</span><span class="mq-sep">✦</span>
       <span class="mq-item">Sesame AI</span><span class="mq-sep">✦</span>
-      <span class="mq-item">Polymarket</span><span class="mq-sep">✦</span>
       <span class="mq-item">Trajectory AI</span><span class="mq-sep">✦</span>
+      <span class="mq-item">Ornn</span><span class="mq-sep">✦</span>
+      <span class="mq-item">Capable</span><span class="mq-sep">✦</span>
     </div>
   </div>
 </section>
