@@ -1063,50 +1063,6 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
       </div>
     </div>
 
-    <div class="gov-team rise">
-      <div class="gov-team-head">
-        <div class="eyebrow"><span>Leadership</span></div>
-        <span class="gov-team-note">The people you meet are the people who decide.</span>
-      </div>
-      <ul class="gov-roster">
-        <li class="gov-person">
-          <span class="gp-n">01</span>
-          <span class="gp-name">Mahendra Patel</span>
-          <span class="gp-rule" aria-hidden="true"></span>
-          <span class="gp-role">Chairman</span>
-        </li>
-        <li class="gov-person">
-          <span class="gp-n">02</span>
-          <span class="gp-name">Taruna Patel</span>
-          <span class="gp-rule" aria-hidden="true"></span>
-          <span class="gp-role">Vice Chairman</span>
-        </li>
-        <li class="gov-person">
-          <span class="gp-n">03</span>
-          <span class="gp-name">Zeel Patel</span>
-          <span class="gp-rule" aria-hidden="true"></span>
-          <span class="gp-role">President</span>
-        </li>
-        <li class="gov-person">
-          <span class="gp-n">04</span>
-          <span class="gp-name">Utkarsh</span>
-          <span class="gp-rule" aria-hidden="true"></span>
-          <span class="gp-role">Chief Financial Officer</span>
-        </li>
-        <li class="gov-person">
-          <span class="gp-n">05</span>
-          <span class="gp-name">Shlok Mehta</span>
-          <span class="gp-rule" aria-hidden="true"></span>
-          <span class="gp-role">Chief of Staff</span>
-        </li>
-        <li class="gov-person">
-          <span class="gp-n">06</span>
-          <span class="gp-name">Krishna Turkane</span>
-          <span class="gp-rule" aria-hidden="true"></span>
-          <span class="gp-role">Investment Analyst</span>
-        </li>
-      </ul>
-    </div>
 
   </div>
 </section>
@@ -1198,7 +1154,7 @@ onScroll();addEventListener('scroll',onScroll,{passive:true});
 if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
   const io=new IntersectionObserver((es)=>es.forEach(e=>{
     if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
-  }),{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  }),{threshold:0,rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.rise').forEach(el=>io.observe(el));
 }else{document.querySelectorAll('.rise').forEach(el=>el.classList.add('in'));}
 
