@@ -301,64 +301,10 @@ h3.d{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.1}
 #map-tt .n{font-family:var(--display);font-weight:500;font-size:17px;color:var(--ink);letter-spacing:-.01em}
 #map-tt .d{font-size:12px;color:var(--on-paper-muted);margin-top:3px}
 
-/* ── investments ── */
-.band-invest{
-  padding-top:82px;padding-bottom:80px;
-  background-color:#ebe6db;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.075'/%3E%3C/svg%3E"),
-    linear-gradient(to bottom,#f7f6f4 0,rgba(235,230,219,0) 200px);
-  background-repeat:repeat,no-repeat;
-  color:var(--on-paper);
-}
-.band-invest .eyebrow{color:var(--on-paper-muted)}
-.inv-head{margin-bottom:44px;padding-bottom:30px;border-bottom:1px solid #d3cdbd}
-.inv-head .eyebrow{margin-bottom:26px;font-size:12.5px;letter-spacing:1.6px;color:var(--on-paper)}
-.inv-head h3{max-width:none;white-space:nowrap;font-size:clamp(1rem,3vw,2.5rem)}
-.inv-head h3 em{font-family:var(--italic);font-style:italic;font-weight:400;letter-spacing:-.005em}
-.inv-sub{margin-top:18px;color:var(--on-paper-muted);font-size:15.5px;line-height:1.6;max-width:96ch}
 .approach-sub{margin-top:20px;font-size:15.5px;line-height:1.62;color:var(--on-paper-muted);max-width:900px}
-.inv-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
-}
-.inv-grid.rise{opacity:1;transform:none}
-.inv-item{
-  background:
-    linear-gradient(158deg,rgba(38,38,35,.58),rgba(12,12,11,.80) 58%,rgba(6,6,5,.88)),
-    rgba(10,10,9,.5);
-  -webkit-backdrop-filter:blur(20px) saturate(128%);backdrop-filter:blur(20px) saturate(128%);
-  border:1px solid rgba(247,246,244,.12);border-radius:16px;
-  box-shadow:inset 0 1px 0 rgba(247,246,244,.09),0 20px 42px -30px rgba(0,0,0,.6);
-  padding:46px 24px 40px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
-  min-height:236px;opacity:0;color:var(--on-ink);
-  transition:transform .5s cubic-bezier(.16,1,.3,1),border-color .35s ease;
-}
-.rise.in .inv-item{animation:invpop .75s cubic-bezier(.16,1,.3,1) both}
-@keyframes invpop{from{opacity:0;transform:translateY(28px) scale(.985)}to{opacity:1;transform:none}}
-.rise.in .inv-item:nth-child(1){animation-delay:.04s}
-.rise.in .inv-item:nth-child(2){animation-delay:.10s}
-.rise.in .inv-item:nth-child(3){animation-delay:.16s}
-.rise.in .inv-item:nth-child(4){animation-delay:.22s}
-.rise.in .inv-item:nth-child(5){animation-delay:.28s}
-.rise.in .inv-item:nth-child(6){animation-delay:.34s}
-.rise.in .inv-item:nth-child(7){animation-delay:.40s}
-.rise.in .inv-item:nth-child(8){animation-delay:.46s}
-.inv-item:hover{transform:translateY(-4px);border-color:rgba(247,246,244,.24)}
-.inv-item img[alt="SpaceX"]{height:auto;max-width:96%;max-height:52px}
-.inv-item img{height:42px;width:auto;max-width:72%;object-fit:contain;opacity:.92;
-  filter:brightness(0) invert(1);
-  transition:opacity .4s ease,transform .55s cubic-bezier(.16,1,.3,1)}
-.inv-item:hover img{opacity:1;transform:scale(1.09)}
-.inv-name{
-  font-family:var(--sans);font-size:13px;letter-spacing:1.6px;text-transform:uppercase;
-  color:#c9c3b6;text-align:center;transition:color .4s ease;
-}
-.inv-item:hover .inv-name{color:#ece5d6}
-.inv-foot{margin-top:52px;display:flex;justify-content:flex-end}
 
 /* ── principles ── */
-#principles{padding-top:92px}
+#principles{padding-top:92px;padding-bottom:24px}
 #principles .sec-head h2{max-width:none;white-space:nowrap}
 .principles{display:grid;grid-template-columns:repeat(4,1fr);gap:0;
   border-top:1px solid var(--line-dark)}
@@ -384,12 +330,13 @@ h3.d{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.1}
 #allocation{
   position:relative;isolation:isolate;
   background-image:
+    linear-gradient(to bottom,#0a0a0a 0,rgba(10,10,10,0) 280px),
     linear-gradient(to right,rgba(10,10,10,.93),rgba(10,10,10,.80) 55%,rgba(10,10,10,.66)),
     linear-gradient(to bottom,rgba(10,10,10,.55),rgba(10,10,10,.30) 45%,rgba(10,10,10,.72)),
     url('images/bar%202.jpg');
-  background-size:cover,cover,cover;
-  background-position:center,center,center 26%;
-  background-repeat:no-repeat,no-repeat,no-repeat;
+  background-size:cover,cover,cover,cover;
+  background-position:center,center,center,center 26%;
+  background-repeat:no-repeat,no-repeat,no-repeat,no-repeat;
 }
 #allocation > .inner{position:relative;z-index:1}
 .alloc-head{margin-bottom:60px}
@@ -430,29 +377,6 @@ h3.d{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.1}
 @media(max-width:1120px){
   .alloc-note{white-space:normal;max-width:62ch}
 }
-
-/* portfolio marquee (beige break) */
-.marquee-band{
-  padding:58px 0;overflow:hidden;color:var(--on-paper);
-  background-color:#ebe6db;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='mg'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23mg)' opacity='0.07'/%3E%3C/svg%3E");
-}
-.marquee{
-  overflow:hidden;width:100%;
-  -webkit-mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.35) 9%,#000 22%,#000 78%,rgba(0,0,0,.35) 91%,transparent 100%);
-  mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.35) 9%,#000 22%,#000 78%,rgba(0,0,0,.35) 91%,transparent 100%);
-}
-.marquee-track{
-  display:inline-flex;align-items:center;white-space:nowrap;
-  animation:marq 42s linear infinite;will-change:transform;
-}
-.marquee-band:hover .marquee-track{animation-play-state:paused}
-@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.mq-item{
-  font-family:var(--display);font-weight:500;letter-spacing:-.01em;
-  font-size:clamp(1.3rem,2vw,2rem);color:#2a251d;padding:0 34px;
-}
-.mq-sep{color:#b3a988;font-size:.8em}
 
 /* ── enquiries ── */
 .enq{text-align:center}
@@ -498,7 +422,6 @@ html[lang="zh"] body,html[lang="zh"] .d{font-family:'Noto Serif TC',var(--displa
   .pillar:nth-child(2n){border-right:0;padding-right:0}
   .pillar:nth-child(2n+1){padding-left:0;padding-right:34px}
   .pillar:nth-child(n+3){padding-top:38px}
-  .inv-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:760px){
   :root{--pad-y:72px;--pad-x:22px}
@@ -511,9 +434,8 @@ html[lang="zh"] body,html[lang="zh"] .d{font-family:'Noto Serif TC',var(--displa
   h1.d{font-size:clamp(1.5rem,7.4vw,2rem)}
   .hero-split{grid-template-columns:1fr;gap:36px}
   .hero-figure{width:min(56%,210px)}
-  .hero-grid,.approach-top,.inv-head,.alloc-head{grid-template-columns:1fr;gap:34px;align-items:start}
+  .hero-grid,.approach-top,.alloc-head{grid-template-columns:1fr;gap:34px;align-items:start}
   .approach-copy{gap:40px}
-  .inv-head h3,.inv-sub{white-space:normal}
   .pillar{min-height:0}
   #principles .sec-head h2{white-space:normal}
   .alloc{grid-template-columns:repeat(3,1fr);row-gap:44px}
@@ -525,7 +447,6 @@ html[lang="zh"] body,html[lang="zh"] .d{font-family:'Noto Serif TC',var(--displa
   .pillar{border-right:0;padding:34px 0}
   .pillar:nth-child(2n+1),.pillar:nth-child(2n){padding-left:0;padding-right:0}
   .foot-top{grid-template-columns:1fr;gap:32px}
-  .inv-foot{justify-content:flex-start}
   .enq{text-align:left}
   .enq .eyebrow{justify-content:flex-start}
   .enq h2,.enq p{margin-left:0}
@@ -533,7 +454,6 @@ html[lang="zh"] body,html[lang="zh"] .d{font-family:'Noto Serif TC',var(--displa
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   .rise{opacity:1;transform:none}
-  .inv-item{opacity:1!important;transform:none!important}
   .abar{clip-path:none!important}
   html{scroll-behavior:auto}
 }
@@ -543,11 +463,9 @@ html[lang="zh"] body,html[lang="zh"] .d{font-family:'Noto Serif TC',var(--displa
 .foot-disclaimer .ast{opacity:.8;margin-left:0;margin-right:2px}
 
 /* ── non-English: release the English-tuned nowrap / shrink-to-fit rules ──
-   (.marquee-track intentionally excluded — it must stay on one line)      */
+*/
 html:not([lang="en"]) h1.d,
 html:not([lang="en"]) h2.d,
-html:not([lang="en"]) .inv-head h3,
-html:not([lang="en"]) .inv-sub,
 html:not([lang="en"]) #principles .sec-head h2,
 html:not([lang="en"]) .alloc-note,
 html:not([lang="en"]) .reach-full .reach-title,
@@ -557,11 +475,9 @@ html:not([lang="en"]) .careers-h1{white-space:normal}
 
 html:not([lang="en"]) h1.d{font-size:clamp(1.9rem,4.4vw,3.6rem);line-height:1.14}
 html:not([lang="en"]) .hero h1 .l2{display:block;margin-top:.14em}
-html:not([lang="en"]) .inv-sub{font-size:15.5px}
 html:not([lang="en"]) .alloc-note{max-width:64ch}
 html:not([lang="en"]) .reach-full .reach-sub{font-size:16px;max-width:62ch}
 html:not([lang="en"]) .sel-intro{font-size:16px;max-width:70ch}
-html:not([lang="en"]) .inv-head h3{max-width:22ch}
 
 /* ── mobile menu (drawer behind the burger) ── */
 .mobile-menu{
@@ -595,10 +511,7 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
   .acat{margin-right:14px;font-size:12.5px}
   .apc{font-size:clamp(1.7rem,8vw,2.3rem)}
   /* home: 8 logo tiles */
-  .inv-grid{grid-template-columns:repeat(2,1fr)}
-  .inv-item{min-height:150px;padding:26px 16px}
   /* portfolio cards */
-  .inv-grid-cards{grid-template-columns:1fr}
   .iv-card{min-height:0;padding:30px 24px}
   /* careers rows */
   .job{grid-template-columns:1fr;gap:16px;padding:28px 0}
@@ -620,8 +533,6 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
   .map-foot{flex-direction:column;align-items:flex-start;gap:10px}
   .map-note{display:none}
   .reach-full .map-wrap{max-width:100%}
-  /* marquee */
-  .mq-item{font-size:clamp(1rem,5.4vw,1.4rem);padding:0 20px}
   /* footer */
   .foot-legal{flex-direction:column;gap:8px}
   .foot-disclaimer{font-size:10.5px;line-height:1.6}
@@ -634,7 +545,6 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
   :root{--pad-x:18px}
   .alloc{grid-template-columns:1fr;row-gap:30px}
   .abar-wrap{height:150px}
-  .inv-grid{grid-template-columns:repeat(2,1fr)}
   .hero-figure{width:min(62%,190px)}
   h2.d{font-size:clamp(1.5rem,7.6vw,2rem)}
   .sec-head{margin-bottom:44px}
@@ -740,9 +650,9 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
   <div class="inner hero-split">
     <div class="hero-copy">
       <div class="eyebrow hero-eyebrow"><i></i><span>Single Family Office Investing Globally</span></div>
-      <h1 class="d">Long-term capital partners.<span class="l2"><em>Powering the innovation of tomorrow.</em></span></h1>
+      <h1 class="d">Long-term capital partners.</h1>
       <div class="hero-grid">
-        <p class="body-lg hero-sub">We invest the capital of the Patel family across a variety of themes centred around technological progress and global economic growth. Deployed with discipline to preserve, grow, and transmit wealth across generations.</p>
+        <p class="body-lg hero-sub">We invest the capital of the Patel family across a variety of themes centred around technological progress and global economic growth. We deploy capital with discipline to preserve, grow, and transmit wealth across generations.</p>
       </div>
     </div>
   </div>
@@ -754,8 +664,7 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
   <div class="inner">
     <div class="sec-head rise">
       <div class="eyebrow"><span class="n">01</span><i></i><span>Approach</span></div>
-      <h2 class="d">We invest with insight, hold with <em>conviction</em>, and operate with global reach.</h2>
-      <p class="approach-sub">We invest globally across a diversified set of asset classes — including land and real estate, start-ups and early-stage venture-backed companies, private equity, private credit, hedge fund strategies, and public markets across global G20 markets.</p>
+      <p class="approach-sub">We invest globally across a diversified set of asset classes — including land and real estate, early-stage venture-backed companies, private equity, private credit, hedge fund strategies, and public markets.</p>
     </div>
     <div class="map-panel rise">
       <div class="map-head-ov">
@@ -768,45 +677,8 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
           <div class="legend-item"><span class="legend-dot hq"></span>HQ · UAE</div>
           <div class="legend-item"><span class="legend-dot focus"></span>Active Investment Regions</div>
         </div>
-        <a href="/about#reach-sec" class="link">Explore the full map
-          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg>
-        </a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ══ SELECTED INVESTMENTS (beige · grain) ══ -->
-<section class="band-invest" id="investments">
-  <div class="inner">
-    <div class="inv-head rise">
-      <div class="eyebrow"><span>Select Investments</span></div>
-      <h3 class="d">We are <em>grateful</em> to have partnered with many businesses.</h3>
-      <p class="inv-sub">Featured are a sample of our portfolio, representing both direct and partner-led co-investments. Note a number of our investments are held via SPVs and other strategic vehicles with our partners. Please see the footnote below for more information<span class="ast">*</span></p>
-    </div>
-      <div class="inv-grid rise">
-        <a class="inv-item" href="https://openai.com/" target="_blank" rel="noopener">
-          <img src="logos/open ai logo main.png" alt="OpenAI"><span class="inv-name">OpenAI</span></a>
-        <a class="inv-item" href="https://www.anthropic.com/" target="_blank" rel="noopener">
-          <img src="logos/antropic main.png" alt="Anthropic"><span class="inv-name">Anthropic</span></a>
-        <a class="inv-item" href="https://www.spacex.com/" target="_blank" rel="noopener">
-          <img src="logos/space x logo.png" alt="SpaceX"><span class="inv-name">SpaceX</span></a>
-        <a class="inv-item" href="https://sfcompute.com/" target="_blank" rel="noopener">
-          <img src="logos/sf compute logo main.png" alt="SF Compute"><span class="inv-name">SF Compute</span></a>
-        <a class="inv-item" href="https://www.sesame.com/" target="_blank" rel="noopener">
-          <img src="logos/sesame ai logo.png" alt="Sesame AI"><span class="inv-name">Sesame AI</span></a>
-        <a class="inv-item" href="https://trajectory.ai/" target="_blank" rel="noopener">
-          <img src="logos/trajectory logo.png?v=2" alt="Trajectory AI"><span class="inv-name">Trajectory AI</span></a>
-        <a class="inv-item" href="https://www.ornnai.com/" target="_blank" rel="noopener">
-          <img src="logos/ornn compute logo.png" alt="Ornn"><span class="inv-name">Ornn</span></a>
-        <a class="inv-item" href="https://capable.com/" target="_blank" rel="noopener">
-          <img src="logos/capable logo.png" alt="Capable"><span class="inv-name">Capable</span></a>
-      </div>
-      <div class="inv-foot rise">
-        <a href="/portfolio" class="link">View portfolio
-          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg>
-        </a>
-      </div>
   </div>
 </section>
 
@@ -842,30 +714,6 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
   </div>
 </section>
 
-<!-- ══ PORTFOLIO MARQUEE (beige break) ══ -->
-<section class="marquee-band" aria-hidden="true">
-  <div class="marquee">
-    <div class="marquee-track">
-      <span class="mq-item">OpenAI</span><span class="mq-sep">✦</span>
-      <span class="mq-item">Anthropic</span><span class="mq-sep">✦</span>
-      <span class="mq-item">SpaceX</span><span class="mq-sep">✦</span>
-      <span class="mq-item">SF Compute</span><span class="mq-sep">✦</span>
-      <span class="mq-item">Sesame AI</span><span class="mq-sep">✦</span>
-      <span class="mq-item">Trajectory AI</span><span class="mq-sep">✦</span>
-      <span class="mq-item">Ornn</span><span class="mq-sep">✦</span>
-      <span class="mq-item">Capable</span><span class="mq-sep">✦</span>
-      <span class="mq-item">OpenAI</span><span class="mq-sep">✦</span>
-      <span class="mq-item">Anthropic</span><span class="mq-sep">✦</span>
-      <span class="mq-item">SpaceX</span><span class="mq-sep">✦</span>
-      <span class="mq-item">SF Compute</span><span class="mq-sep">✦</span>
-      <span class="mq-item">Sesame AI</span><span class="mq-sep">✦</span>
-      <span class="mq-item">Trajectory AI</span><span class="mq-sep">✦</span>
-      <span class="mq-item">Ornn</span><span class="mq-sep">✦</span>
-      <span class="mq-item">Capable</span><span class="mq-sep">✦</span>
-    </div>
-  </div>
-</section>
-
 <!-- ══ 03 STRATEGIC ALLOCATION ══ -->
 <section class="band-ink" id="allocation" style="padding-top:0">
   <div class="inner">
@@ -873,8 +721,8 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
       <div class="eyebrow"><span class="n">03</span><i></i><span>Strategic Allocation</span></div>
     </div>
     <div class="alloc rise">
-      <div class="acol"><div class="abar-wrap"><span class="apc">30%</span><div class="abar" style="height:250px"></div></div><span class="acat">Global Real Estate &amp; Infrastructure</span></div>
-      <div class="acol"><div class="abar-wrap"><span class="apc">28%</span><div class="abar" style="height:233px"></div></div><span class="acat">Private Equity, Growth &amp; Venture</span></div>
+      <div class="acol"><div class="abar-wrap"><span class="apc">30%</span><div class="abar" style="height:250px"></div></div><span class="acat">Private Equity, Growth &amp; Venture</span></div>
+      <div class="acol"><div class="abar-wrap"><span class="apc">28%</span><div class="abar" style="height:233px"></div></div><span class="acat">Global Real Estate &amp; Infrastructure</span></div>
       <div class="acol"><div class="abar-wrap"><span class="apc">16%</span><div class="abar" style="height:133px"></div></div><span class="acat">Cash &amp; Cash Equivalents</span></div>
       <div class="acol"><div class="abar-wrap"><span class="apc">14%</span><div class="abar" style="height:117px"></div></div><span class="acat">Public Equity &amp; Derivative Securities</span></div>
       <div class="acol"><div class="abar-wrap"><span class="apc">8%</span><div class="abar" style="height:67px"></div></div><span class="acat">Private Credit &amp; Fund-of-Funds</span></div>
@@ -1093,12 +941,8 @@ const AR={
  '.hero-eyebrow span:last-child':'مكتب عائلي خاص يستثمر عالميًا',
  '.hero h1':'شركاء رأس المال طويل الأمد.<span class="l2"><em>نُمكّن ابتكار الغد.</em></span>',
  '.hero-sub':'رأس مالٌ ذو أفقٍ طويل يستثمر عبر مجموعةٍ من المحاور تتمحور حول التقدّم التقني والنمو الاقتصادي العالمي. يُوظَّف بانضباطٍ للحفاظ على الثروة وتنميتها وتوريثها عبر الأجيال.',
- '#approach .sec-head h2':'نستثمر برؤيةٍ ثاقبة، ونحتفظ <em>بقناعة</em>، ونعمل بحضورٍ عالمي.',
  '.reach .eyebrow span':'الحضور العالمي',
  '.reach h3':'الاستثمار في أكثر من 50 دولة',
- '.inv-head .eyebrow span':'استثماراتٌ مختارة',
- '.inv-head h3':'شركاتٌ نعتزّ بشراكتنا معها.',
- '.inv-note':'يشرّفنا أن نعمل مع شركاتٍ عظيمة وأن ندعمها.',
  '#principles .sec-head h2':'أربع قناعاتٍ تحكم كل قرار.',
  '.pillar:nth-child(1) .ptitle':'الصبر هو الميزة',
  '.pillar:nth-child(1) .pdesc':'بما أنّ رأس المال يخصّ عائلةً واحدة، فنحن شركاء حقيقيون على المدى فائق الطول.',
@@ -1124,12 +968,8 @@ const HI={
  '.hero-eyebrow span:last-child':'वैश्विक रूप से निवेश करने वाला एकल पारिवारिक कार्यालय',
  '.hero h1':'दीर्घकालिक पूंजी भागीदार।<span class="l2"><em>कल के नवाचार को सशक्त बनाना।</em></span>',
  '.hero-sub':'प्रौद्योगिकीय प्रगति और वैश्विक आर्थिक विकास पर केंद्रित विविध विषयों में दीर्घकालिक क्षितिज वाली पूंजी का निवेश। पीढ़ियों तक संपत्ति को सुरक्षित रखने, बढ़ाने और हस्तांतरित करने के लिए अनुशासन के साथ नियोजित।',
- '#approach .sec-head h2':'हम अंतर्दृष्टि के साथ निवेश करते हैं, <em>दृढ़ विश्वास</em> के साथ धारण करते हैं, और वैश्विक पहुँच के साथ संचालन करते हैं।',
  '.reach .eyebrow span':'वैश्विक पहुँच',
  '.reach h3':'50+ देशों में निवेश',
- '.inv-head .eyebrow span':'चयनित निवेश',
- '.inv-head h3':'वे कंपनियाँ जिनके साथ साझेदारी करके हम आभारी हैं।',
- '.inv-note':'हमें महान व्यवसायों के साथ काम करने और उन्हें समर्थन देने का अवसर पाकर विनम्रता का अनुभव होता है।',
  '#principles .sec-head h2':'चार स्तंभ जो हर निर्णय को नियंत्रित करते हैं।',
  '.pillar:nth-child(1) .ptitle':'धैर्य ही लाभ है',
  '.pillar:nth-child(1) .pdesc':'चूँकि पूंजी एक ही परिवार की है, हम अति-दीर्घकाल के लिए सच्चे भागीदार हैं।',
@@ -1153,14 +993,10 @@ const HI={
 const FR={
  '.hero-eyebrow span:first-child':'Family office unifamilial',
  '.hero-eyebrow span:last-child':"Family office unifamilial investissant mondialement",
- '.hero h1':"Partenaires en capital de long terme.<span class=\"l2\"><em>Au service de l'innovation de demain.</em></span>",
- '.hero-sub':'Un capital à horizon long investi dans une variété de thèmes centrés sur le progrès technologique et la croissance économique mondiale. Déployé avec discipline pour préserver, faire croître et transmettre le patrimoine à travers les générations.',
- '#approach .sec-head h2':"Nous investissons avec discernement, détenons avec <em>conviction</em> et opérons à l'échelle mondiale.",
+ '.hero h1':"Partenaires en capital de long terme.",
+ '.hero-sub':'Un capital à horizon long investi dans une variété de thèmes centrés sur le progrès technologique et la croissance économique mondiale. Nous déployons le capital avec discipline pour préserver, faire croître et transmettre le patrimoine à travers les générations.',
  '.reach .eyebrow span':'Présence mondiale',
  '.reach h3':'Investir dans plus de 50 pays',
- '.inv-head .eyebrow span':'Investissements sélectionnés',
- '.inv-head h3':'Des entreprises avec lesquelles nous sommes reconnaissants de nous être associés.',
- '.inv-note':'Nous sommes honorés de pouvoir travailler avec de grandes entreprises et de les accompagner.',
  '#principles .sec-head h2':'Quatre piliers qui régissent chaque décision.',
  '.pillar:nth-child(1) .ptitle':"La patience est l'avantage",
  '.pillar:nth-child(1) .pdesc':'Parce que le capital appartient à une seule famille, nous sommes de véritables partenaires pour le très long terme.',
@@ -1186,12 +1022,8 @@ const ZH={
  '.hero-eyebrow span:last-child':'面向全球投資的單一家族辦公室',
  '.hero h1':'長期資本夥伴。<span class="l2"><em>賦能明日創新。</em></span>',
  '.hero-sub':'以長遠眼光配置資本，投資於圍繞科技進步與全球經濟增長的多元主題。以紀律部署，跨世代保存、增值並傳承財富。',
- '#approach .sec-head h2':'我們以洞察力投資，以<em>信念</em>持有，並以全球網絡運營。',
  '.reach .eyebrow span':'全球網絡',
  '.reach h3':'投資遍及 50 多個國家',
- '.inv-head .eyebrow span':'精選投資',
- '.inv-head h3':'我們感恩能與之合作的企業。',
- '.inv-note':'能與卓越的企業合作並予以支持，我們深感榮幸。',
  '#principles .sec-head h2':'主宰每一項決策的四大支柱。',
  '.pillar:nth-child(1) .ptitle':'耐心即優勢',
  '.pillar:nth-child(1) .pdesc':'由於資本屬於單一家族，我們是超長期的真正夥伴。',

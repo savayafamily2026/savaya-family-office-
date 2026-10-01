@@ -639,6 +639,108 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
   .sec-head{margin-bottom:44px}
   .sec-head h2{max-width:none}
 }
+
+/* ══════════ CONTACT V2 — ENQUIRY FORM ══════════ */
+.enquiry{background:var(--paper);color:var(--on-paper)}
+.enq-grid{display:grid;grid-template-columns:0.82fr 1.18fr;gap:76px;align-items:start}
+.enq-aside .eyebrow{margin-bottom:26px}
+.enq-aside h2{max-width:13ch;margin-bottom:22px}
+.enq-aside .aside-lede{font-size:15.5px;line-height:1.66;color:var(--on-paper-muted);max-width:40ch}
+.aside-list{margin-top:36px;padding-top:26px;border-top:1px solid var(--line-light);display:flex;flex-direction:column;gap:14px}
+.aside-item{display:grid;grid-template-columns:22px 1fr;gap:12px;font-size:13.5px;line-height:1.6;color:var(--on-paper-muted)}
+.aside-item b{font-family:var(--display);font-weight:500;color:#8b8474;font-size:12.5px;letter-spacing:.06em}
+form.f{display:flex;flex-direction:column;gap:32px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.field{display:flex;flex-direction:column;gap:9px;min-width:0}
+.field label{font-family:var(--sans);font-size:11.5px;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;color:var(--on-paper-muted)}
+.field label .req{color:#8b8474;margin-left:3px}
+.field input,.field textarea,.field select{
+  font-family:var(--sans);font-size:15px;color:var(--on-paper);width:100%;
+  background:transparent;border:0;border-bottom:1px solid var(--line-light);
+  padding:11px 0;border-radius:0;transition:border-color .3s ease}
+.field textarea{resize:vertical;min-height:104px;line-height:1.62}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-bottom-color:var(--ink)}
+.field input::placeholder,.field textarea::placeholder{color:#b6b6b0}
+.field select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:22px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b6b66' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 1px center;background-size:10px}
+.field.invalid input,.field.invalid textarea,.field.invalid select{border-bottom-color:#8a2f22}
+.field .hint{font-size:12px;color:var(--on-paper-muted);opacity:.8}
+.choices{display:flex;flex-wrap:wrap;gap:10px;padding-top:2px}
+.choice input{position:absolute;opacity:0;width:0;height:0}
+.choice span{display:inline-flex;font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:.7px;
+  text-transform:uppercase;border:1px solid var(--line-light);color:var(--on-paper-muted);
+  padding:10px 19px;border-radius:9999px;cursor:pointer;
+  transition:background .25s,border-color .25s,color .25s}
+.choice span:hover{border-color:#bdbdb7;color:var(--on-paper)}
+.choice input:checked+span{background:var(--ink);border-color:var(--ink);color:var(--on-ink)}
+.choice input:focus-visible+span{outline:2px solid var(--ink);outline-offset:3px}
+.f-consent{display:flex;gap:13px;align-items:flex-start;font-size:12.5px;line-height:1.65;color:var(--on-paper-muted)}
+.f-consent input{margin-top:3px;accent-color:#0a0a0a;flex:none;width:15px;height:15px}
+.f-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;padding-top:4px}
+.btn-dark{display:inline-flex;align-items:center;gap:11px;font-family:var(--sans);font-size:14px;
+  letter-spacing:.2px;background:var(--ink);color:var(--on-ink);border:0;cursor:pointer;
+  padding:15px 28px;border-radius:9999px;transition:gap .3s cubic-bezier(.16,1,.3,1),opacity .3s}
+.btn-dark:hover{gap:17px}
+.btn-dark[disabled]{opacity:.45;cursor:default}
+.btn-dark svg{width:13px;height:13px;flex:none}
+.f-status{font-size:13px;line-height:1.55;color:var(--on-paper-muted);max-width:36ch}
+.f-status.err{color:#8a2f22}
+.f-status.ok{color:var(--on-paper)}
+
+/* ══════════ CONTACT V2 — MATERIALS ══════════ */
+.materials{background:var(--ink);color:var(--on-ink);padding-top:110px;padding-bottom:110px}
+.materials .eyebrow{color:var(--on-ink-muted)}
+.mat-head{display:flex;justify-content:space-between;align-items:flex-end;gap:34px;flex-wrap:wrap;margin-bottom:52px}
+.mat-head .eyebrow{margin-bottom:26px}
+.mat-head h2{max-width:17ch}
+.mat-state{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--on-ink-muted);border:1px solid var(--line-dark);border-radius:9999px;
+  padding:9px 18px;display:inline-flex;gap:9px;align-items:center;white-space:nowrap}
+.mat-state .dot{width:6px;height:6px;border-radius:50%;background:#8b8474;flex:none}
+.mat-body.open .mat-state{color:#ece5d6}
+.mat-body.open .mat-state .dot{background:#d4c5a7}
+.mat-body{position:relative}
+.mat-grid{display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line-dark);border-left:1px solid var(--line-dark);
+  transition:filter .6s ease,opacity .6s ease}
+.mat-card{border-right:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);
+  padding:34px 26px 30px;display:flex;flex-direction:column;gap:14px;min-height:224px;
+  transition:background .35s ease}
+a.mat-card:hover{background:rgba(247,246,244,.05)}
+.mat-n{font-family:var(--display);font-size:12.5px;color:#8b8474;letter-spacing:.08em}
+.mat-t{font-family:var(--display);font-weight:500;font-size:1.18rem;line-height:1.2;color:#ece5d6;letter-spacing:-.01em}
+.mat-d{font-size:12.5px;line-height:1.55;color:#b2aa99;flex:1}
+.mat-f{font-size:10.5px;letter-spacing:1.1px;text-transform:uppercase;color:var(--on-ink-muted);
+  display:flex;align-items:center;gap:8px}
+.mat-f svg{width:12px;height:12px;flex:none}
+.mat-body:not(.open) .mat-grid{filter:blur(5px);opacity:.3;pointer-events:none;user-select:none}
+.mat-veil{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:15px;text-align:center;padding:28px}
+.mat-body.open .mat-veil{display:none}
+.mat-veil .lockicon{width:26px;height:26px;color:#8b8474}
+.mat-veil h3{font-family:var(--display);font-weight:500;font-size:1.3rem;color:#ece5d6;letter-spacing:-.01em}
+.mat-veil p{font-size:13.5px;line-height:1.6;color:#b2aa99;max-width:42ch}
+.mat-foot{margin-top:44px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.mat-terms{font-size:12px;line-height:1.7;color:var(--on-ink-muted);max-width:56ch}
+.mat-body:not(.open) .mat-foot .pill{opacity:.35;pointer-events:none}
+.hero-cta{display:flex;justify-content:flex-end}
+
+@media(max-width:1080px){
+  .enq-grid{grid-template-columns:1fr;gap:48px}
+  .mat-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:760px){
+  .f-row{grid-template-columns:1fr;gap:28px}
+  .mat-grid{grid-template-columns:1fr}
+  .mat-card{min-height:0}
+  .mat-head{align-items:flex-start}
+  .materials{padding-top:76px;padding-bottom:76px}
+  .hero-cta{justify-content:flex-start}
+  .f-actions{gap:16px}
+  .f-status{max-width:none}
+}
+
 </style>
 </head>
 <body>
@@ -688,6 +790,7 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
     <h1 class="d">Every opportunity begins with a <em>conversation.</em></h1>
     <div class="hero-grid">
       <p class="body-lg hero-sub">Savaya Capital does not accept unsolicited proposals or public applications. Every enquiry is directed through the family office and held in absolute confidence.</p>
+      <div class="hero-cta"><a class="pill" href="mailto:inquiries@savayafamily.com">Submit an enquiry<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></a></div>
     </div>
 
     <div class="contact-grid" id="contact-details">
@@ -703,6 +806,56 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
     </div>
   </div>
 </header>
+
+<!-- ══ MARKETING MATERIALS (v2) ══ -->
+<section class="materials" id="materials">
+  <div class="inner">
+    <div class="mat-body open" id="matBody">
+      <div class="mat-head">
+        <div>
+          <div class="eyebrow"><span class="n">03</span><i></i><span>Brand &amp; Press Kit</span></div>
+          <h2 class="d">Savaya <em>marketing materials.</em></h2>
+        </div>
+        <div class="mat-state" id="matState"><span class="dot"></span><span id="matStateText">Available to download</span></div>
+      </div>
+
+      <div class="mat-grid">
+        <a class="mat-card" href="brand/savaya-logotype.png" download>
+          <span class="mat-n">01</span>
+          <span class="mat-t">Primary logotype</span>
+          <span class="mat-d">The full Savaya Capital wordmark, for use on light and dark grounds.</span>
+          <span class="mat-f"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1v9M3.5 7L7 10.5 10.5 7M2 12.5h10" stroke="currentColor" stroke-width="1.2"/></svg>PNG</span>
+        </a>
+        <a class="mat-card" href="brand/savaya-monogram.png" download>
+          <span class="mat-n">02</span>
+          <span class="mat-t">Monogram</span>
+          <span class="mat-d">The SC mark, for avatars, favicons and small-scale application.</span>
+          <span class="mat-f"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1v9M3.5 7L7 10.5 10.5 7M2 12.5h10" stroke="currentColor" stroke-width="1.2"/></svg>PNG</span>
+        </a>
+        <a class="mat-card" href="brand/savaya-brand-basics.pdf" download>
+          <span class="mat-n">03</span>
+          <span class="mat-t">Brand basics</span>
+          <span class="mat-d">Colour, typography, clear space and permitted use — one page.</span>
+          <span class="mat-f"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1v9M3.5 7L7 10.5 10.5 7M2 12.5h10" stroke="currentColor" stroke-width="1.2"/></svg>PDF</span>
+        </a>
+        <a class="mat-card" href="brand/savaya-brand-kit.zip" download>
+          <span class="mat-n">04</span>
+          <span class="mat-t">Full brand kit</span>
+          <span class="mat-d">Every mark, the icon set and the brand basics sheet in one archive.</span>
+          <span class="mat-f"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1v9M3.5 7L7 10.5 10.5 7M2 12.5h10" stroke="currentColor" stroke-width="1.2"/></svg>ZIP</span>
+        </a>
+      </div>
+
+      <div class="mat-foot">
+        <p class="mat-terms">Provided for editorial, partnership and portfolio use. These marks may not be altered, or used to imply endorsement, investment or affiliation with Savaya Family Global Holdings SFO RSC Limited. Co-branded or commercial use requires written approval.</p>
+        <a class="pill" href="brand/savaya-brand-kit.zip" download id="matZip">Download full kit
+          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1v9M3.5 7L7 10.5 10.5 7M2 12.5h10" stroke="currentColor" stroke-width="1.3"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- ══ CLOSING QUOTE ══ -->
 <section class="band-ink enq" id="contact-quote">
@@ -997,5 +1150,7 @@ apply('en');
   addEventListener('resize',()=>{if(innerWidth>760)shut()});
 })();
 </script>
+
+
 </body>
 </html>
