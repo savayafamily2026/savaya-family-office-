@@ -202,9 +202,7 @@ h3.d{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.1}
   min-height:100svh;display:flex;flex-direction:column;justify-content:center;
   padding:150px var(--pad-x) 44px;position:relative;overflow:hidden;
   background:
-    linear-gradient(180deg,rgba(8,8,8,.34) 0%,rgba(8,8,8,.46) 44%,rgba(8,8,8,.7) 74%,rgba(8,8,8,.94) 100%),
-    url('https://images.unsplash.com/photo-1771450092348-5f33e2cc2963?auto=format&fit=crop&w=2000&q=75') center/cover no-repeat,
-    url('images/hero%20background%20plane.jpg') center/cover no-repeat,
+    url('images/hero-abu-dhabi.jpg') center 38%/cover no-repeat,
     var(--ink);
 }
 .hero::before{
@@ -689,6 +687,17 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
   .map-foot-ov .legend-item{font-size:9.5px}
   .map-foot-ov .map-note{display:none}
 }
+
+/* ── Nov update: home hero — Abu Dhabi skyline photo, copy anchored bottom-left ── */
+.hero{justify-content:flex-end;padding-bottom:76px}
+.hero-shade{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(8,8,8,.12) 0%,rgba(8,8,8,0) 30%,rgba(8,8,8,.12) 55%,rgba(8,8,8,.55) 80%,rgba(8,8,8,.85) 100%)}
+.hero::before{z-index:1;opacity:.12}
+html .hero h1.d{font-size:clamp(2.6rem,7vw,6.4rem);line-height:1;white-space:normal;margin-bottom:30px;letter-spacing:-.02em}
+.hero-grid{border-top:0;padding-top:0;grid-template-columns:1fr}
+.hero-sub{max-width:62ch;color:#e2e1dc;text-shadow:0 1px 14px rgba(0,0,0,.75)}
+.hero h1.d{text-shadow:0 2px 28px rgba(0,0,0,.55)}
+@media(max-width:560px){html .hero h1.d{font-size:clamp(2.3rem,11vw,3.2rem)}.hero{padding-bottom:52px}}
 </style>
 </head>
 <body class="intro-lock">
@@ -699,12 +708,12 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
 <!-- ══ NAV ══ -->
 <nav class="nav" id="nav">
   <a href="/" class="mark"><img src="sc-mark.png" alt=""> Savaya Capital</a>
-  <ul>
-    <li><a href="/about">About Us</a></li>
-    <li><a href="/careers">Careers</a></li>
-    <li><a href="/legal">Legal</a></li>
-  </ul>
   <div class="nav-right">
+    <ul>
+      <li><a href="/about">About Us</a></li>
+      <li><a href="/careers">Careers</a></li>
+      <li><a href="/legal">Legal</a></li>
+    </ul>
     <div class="lang">
       <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false" aria-label="Switch language">
         <span id="langShort">EN</span>
@@ -735,11 +744,12 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
 
 <!-- ══ HERO ══ -->
 <header class="hero">
+  <div class="hero-shade" aria-hidden="true"></div>
   <div class="inner hero-split">
     <div class="hero-copy">
-      <h1 class="d">Single family office.</h1>
+      <h1 class="d">Private family office</h1>
       <div class="hero-grid">
-        <p class="body-lg hero-sub">We invest the capital of the Patel family across a variety of themes centred around technological progress and global economic growth.</p>
+        <p class="body-lg hero-sub">We are a single family office based in Abu Dhabi, investing around the world. We manage the capital of the Patel family and invest across a variety of themes centred around technological progress and global economic growth.</p>
       </div>
     </div>
   </div>
@@ -754,9 +764,6 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
         <h4>Navigation</h4>
         <a href="/about">About Us</a>
         <a href="/contact">Contact Us</a>
-      </div>
-      <div>
-        <h4>Legal</h4>
         <a href="/careers">Careers</a>
         <a href="/legal">Legal &amp; Regulatory Notice</a>
       </div>
@@ -803,8 +810,8 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
 const AR={
  '.hero-eyebrow span:first-child':'مكتب عائلي خاص',
  '.hero-eyebrow span:last-child':'مكتب عائلي خاص يستثمر عالميًا',
- '.hero h1':'مكتب عائلي فردي.',
- '.hero-sub':'نستثمر رأس مال عائلة باتيل عبر مجموعةٍ من المحاور تتمحور حول التقدّم التقني والنمو الاقتصادي العالمي.',
+ '.hero h1':'مكتب عائلي خاص',
+ '.hero-sub':'نحن مكتب عائلي فردي مقرّه أبوظبي، ونستثمر حول العالم. ندير رأس مال عائلة باتيل ونستثمر عبر مجموعةٍ من المحاور تتمحور حول التقدّم التقني والنمو الاقتصادي العالمي.',
  '#approach .sec-head h2':'نستثمر برؤيةٍ ثاقبة، ونحتفظ <em>بقناعة</em>، ونعمل بحضورٍ عالمي.',
  '.reach .eyebrow span':'الحضور العالمي',
  '.reach h3':'الاستثمار في أكثر من 50 دولة',
@@ -834,8 +841,8 @@ const AR={
 const HI={
  '.hero-eyebrow span:first-child':'एकल पारिवारिक कार्यालय',
  '.hero-eyebrow span:last-child':'वैश्विक रूप से निवेश करने वाला एकल पारिवारिक कार्यालय',
- '.hero h1':'एकल पारिवारिक कार्यालय।',
- '.hero-sub':'हम पटेल परिवार की पूंजी का निवेश प्रौद्योगिकीय प्रगति और वैश्विक आर्थिक विकास पर केंद्रित विविध विषयों में करते हैं।',
+ '.hero h1':'निजी पारिवारिक कार्यालय',
+ '.hero-sub':'हम अबू धाबी में स्थित एक एकल पारिवारिक कार्यालय हैं, जो दुनिया भर में निवेश करता है। हम पटेल परिवार की पूंजी का प्रबंधन करते हैं और प्रौद्योगिकीय प्रगति तथा वैश्विक आर्थिक विकास पर केंद्रित विविध विषयों में निवेश करते हैं।',
  '#approach .sec-head h2':'हम अंतर्दृष्टि के साथ निवेश करते हैं, <em>दृढ़ विश्वास</em> के साथ धारण करते हैं, और वैश्विक पहुँच के साथ संचालन करते हैं।',
  '.reach .eyebrow span':'वैश्विक पहुँच',
  '.reach h3':'50+ देशों में निवेश',
@@ -865,8 +872,8 @@ const HI={
 const FR={
  '.hero-eyebrow span:first-child':'Family office unifamilial',
  '.hero-eyebrow span:last-child':"Family office unifamilial investissant mondialement",
- '.hero h1':'Family office unifamilial.',
- '.hero-sub':'Nous investissons le capital de la famille Patel dans une variété de thèmes centrés sur le progrès technologique et la croissance économique mondiale.',
+ '.hero h1':'Family office privé',
+ '.hero-sub':'Nous sommes un family office unifamilial basé à Abou Dhabi, investissant à travers le monde. Nous gérons le capital de la famille Patel et investissons dans une variété de thèmes centrés sur le progrès technologique et la croissance économique mondiale.',
  '#approach .sec-head h2':"Nous investissons avec discernement, détenons avec <em>conviction</em> et opérons à l'échelle mondiale.",
  '.reach .eyebrow span':'Présence mondiale',
  '.reach h3':'Investir dans plus de 50 pays',
@@ -896,8 +903,8 @@ const FR={
 const ZH={
  '.hero-eyebrow span:first-child':'單一家族辦公室',
  '.hero-eyebrow span:last-child':'面向全球投資的單一家族辦公室',
- '.hero h1':'單一家族辦公室。',
- '.hero-sub':'我們將 Patel 家族的資本投資於圍繞科技進步與全球經濟增長的多元主題。',
+ '.hero h1':'私人家族辦公室',
+ '.hero-sub':'我們是一家總部位於阿布扎比、投資遍及全球的單一家族辦公室。我們管理 Patel 家族的資本，投資於圍繞科技進步與全球經濟增長的多元主題。',
  '#approach .sec-head h2':'我們以洞察力投資，以<em>信念</em>持有，並以全球網絡運營。',
  '.reach .eyebrow span':'全球網絡',
  '.reach h3':'投資遍及 50 多個國家',
