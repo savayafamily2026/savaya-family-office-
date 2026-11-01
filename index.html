@@ -698,6 +698,17 @@ html .hero h1.d{font-size:clamp(2.6rem,7vw,6.4rem);line-height:1;white-space:nor
 .hero-sub{max-width:62ch;color:#e2e1dc;text-shadow:0 1px 14px rgba(0,0,0,.75)}
 .hero h1.d{text-shadow:0 2px 28px rgba(0,0,0,.55)}
 @media(max-width:560px){html .hero h1.d{font-size:clamp(2.3rem,11vw,3.2rem)}.hero{padding-bottom:52px}}
+
+/* Nov update: footer navigation sits at the far right */
+@media(min-width:761px){.foot-top{grid-template-columns:1fr auto}}
+
+/* Nov update 2: smaller, uppercase hero title tucked into the bottom-left corner + video */
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-shade{background:linear-gradient(180deg,rgba(8,8,8,.28) 0%,rgba(8,8,8,.12) 30%,rgba(8,8,8,.22) 55%,rgba(8,8,8,.62) 80%,rgba(8,8,8,.88) 100%)!important}
+html .hero h1.d{font-size:clamp(1.45rem,2.5vw,2.25rem);text-transform:uppercase;letter-spacing:.08em;line-height:1.15;margin-bottom:18px;white-space:nowrap}
+.hero-copy{max-width:560px}
+.hero-sub{font-size:15px;line-height:1.65;max-width:46ch}
+@media(max-width:560px){html .hero h1.d{font-size:clamp(1.25rem,6.2vw,1.6rem);white-space:normal}.hero-sub{font-size:14.5px}}
 </style>
 </head>
 <body class="intro-lock">
@@ -744,12 +755,16 @@ html .hero h1.d{font-size:clamp(2.6rem,7vw,6.4rem);line-height:1;white-space:nor
 
 <!-- ══ HERO ══ -->
 <header class="hero">
+  <!-- UAE background film (Abu Dhabi · Dubai · desert); falls back to the Abu Dhabi photo if missing -->
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="videos/uae-montage-poster.jpg" aria-hidden="true">
+    <source src="videos/uae-montage.mp4" type="video/mp4" onerror="this.parentNode.style.display='none'">
+  </video>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="inner hero-split">
     <div class="hero-copy">
       <h1 class="d">Private family office</h1>
       <div class="hero-grid">
-        <p class="body-lg hero-sub">We are a single family office based in Abu Dhabi, investing around the world. We manage the capital of the Patel family and invest across a variety of themes centred around technological progress and global economic growth.</p>
+        <p class="body-lg hero-sub">We are a single family office based in Abu Dhabi. We manage the capital of the Patel family and invest around the world with a concentrated focus on technology, real estate and financial services.</p>
       </div>
     </div>
   </div>
@@ -811,7 +826,7 @@ const AR={
  '.hero-eyebrow span:first-child':'مكتب عائلي خاص',
  '.hero-eyebrow span:last-child':'مكتب عائلي خاص يستثمر عالميًا',
  '.hero h1':'مكتب عائلي خاص',
- '.hero-sub':'نحن مكتب عائلي فردي مقرّه أبوظبي، ونستثمر حول العالم. ندير رأس مال عائلة باتيل ونستثمر عبر مجموعةٍ من المحاور تتمحور حول التقدّم التقني والنمو الاقتصادي العالمي.',
+ '.hero-sub':'نحن مكتب عائلي فردي مقرّه أبوظبي. ندير رأس مال عائلة باتيل ونستثمر حول العالم بتركيزٍ مُركّز على التكنولوجيا والعقارات والخدمات المالية.',
  '#approach .sec-head h2':'نستثمر برؤيةٍ ثاقبة، ونحتفظ <em>بقناعة</em>، ونعمل بحضورٍ عالمي.',
  '.reach .eyebrow span':'الحضور العالمي',
  '.reach h3':'الاستثمار في أكثر من 50 دولة',
@@ -842,7 +857,7 @@ const HI={
  '.hero-eyebrow span:first-child':'एकल पारिवारिक कार्यालय',
  '.hero-eyebrow span:last-child':'वैश्विक रूप से निवेश करने वाला एकल पारिवारिक कार्यालय',
  '.hero h1':'निजी पारिवारिक कार्यालय',
- '.hero-sub':'हम अबू धाबी में स्थित एक एकल पारिवारिक कार्यालय हैं, जो दुनिया भर में निवेश करता है। हम पटेल परिवार की पूंजी का प्रबंधन करते हैं और प्रौद्योगिकीय प्रगति तथा वैश्विक आर्थिक विकास पर केंद्रित विविध विषयों में निवेश करते हैं।',
+ '.hero-sub':'हम अबू धाबी में स्थित एक एकल पारिवारिक कार्यालय हैं। हम पटेल परिवार की पूंजी का प्रबंधन करते हैं और प्रौद्योगिकी, रियल एस्टेट तथा वित्तीय सेवाओं पर केंद्रित फोकस के साथ दुनिया भर में निवेश करते हैं।',
  '#approach .sec-head h2':'हम अंतर्दृष्टि के साथ निवेश करते हैं, <em>दृढ़ विश्वास</em> के साथ धारण करते हैं, और वैश्विक पहुँच के साथ संचालन करते हैं।',
  '.reach .eyebrow span':'वैश्विक पहुँच',
  '.reach h3':'50+ देशों में निवेश',
@@ -873,7 +888,7 @@ const FR={
  '.hero-eyebrow span:first-child':'Family office unifamilial',
  '.hero-eyebrow span:last-child':"Family office unifamilial investissant mondialement",
  '.hero h1':'Family office privé',
- '.hero-sub':'Nous sommes un family office unifamilial basé à Abou Dhabi, investissant à travers le monde. Nous gérons le capital de la famille Patel et investissons dans une variété de thèmes centrés sur le progrès technologique et la croissance économique mondiale.',
+ '.hero-sub':'Nous sommes un family office unifamilial basé à Abou Dhabi. Nous gérons le capital de la famille Patel et investissons à travers le monde, avec une orientation concentrée sur la technologie, l\'immobilier et les services financiers.',
  '#approach .sec-head h2':"Nous investissons avec discernement, détenons avec <em>conviction</em> et opérons à l'échelle mondiale.",
  '.reach .eyebrow span':'Présence mondiale',
  '.reach h3':'Investir dans plus de 50 pays',
@@ -904,7 +919,7 @@ const ZH={
  '.hero-eyebrow span:first-child':'單一家族辦公室',
  '.hero-eyebrow span:last-child':'面向全球投資的單一家族辦公室',
  '.hero h1':'私人家族辦公室',
- '.hero-sub':'我們是一家總部位於阿布扎比、投資遍及全球的單一家族辦公室。我們管理 Patel 家族的資本，投資於圍繞科技進步與全球經濟增長的多元主題。',
+ '.hero-sub':'我們是一家總部位於阿布扎比的單一家族辦公室。我們管理 Patel 家族的資本，並在全球投資，集中專注於科技、房地產及金融服務。',
  '#approach .sec-head h2':'我們以洞察力投資，以<em>信念</em>持有，並以全球網絡運營。',
  '.reach .eyebrow span':'全球網絡',
  '.reach h3':'投資遍及 50 多個國家',
