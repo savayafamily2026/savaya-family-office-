@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta property="og:site_name" content="Savaya Capital">
+<meta name="application-name" content="Savaya Capital">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Contact Us — Savaya Capital</title>
 <meta name="description" content="Long-term capital partners. Powering the innovation of tomorrow.">
@@ -13,7 +15,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400;1,6..96,500&family=Noto+Kufi+Arabic:wght@300;400;500&family=Noto+Sans+Devanagari:wght@300;400;500&family=Noto+Serif+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Noto+Kufi+Arabic:wght@300;400;500&family=Noto+Sans+Devanagari:wght@300;400;500&family=Noto+Serif+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=zodiak@300,400,500&display=swap" rel="stylesheet">
 <style>
 @font-face{
@@ -642,6 +644,11 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
 
 /* Nov update: footer navigation sits at the far right */
 @media(min-width:761px){.foot-top{grid-template-columns:1fr auto}}
+
+.contact-hero::before{opacity:0!important}
+/* ── Nov 15 refinement: one type system (Zodiak display + Inter text), no italics ── */
+em,.d em,h1 em,h2 em,h3 em,.inv-head h3 em{font-family:inherit!important;font-style:normal!important;font-weight:inherit!important;letter-spacing:inherit!important}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
 </style>
 </head>
 <body>
@@ -651,7 +658,7 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
   <a href="/" class="mark"><img src="sc-mark.png" alt=""> Savaya Capital</a>
   <div class="nav-right">
     <ul>
-      <li><a href="/about">About Us</a></li>
+      <li><a href="/about">About &amp; Portfolio</a></li>
       <li><a href="/careers">Careers</a></li>
       <li><a href="/legal">Legal</a></li>
     </ul>
@@ -676,7 +683,7 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
   <button class="mm-close" id="mmClose" aria-label="Close menu">
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.4"/></svg>
   </button>
-  <a href="/about">About Us</a>
+  <a href="/about">About &amp; Portfolio</a>
   <a href="/careers">Careers</a>
   <a href="/legal">Legal</a>
   <a href="/contact">Contact Us</a>
@@ -686,16 +693,16 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
 <!-- ══ HERO ══ -->
 <header class="hero contact-hero">
   <div class="inner">
-    <h1 class="d">Please contact <em>us.</em></h1>
+    <h1 class="d">Get in touch.</h1>
     <div class="hero-grid">
-      <p class="body-lg hero-sub">Please contact our team directly to begin a conversation.</p>
+      <p class="body-lg hero-sub">Please find our direct contact information below.</p>
     </div>
 
     <div class="contact-grid" id="contact-details">
       <div class="contact-col">
         <div class="eyebrow"><span class="n">01</span><i></i><span>Direct Enquiries</span></div>
         <a class="contact-email" href="mailto:inquiries@savayafamily.com">inquiries@savayafamily.com</a>
-        <p class="contact-note">Written enquiries only. A member of the family office will respond directly and in confidence.</p>
+        <p class="contact-note">If applying for a role at Savaya Capital, please make sure to include your resume or LinkedIn for an initial review.</p>
       </div>
       <div class="contact-col">
         <div class="eyebrow"><span class="n">02</span><i></i><span>Headquarters</span></div>
@@ -712,7 +719,7 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
       <div><a href="/" class="foot-mark">Savaya Capital</a></div>
       <div>
         <h4>Navigation</h4>
-        <a href="/about">About Us</a>
+        <a href="/about">About &amp; Portfolio</a>
         <a href="/contact">Contact Us</a>
         <a href="/careers">Careers</a>
         <a href="/legal">Legal &amp; Regulatory Notice</a>
@@ -890,41 +897,41 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
 
 <script>
 const AR={
- '.hero h1':'يُرجى <em>التواصل معنا.</em>',
- '.hero-sub':'يُرجى التواصل مع فريقنا مباشرةً لبدء المحادثة.',
+ '.hero h1':'تواصلوا معنا.',
+ '.hero-sub':'تجدون أدناه معلومات التواصل المباشر.',
  '.hero-cue span':'مرّر للاستكشاف',
  '.contact-col:nth-child(1) .eyebrow span:last-child':'الاستفسارات المباشرة',
- '.contact-note':'الاستفسارات الكتابية فقط. سيردّ أحد أعضاء المكتب العائلي مباشرةً وبسرّية.',
+ '.contact-note':'عند التقدّم لأي دور في سافايا كابيتال، يُرجى إرفاق سيرتك الذاتية أو رابط حسابك على LinkedIn للمراجعة الأولية.',
  '.contact-col:nth-child(2) .eyebrow span:last-child':'المقر الرئيسي',
  '.contact-quote-text':'«أمتن العلاقات تبدأ بهدوء — <em>بمحادثةٍ واحدة متأنّية.</em>»',
  '.contact-quote-attr':'سافايا · فاميلي جلوبال هولدينجز'
 };
 const HI={
- '.hero h1':'कृपया हमसे <em>संपर्क करें।</em>',
- '.hero-sub':'बातचीत शुरू करने के लिए कृपया सीधे हमारी टीम से संपर्क करें।',
+ '.hero h1':'संपर्क करें।',
+ '.hero-sub':'हमारी प्रत्यक्ष संपर्क जानकारी नीचे दी गई है।',
  '.hero-cue span':'देखने के लिए स्क्रॉल करें',
  '.contact-col:nth-child(1) .eyebrow span:last-child':'प्रत्यक्ष पूछताछ',
- '.contact-note':'केवल लिखित पूछताछ। पारिवारिक कार्यालय का एक सदस्य सीधे और गोपनीय रूप से उत्तर देगा।',
+ '.contact-note':'सावाया कैपिटल में किसी पद के लिए आवेदन करते समय, प्रारंभिक समीक्षा हेतु कृपया अपना रिज़्यूमे या LinkedIn अवश्य शामिल करें।',
  '.contact-col:nth-child(2) .eyebrow span:last-child':'मुख्यालय',
  '.contact-quote-text':'“सबसे स्थायी संबंध चुपचाप आरंभ होते हैं — <em>एक विचारशील बातचीत से।</em>”',
  '.contact-quote-attr':'सावाया · फैमिली ग्लोबल होल्डिंग्स'
 };
 const FR={
- '.hero h1':'Contactez-<em>nous.</em>',
- '.hero-sub':'Veuillez contacter directement notre équipe pour entamer une conversation.',
+ '.hero h1':'Nous contacter.',
+ '.hero-sub':'Vous trouverez nos coordonnées directes ci-dessous.',
  '.hero-cue span':'Faites défiler pour explorer',
  '.contact-col:nth-child(1) .eyebrow span:last-child':'Demandes directes',
- '.contact-note':"Demandes écrites uniquement. Un membre du family office répondra directement et en toute confidentialité.",
+ '.contact-note':'Si vous postulez à un poste chez Savaya Capital, veuillez joindre votre CV ou votre profil LinkedIn pour un premier examen.',
  '.contact-col:nth-child(2) .eyebrow span:last-child':'Siège',
  '.contact-quote-text':'« Les relations les plus durables commencent discrètement — <em>par une seule conversation, mûrement réfléchie.</em> »',
  '.contact-quote-attr':'Savaya · Family Global Holdings'
 };
 const ZH={
- '.hero h1':'請與我們<em>聯絡。</em>',
- '.hero-sub':'請直接與我們的團隊聯絡，開啟對話。',
+ '.hero h1':'聯絡我們。',
+ '.hero-sub':'我們的直接聯絡資料載於下方。',
  '.hero-cue span':'向下滾動以探索',
  '.contact-col:nth-child(1) .eyebrow span:last-child':'直接查詢',
- '.contact-note':'僅接受書面查詢。家族辦公室成員將直接且保密地回覆。',
+ '.contact-note':'如申請 Savaya Capital 的職位，請附上您的履歷或 LinkedIn 以供初步審閱。',
  '.contact-col:nth-child(2) .eyebrow span:last-child':'總部',
  '.contact-quote-text':'「最恆久的關係始於靜默 — <em>源自一場深思熟慮的對話。</em>」',
  '.contact-quote-attr':'Savaya · Family Global Holdings'

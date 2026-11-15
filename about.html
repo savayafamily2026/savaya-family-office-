@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta property="og:site_name" content="Savaya Capital">
+<meta name="application-name" content="Savaya Capital">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>About Us — Savaya Capital</title>
-<meta name="description" content="Savaya Capital is a single family office based in Abu Dhabi, UAE, investing capital around the world.">
+<title>About Us &amp; Portfolio — Savaya Capital</title>
+<meta name="description" content="Savaya Capital is a single pool of capital managed by the Patel family, investing globally in private companies, private equity, real estate, and public markets.">
 
 <!-- favicon (square 1:1) -->
 <link rel="icon" href="favicon-96x96.png" sizes="96x96" type="image/png">
@@ -13,7 +15,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400;1,6..96,500&family=Noto+Kufi+Arabic:wght@300;400;500&family=Noto+Sans+Devanagari:wght@300;400;500&family=Noto+Serif+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Noto+Kufi+Arabic:wght@300;400;500&family=Noto+Sans+Devanagari:wght@300;400;500&family=Noto+Serif+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=zodiak@300,400,500&display=swap" rel="stylesheet">
 <style>
 @font-face{
@@ -862,6 +864,46 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
 
 /* Nov update: footer navigation sits at the far right */
 @media(min-width:761px){.foot-top{grid-template-columns:1fr auto}}
+
+/* ── Nov 15 refinement: one type system (Zodiak display + Inter text), no italics ── */
+em,.d em,h1 em,h2 em,h3 em,.inv-head h3 em{font-family:inherit!important;font-style:normal!important;font-weight:inherit!important;letter-spacing:inherit!important}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+
+/* ── Nov 15: About Us & Portfolio ── */
+.ab-hero{min-height:100svh;justify-content:flex-end;padding:150px var(--pad-x) 72px;
+  background:url('images/about-dubai.jpg') center 40%/cover no-repeat,var(--ink)}
+.ab-hero::before{opacity:0!important}
+.ab-hero::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(8,8,8,.30) 0%,rgba(8,8,8,.10) 28%,rgba(8,8,8,.45) 58%,rgba(8,8,8,.88) 82%,rgba(8,8,8,.96) 100%)}
+.ab-hero .inner{position:relative;z-index:2;width:100%}
+.ab-head{padding-bottom:28px;margin-bottom:32px;border-bottom:1px solid rgba(247,246,244,.18)}
+.ab-eyebrow{color:var(--on-ink-muted);margin-bottom:16px}
+.ab-hero h1.d{font-size:clamp(1.45rem,2.5vw,2.25rem);text-transform:uppercase;letter-spacing:.08em;line-height:1.15;white-space:normal;margin:0;max-width:none}
+.ab-copy{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,64px)}
+.ab-copy p{font-size:15.5px;line-height:1.75;color:#e2e1dc;margin:0;text-shadow:0 1px 12px rgba(0,0,0,.6)}
+.ab-sec{padding:clamp(80px,9vw,128px) var(--pad-x)}
+.ab-sec--map{padding-top:0}
+.ab-sec-head{display:grid;grid-template-columns:minmax(220px,.9fr) 2fr;column-gap:48px;row-gap:14px;align-items:end;
+  padding-bottom:28px;margin-bottom:8px;border-bottom:1px solid var(--line-light)}
+.ab-sec-head .eyebrow{grid-column:1/-1;color:var(--on-paper-muted)}
+.ab-sec-head h2.d{font-size:clamp(1.7rem,3vw,2.5rem);margin:0;white-space:normal}
+.ab-note{margin:0;font-size:14.5px;line-height:1.65;color:var(--on-paper-muted);max-width:44ch;justify-self:end;text-align:left}
+.ab-note .ast{font-size:.8em;vertical-align:super;margin-left:1px}
+.ab-sec--map .ab-sec-head{margin-bottom:36px}
+.pf-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);column-gap:40px}
+.pf-list li{display:flex;align-items:baseline;gap:16px;padding:20px 0;border-bottom:1px solid var(--line-light)}
+.pf-n{font-family:var(--sans);font-size:11.5px;letter-spacing:.08em;color:var(--on-paper-muted);min-width:22px;font-variant-numeric:tabular-nums}
+.pf-list a,.pf-name{font-family:var(--display);font-weight:500;font-size:clamp(1.05rem,1.35vw,1.25rem);letter-spacing:-.005em;color:var(--on-paper);
+  display:inline-flex;align-items:center;gap:10px;line-height:1.25}
+.pf-list a svg{width:11px;height:11px;opacity:0;transform:translate(-4px,4px);transition:opacity .25s ease,transform .25s ease;flex:none}
+.pf-list a:hover svg,.pf-list a:focus-visible svg{opacity:.7;transform:none}
+.pf-list a:hover{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
+@media(max-width:1080px){.pf-list{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:860px){.ab-copy{grid-template-columns:1fr;gap:18px}.pf-list{grid-template-columns:repeat(2,1fr);column-gap:28px}
+  .ab-sec-head{grid-template-columns:1fr}.ab-note{justify-self:start;text-align:left}}
+@media(max-width:560px){.ab-hero{padding:120px var(--pad-x) 48px}.ab-hero h1.d{font-size:clamp(1.25rem,6.2vw,1.6rem)}
+  .ab-copy p{font-size:14.5px;line-height:1.7}.pf-list{grid-template-columns:1fr}}
+html[dir="rtl"] .ab-note{text-align:right}
 </style>
 </head>
 <body>
@@ -871,7 +913,7 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
   <a href="/" class="mark"><img src="sc-mark.png" alt=""> Savaya Capital</a>
   <div class="nav-right">
     <ul>
-      <li><a href="/about">About Us</a></li>
+      <li><a href="/about">About &amp; Portfolio</a></li>
       <li><a href="/careers">Careers</a></li>
       <li><a href="/legal">Legal</a></li>
     </ul>
@@ -896,7 +938,7 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
   <button class="mm-close" id="mmClose" aria-label="Close menu">
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.4"/></svg>
   </button>
-  <a href="/about">About Us</a>
+  <a href="/about">About &amp; Portfolio</a>
   <a href="/careers">Careers</a>
   <a href="/legal">Legal</a>
   <a href="/contact">Contact Us</a>
@@ -904,126 +946,67 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
 
 
 <!-- ══ HERO ══ -->
-<header class="hero">
-  <div class="inner hero-split">
-    <div class="hero-copy">
-      <h1 class="d">Private family office<span class="l2">Investing <em>globally.</em></span></h1>
-      <div class="hero-grid">
-        <p class="body-lg hero-sub">We are a single family office based in Abu Dhabi, UAE, and invest capital around the world.</p>
-      </div>
+<header class="hero ab-hero">
+  <div class="inner">
+    <div class="ab-head">
+      <div class="eyebrow ab-eyebrow"><span>Savaya Capital</span></div>
+      <h1 class="d">About Us &amp; Portfolio</h1>
+    </div>
+    <div class="ab-copy">
+      <p>Savaya Capital is a single pool of capital managed by the principal family, key family members, and a small team of investors. We invest globally in private companies, private equity, real estate assets, and in public markets. We either make investments via direct allocation, via SPVs with partners, or as LPs in managers.</p>
+      <p>Our investment activity began in 2008 from the founding of a Canadian real estate business that continues to operate today, developing residential homes, commercial plazas, corporate offices, gas stations, fast food restaurants, and agricultural land. The family has since diversified the portfolio into a variety of technology and financial services assets, with a sample of the investments below.</p>
     </div>
   </div>
-  <div class="hero-cue"><span>Scroll to explore</span></div>
 </header>
 
-<!-- ══ 01 GLOBAL REACH ══ -->
-<section class="band-paper" id="reach-sec">
+<!-- ══ 01 PORTFOLIO ══ -->
+<section class="band-paper ab-sec" id="portfolio">
   <div class="inner">
-    <div class="sec-head rise">
-      <div class="eyebrow"><span class="n">01</span><i></i><span>Global Reach</span></div>
+    <div class="ab-sec-head rise">
+      <div class="eyebrow"><span class="n">01</span><i></i><span>Portfolio</span></div>
+      <h2 class="d">Our Portfolio</h2>
+      <p class="ab-note">A selection of investments, held directly, via SPVs with partners, or as LPs in managers.<span class="ast">*</span></p>
+    </div>
+    <ol class="pf-list rise">
+        <li><span class="pf-n">01</span><a href="https://openai.com/" target="_blank" rel="noopener">OpenAI<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></a></li>
+        <li><span class="pf-n">02</span><a href="https://www.anthropic.com/" target="_blank" rel="noopener">Anthropic<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></a></li>
+        <li><span class="pf-n">03</span><a href="https://www.spacex.com/" target="_blank" rel="noopener">SpaceX<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></a></li>
+        <li><span class="pf-n">04</span><a href="https://www.alphaxiv.org/" target="_blank" rel="noopener">alphaXiv<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></a></li>
+        <li><span class="pf-n">05</span><span class="pf-name">Biography Labs</span></li>
+        <li><span class="pf-n">06</span><a href="https://capable.com/" target="_blank" rel="noopener">Capable<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></a></li>
+        <li><span class="pf-n">07</span><a href="https://catalyst.app/" target="_blank" rel="noopener">Catalyst<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></a></li>
+        <li><span class="pf-n">08</span><a href="https://www.fractalpower.com/" target="_blank" rel="noopener">Fractal Power<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></a></li>
+        <li><span class="pf-n">09</span><a href="https://www.incangroup.com/" target="_blank" rel="noopener">Incan Group<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></a></li>
+        <li><span class="pf-n">10</span><a href="https://nebulagroup.ca/" target="_blank" rel="noopener">Nebula Group<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></a></li>
+        <li><span class="pf-n">11</span><a href="https://www.ornnai.com/" target="_blank" rel="noopener">Ornn<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></a></li>
+        <li><span class="pf-n">12</span><a href="https://www.sesame.com/" target="_blank" rel="noopener">Sesame<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></a></li>
+        <li><span class="pf-n">13</span><a href="https://sfcompute.com/" target="_blank" rel="noopener">SF Compute<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></a></li>
+        <li><span class="pf-n">14</span><span class="pf-name">Supercomputer and Friends</span></li>
+        <li><span class="pf-n">15</span><a href="https://tendrils.co/about" target="_blank" rel="noopener">Tendrils<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></a></li>
+        <li><span class="pf-n">16</span><a href="https://trajectory.ai/" target="_blank" rel="noopener">Trajectory AI<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.3"/></svg></a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══ 02 COVERAGE ══ -->
+<section class="band-paper ab-sec ab-sec--map" id="reach-sec">
+  <div class="inner">
+    <div class="ab-sec-head rise">
+      <div class="eyebrow"><span class="n">02</span><i></i><span>Our Coverage</span></div>
+      <h2 class="d">Global reach</h2>
     </div>
     <div class="map-panel rise">
       <div class="map-head-ov">
-        <div class="eyebrow"><span>Global Reach</span></div>
         <h3 class="d">Investing across 5 continents</h3>
       </div>
       <svg id="world-map-svg" viewBox="0 0 1200 590" preserveAspectRatio="xMidYMid meet" aria-label="World map showing Savaya Capital's global reach"></svg>
       <div class="map-foot-ov">
         <div class="map-legend">
-          <div class="legend-item"><span class="legend-dot hq"></span>HQ · UAE</div>
+          <div class="legend-item"><span class="legend-dot hq"></span>HQ · Abu Dhabi</div>
           <div class="legend-item"><span class="legend-dot focus"></span>Active Investment Regions</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ══ 02 INVESTMENT PROCESS ══ -->
-<section class="band-ink" id="process">
-  <div class="proc-bg" aria-hidden="true">
-    <img src="images/process%20photo%20.jpeg" alt="" loading="lazy" decoding="async"
-         onerror="this.closest('.proc-bg').style.display='none'">
-  </div>
-  <div class="inner">
-    <div class="sec-head rise">
-      <div class="eyebrow"><span class="n">02</span><i></i><span>Cycle</span></div>
-      <h2 class="d">Investment Process.</h2>
-    </div>
-    <div class="proc rise">
-      <div class="ring-wrap">
-        <div class="ring-glow"></div>
-        <svg class="ring-svg" viewBox="0 0 520 520" aria-hidden="true">
-          <circle cx="260" cy="260" r="150" fill="none" stroke="rgba(237,234,227,0.52)" stroke-width="2.4"/>
-          <g stroke="rgba(237,234,227,0.52)" stroke-width="2.4">
-            <line x1="260" y1="110" x2="260" y2="92"/>
-            <line x1="410" y1="260" x2="428" y2="260"/>
-            <line x1="260" y1="410" x2="260" y2="428"/>
-            <line x1="110" y1="260" x2="92" y2="260"/>
-          </g>
-          <circle class="rn rn1" cx="260" cy="110" r="4.5"/>
-          <circle class="rn rn2" cx="410" cy="260" r="4.5"/>
-          <circle class="rn rn3" cx="260" cy="410" r="4.5"/>
-          <circle class="rn rn4" cx="110" cy="260" r="4.5"/>
-        </svg>
-        <div class="ring-center">Permanent<br>Capital</div>
-        <div class="ring-stage rs1" data-stage="1"><span class="rs-n">01</span><h4>Origination</h4></div>
-        <div class="ring-stage rs2" data-stage="2"><span class="rs-n">02</span><h4>Research &amp; Diligence</h4></div>
-        <div class="ring-stage rs3" data-stage="3"><span class="rs-n">03</span><h4>Investment Committee</h4></div>
-        <div class="ring-stage rs4" data-stage="4"><span class="rs-n">04</span><h4>Partnership</h4></div>
-      </div>
-
-      <ol class="proc-list">
-        <li class="proc-item" data-stage="1">
-          <span class="pi-n">01</span>
-          <div class="pi-body">
-            <h4>Origination</h4>
-            <p>Teams actively map target industries and leverage proprietary networks to identify and build relationships with high-potential investment opportunities.</p>
-          </div>
-        </li>
-        <li class="proc-item" data-stage="2">
-          <span class="pi-n">02</span>
-          <div class="pi-body">
-            <h4>Research &amp; Diligence</h4>
-            <p>Experts conduct market analysis to map industry trends, followed by deep-dive financial and legal diligence to verify the target's operational viability.</p>
-          </div>
-        </li>
-        <li class="proc-item" data-stage="3">
-          <span class="pi-n">03</span>
-          <div class="pi-body">
-            <h4>Investment Committee</h4>
-            <p>The investment committee rigorously evaluates the final proposal against strict written policies to formally vote on and approve the capital deployment.</p>
-          </div>
-        </li>
-        <li class="proc-item" data-stage="4">
-          <span class="pi-n">04</span>
-          <div class="pi-body">
-            <h4>Partnership</h4>
-            <p>The firm structures the final terms and commits long-term capital, then partners closely alongside the founders — offering our networks, experience, and patience as they build the business for the long term.</p>
-          </div>
-        </li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 03 MANAGEMENT & VALUES ══ -->
-<section class="band-paper" id="governance">
-  <div class="inner">
-
-    <div class="gov-top rise">
-      <div class="sec-head gov-head">
-        <div class="eyebrow"><span class="n">03</span><i></i><span>Management &amp; Values</span></div>
-        <h2 class="d">Managed by the <em>family.</em></h2>
-      </div>
-
-      <div class="gov-intro">
-        <p class="gov-lede">Savaya Capital is the single-family office of the Patel family. We manage one pool of capital, with a mandate to preserve it, grow it, and pass it on intact.</p>
-        <p class="gov-lede">There are no outside investors, no fund cycles, and no redemption calendar. We invest only our own money, so our interests and our partners' are the same by construction rather than by agreement. That lets us underwrite decades rather than quarters, and decline far more often than we commit.</p>
-        <p class="gov-sign">The Patel Family</p>
-      </div>
-    </div>
-
-
   </div>
 </section>
 
@@ -1034,7 +1017,7 @@ html:not([lang="en"]) .inv-head h3{max-width:22ch}
       <div><a href="/" class="foot-mark">Savaya Capital</a></div>
       <div>
         <h4>Navigation</h4>
-        <a href="/about">About Us</a>
+        <a href="/about">About &amp; Portfolio</a>
         <a href="/contact">Contact Us</a>
         <a href="/careers">Careers</a>
         <a href="/legal">Legal &amp; Regulatory Notice</a>
@@ -1245,7 +1228,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
 
 <script>
 const AR={
- '.hero h1':'مكتب عائلي خاص<span class="l2">نستثمر <em>عالمياً.</em></span>',
+ '.hero h1':'من نحن والمحفظة',
  '.hero-sub':'نحن مكتب عائلي فردي مقرّه أبوظبي، الإمارات العربية المتحدة، ونستثمر رأس المال حول العالم.',
  '.hero-cue span':'مرّر للاستكشاف',
  '#focus .eyebrow span:last-child':'مجالات التركيز',
@@ -1288,10 +1271,17 @@ const AR={
  '.gov-person:nth-child(7) .gp-role':'محلل استثمار',
  '.enq .eyebrow span':'نهج الاستثمار',
  '.enq h2':'رأس المال ملتزمٌ بالتحوّل البنيوي، لا <em>بدورات السوق.</em>',
- '.enq p':'لا تتاجر سافايا كابيتال بالمواضيع. وحين نتبيّن تحوّلاً بنيوياً مستداماً، نلتزم برأس المال على آفاقٍ تمتد لعقدٍ أو أكثر، ونبني مراكز مركّزة عالية القناعة نملك فيها ميزةً معلوماتية أو علاقاتية واضحة.'
+ '.enq p':'لا تتاجر سافايا كابيتال بالمواضيع. وحين نتبيّن تحوّلاً بنيوياً مستداماً، نلتزم برأس المال على آفاقٍ تمتد لعقدٍ أو أكثر، ونبني مراكز مركّزة عالية القناعة نملك فيها ميزةً معلوماتية أو علاقاتية واضحة.',
+ '.ab-copy p:nth-child(1)':'سافايا كابيتال مجمّعٌ واحد لرأس المال يُديره رأس العائلة وكبار أفرادها وفريقٌ صغير من المستثمرين. نستثمر عالمياً في الشركات الخاصة والأسهم الخاصة والأصول العقارية والأسواق العامة. ونُنفّذ استثماراتنا إمّا عبر التخصيص المباشر، أو من خلال أدوات ذات غرض خاص (SPV) مع شركائنا، أو كشركاء محدودين (LP) لدى مديري الصناديق.',
+ '.ab-copy p:nth-child(2)':'بدأ نشاطنا الاستثماري عام 2008 بتأسيس شركة عقارية كندية لا تزال تعمل حتى اليوم، تطوّر المنازل السكنية والمجمّعات التجارية ومكاتب الشركات ومحطات الوقود ومطاعم الوجبات السريعة والأراضي الزراعية. ومنذ ذلك الحين نوّعت العائلة محفظتها لتشمل مجموعةً من أصول التكنولوجيا والخدمات المالية، ونعرض أدناه نموذجاً من استثماراتها.',
+ '#portfolio h2':'محفظتنا',
+ '#portfolio .eyebrow span:last-child':'المحفظة',
+ '.ab-note':'مجموعة مختارة من الاستثمارات، مملوكة مباشرةً، أو عبر أدوات ذات غرض خاص مع شركاء، أو كشركاء محدودين لدى مديري الصناديق.<span class="ast">*</span>',
+ '#reach-sec .ab-sec-head .eyebrow span:last-child':'نطاق تغطيتنا',
+ '#reach-sec .ab-sec-head h2':'حضورٌ عالمي'
 };
 const HI={
- '.hero h1':'निजी पारिवारिक कार्यालय<span class="l2">वैश्विक <em>निवेश।</em></span>',
+ '.hero h1':'हमारे बारे में और पोर्टफोलियो',
  '.hero-sub':'हम अबू धाबी, संयुक्त अरब अमीरात में स्थित एक एकल पारिवारिक कार्यालय हैं और दुनिया भर में पूंजी का निवेश करते हैं।',
  '.hero-cue span':'देखने के लिए स्क्रॉल करें',
  '#focus .eyebrow span:last-child':'केंद्र क्षेत्र',
@@ -1334,10 +1324,17 @@ const HI={
  '.gov-person:nth-child(7) .gp-role':'निवेश विश्लेषक',
  '.enq .eyebrow span':'निवेश दृष्टिकोण',
  '.enq h2':'पूंजी संरचनात्मक परिवर्तन के प्रति प्रतिबद्ध है, <em>बाज़ार चक्रों</em> के प्रति नहीं।',
- '.enq p':'सावाया कैपिटल विषयों का व्यापार नहीं करती। जहाँ हम एक टिकाऊ संरचनात्मक परिवर्तन पहचानते हैं, वहाँ हम एक दशक या उससे अधिक की अवधि के लिए पूंजी प्रतिबद्ध करते हैं और ऐसी केंद्रित, उच्च-विश्वास स्थितियाँ बनाते हैं जिनमें हमें स्पष्ट सूचनात्मक या संबंधपरक लाभ प्राप्त हो।'
+ '.enq p':'सावाया कैपिटल विषयों का व्यापार नहीं करती। जहाँ हम एक टिकाऊ संरचनात्मक परिवर्तन पहचानते हैं, वहाँ हम एक दशक या उससे अधिक की अवधि के लिए पूंजी प्रतिबद्ध करते हैं और ऐसी केंद्रित, उच्च-विश्वास स्थितियाँ बनाते हैं जिनमें हमें स्पष्ट सूचनात्मक या संबंधपरक लाभ प्राप्त हो।',
+ '.ab-copy p:nth-child(1)':'सावाया कैपिटल पूंजी का एक एकल पूल है, जिसका प्रबंधन प्रमुख परिवार, परिवार के प्रमुख सदस्य और निवेशकों की एक छोटी टीम करती है। हम विश्व स्तर पर निजी कंपनियों, प्राइवेट इक्विटी, रियल एस्टेट परिसंपत्तियों और सार्वजनिक बाज़ारों में निवेश करते हैं। हम प्रत्यक्ष आवंटन, साझेदारों के साथ SPV के माध्यम से, या प्रबंधकों में LP के रूप में निवेश करते हैं।',
+ '.ab-copy p:nth-child(2)':'हमारी निवेश गतिविधि 2008 में एक कनाडाई रियल एस्टेट व्यवसाय की स्थापना से शुरू हुई, जो आज भी संचालित है और आवासीय घरों, वाणिज्यिक प्लाज़ा, कॉर्पोरेट कार्यालयों, गैस स्टेशनों, फास्ट फूड रेस्तरां और कृषि भूमि का विकास करता है। तब से परिवार ने पोर्टफोलियो को विभिन्न प्रौद्योगिकी और वित्तीय सेवा परिसंपत्तियों में विविधीकृत किया है, जिनमें से कुछ निवेश नीचे दिए गए हैं।',
+ '#portfolio h2':'हमारा पोर्टफोलियो',
+ '#portfolio .eyebrow span:last-child':'पोर्टफोलियो',
+ '.ab-note':'चुनिंदा निवेश — प्रत्यक्ष रूप से, साझेदारों के साथ SPV के माध्यम से, या प्रबंधकों में LP के रूप में धारित।<span class="ast">*</span>',
+ '#reach-sec .ab-sec-head .eyebrow span:last-child':'हमारा कवरेज',
+ '#reach-sec .ab-sec-head h2':'वैश्विक पहुँच'
 };
 const FR={
- '.hero h1':'Family office privé<span class="l2">Investir <em>mondialement.</em></span>',
+ '.hero h1':'À propos et portefeuille',
  '.hero-sub':'Nous sommes un family office unifamilial basé à Abou Dhabi (Émirats arabes unis) et investissons à travers le monde.',
  '.hero-cue span':'Faites défiler pour explorer',
  '#focus .eyebrow span:last-child':"Domaines d'intervention",
@@ -1380,10 +1377,17 @@ const FR={
  '.gov-person:nth-child(7) .gp-role':'Analyste en investissement',
  '.enq .eyebrow span':"Approche d'investissement",
  '.enq h2':'Le capital est engagé au service du changement structurel, non des <em>cycles de marché.</em>',
- '.enq p':"Savaya Capital ne négocie pas de thématiques. Lorsque nous identifions une transformation structurelle durable, nous engageons du capital sur des horizons d'une décennie ou plus, en construisant des positions concentrées et de forte conviction où nous disposons d'un avantage informationnel ou relationnel clair."
+ '.enq p':"Savaya Capital ne négocie pas de thématiques. Lorsque nous identifions une transformation structurelle durable, nous engageons du capital sur des horizons d'une décennie ou plus, en construisant des positions concentrées et de forte conviction où nous disposons d'un avantage informationnel ou relationnel clair.",
+ '.ab-copy p:nth-child(1)':'Savaya Capital est un pool de capital unique, géré par la famille principale, des membres clés de la famille et une petite équipe d\'investisseurs. Nous investissons à l\'échelle mondiale dans des sociétés privées, le private equity, des actifs immobiliers et les marchés cotés. Nous investissons soit par allocation directe, soit via des SPV avec des partenaires, soit en tant que LP auprès de gérants.',
+ '.ab-copy p:nth-child(2)':'Notre activité d\'investissement a débuté en 2008 avec la création d\'une société immobilière canadienne, toujours en activité, qui développe des maisons résidentielles, des centres commerciaux, des bureaux, des stations-service, des restaurants de restauration rapide et des terres agricoles. La famille a depuis diversifié son portefeuille vers des actifs technologiques et de services financiers, dont un échantillon figure ci-dessous.',
+ '#portfolio h2':'Notre portefeuille',
+ '#portfolio .eyebrow span:last-child':'Portefeuille',
+ '.ab-note':'Une sélection d’investissements, détenus en direct, via des SPV avec des partenaires, ou en tant que LP auprès de gérants.<span class="ast">*</span>',
+ '#reach-sec .ab-sec-head .eyebrow span:last-child':'Notre couverture',
+ '#reach-sec .ab-sec-head h2':'Présence mondiale'
 };
 const ZH={
- '.hero h1':'私人家族辦公室<span class="l2"><em>全球佈局。</em></span>',
+ '.hero h1':'關於我們與投資組合',
  '.hero-sub':'我們是一家總部位於阿聯酋阿布扎比的單一家族辦公室，於全球各地投資。',
  '.hero-cue span':'向下滾動以探索',
  '#focus .eyebrow span:last-child':'重點領域',
@@ -1426,7 +1430,14 @@ const ZH={
  '.gov-person:nth-child(7) .gp-role':'投資分析師',
  '.enq .eyebrow span':'投資理念',
  '.enq h2':'資本承諾於結構性變革，而非<em>市場週期。</em>',
- '.enq p':'Savaya Capital 不追逐題材。當我們辨識出持久的結構性轉變時，便以十年以上的視野投入資本，在我們具備明確資訊或關係優勢之處，建立集中而高信念的持倉。'
+ '.enq p':'Savaya Capital 不追逐題材。當我們辨識出持久的結構性轉變時，便以十年以上的視野投入資本，在我們具備明確資訊或關係優勢之處，建立集中而高信念的持倉。',
+ '.ab-copy p:nth-child(1)':'Savaya Capital 是一個由主事家族、主要家族成員及一支精幹投資團隊共同管理的單一資本池。我們在全球投資私人公司、私募股權、房地產資產及公開市場，並透過直接配置、與合作夥伴設立的特殊目的載體（SPV），或以有限合夥人（LP）身份投資於基金管理人。',
+ '.ab-copy p:nth-child(2)':'我們的投資活動始於 2008 年創立的一家加拿大房地產企業，該企業至今仍在營運，開發住宅、商業廣場、企業辦公室、加油站、快餐餐廳及農地。此後，家族將投資組合拓展至多項科技及金融服務資產，以下為部分投資示例。',
+ '#portfolio h2':'我們的投資組合',
+ '#portfolio .eyebrow span:last-child':'投資組合',
+ '.ab-note':'精選投資，以直接持有、與合作夥伴設立的 SPV，或以 LP 身份投資於基金管理人等方式持有。<span class="ast">*</span>',
+ '#reach-sec .ab-sec-head .eyebrow span:last-child':'我們的覆蓋範圍',
+ '#reach-sec .ab-sec-head h2':'全球佈局'
 };
 
 /* ── 5-language switcher (EN · AR · HI · FR · ZH) ── */
